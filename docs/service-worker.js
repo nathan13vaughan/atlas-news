@@ -1,10 +1,13 @@
 // Atlas News service worker — keeps the app available offline.
 // Strategy:
-//   - PWA shell (HTML/CSS/JS/manifest/icon): cache-first
+//   - PWA shell (HTML/CSS/JS/manifest/icon): stale-while-revalidate
+//     (serve cached instantly + always update in the background)
 //   - data.json + intraday.json: network-first, fall back to cache
-//   - bump CACHE_VERSION when shipping new shell assets
+//   - On activate: force-reload all open clients so a fresh shell is shown
+//     without waiting for a second visit
+//   - Bump CACHE_VERSION when shipping new shell assets
 
-const CACHE_VERSION = "atlas-news-v3";
+const CACHE_VERSION = "atlas-news-v4";
 const SHELL = [
   "./",
   "index.html",
@@ -20,12 +23,18 @@ self.addEventListener("install", (e) => {
 });
 
 self.addEventListener("activate", (e) => {
-  e.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_VERSION).map((k) => caches.delete(k)))
-    )
-  );
-  self.clients.claim();
+  e.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter((k) => k !== CACHE_VERSION).map((k) => caches.delete(k)));
+    await self.clients.claim();
+    // Force any pages already loaded under the previous SW to reload with the
+    // new shell. Without this, the user has to fully close the PWA before
+    // they ever see the new code.
+    const clients = await self.clients.matchAll({ type: "window" });
+    for (const c of clients) {
+      try { c.navigate(c.url); } catch { /* navigate may not be available */ }
+    }
+  })());
 });
 
 self.addEventListener("fetch", (e) => {
@@ -46,8 +55,16 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  // cache-first for shell
-  e.respondWith(
-    caches.match(e.request).then((cached) => cached || fetch(e.request))
-  );
+  // stale-while-revalidate for shell — instant from cache, refreshed in bg
+  e.respondWith((async () => {
+    const cache = await caches.open(CACHE_VERSION);
+    const cached = await cache.match(e.request);
+    const networkPromise = fetch(e.request)
+      .then((resp) => {
+        if (resp && resp.status === 200) cache.put(e.request, resp.clone());
+        return resp;
+      })
+      .catch(() => cached);
+    return cached || networkPromise;
+  })());
 });
