@@ -46,7 +46,8 @@ const PROVIDERS = [
 let state = {
   news: null,         // data.json
   prices: null,       // intraday.json
-  providerEvents: [], // events fetched client-side from user-configured APIs
+  providerEvents: [], // calendar events fetched client-side from APIs
+  articles: [],       // recent news headlines fetched client-side from APIs
   filter: localStorage.getItem(FILTER_KEY) || "all",
   impact: localStorage.getItem(IMPACT_KEY) || "high",   // "high" | "all"
   keys: loadKeys(),
@@ -85,26 +86,42 @@ async function refresh() {
 // --- client-side providers ---
 async function refreshProviders() {
   const events = [];
+  const articles = [];
   for (const p of PROVIDERS) {
     if (!p.fetch) continue;                // built-ins skip
     const cfg = state.keys[p.id];
     if (!cfg?.enabled || !cfg?.key) continue;
     try {
       const got = await p.fetch(cfg.key);
-      events.push(...got);
+      // Provider may return either a flat events array or { events, articles }.
+      if (Array.isArray(got)) {
+        events.push(...got);
+      } else {
+        if (Array.isArray(got.events)) events.push(...got.events);
+        if (Array.isArray(got.articles)) articles.push(...got.articles);
+      }
     } catch (e) {
       console.warn(`provider ${p.id} fetch failed:`, e);
     }
   }
   state.providerEvents = events;
+  state.articles = articles;
 }
 
-// Finnhub provider — fetches BOTH economic calendar and earnings dates for the
-// equity tickers. Uses Promise.allSettled so a single failed call doesn't
-// poison the whole batch.
+// Finnhub provider — fetches calendar events AND recent news headlines.
+// Returns { events, articles }. Events fetch is the validation gate (so a bad
+// key fails the Save button); articles fetch is best-effort.
 async function fetchFinnhub(key) {
+  const events = await fetchFinnhubEvents(key);
+  let articles = [];
+  try { articles = await fetchFinnhubArticles(key); }
+  catch (e) { console.warn("Finnhub articles fetch failed:", e); }
+  return { events, articles };
+}
+
+async function fetchFinnhubEvents(key) {
   const now = Date.now();
-  const horizon = now + 100 * 86400000;         // capture Q2 earnings ~80-90d out
+  const horizon = now + 100 * 86400000;
   const fmt = (ms) => new Date(ms).toISOString().slice(0, 10);
   const eqs = ["NVDA", "TSLA", "AMZN", "AAPL", "META"];
 
@@ -118,13 +135,10 @@ async function fetchFinnhub(key) {
     ...eqs.map(s => fetch(earnUrl(s)).then(r => r.ok ? r.json() : Promise.reject(`earn ${r.status}`))),
   ]);
 
-  // The first call is the validation gate — if economic events 401/403, the
-  // whole save fails so the user sees the bad-key error inline.
   if (results[0].status === "rejected") throw new Error(`Finnhub: ${results[0].reason}`);
 
   const events = [];
 
-  // --- economic calendar ---
   const COUNTRY_TO_SYMBOL = { US: "SPY", EU: "XAUUSD", GB: "XAUUSD" };
   const IMPACT_MAP = { high: "high", medium: "medium", low: "low" };
   const econRows = results[0].value.economicCalendar || [];
@@ -144,8 +158,6 @@ async function fetchFinnhub(key) {
     });
   }
 
-  // --- per-ticker earnings ---
-  // hour: "bmo" before-mkt-open, "dmh" during, "amc" after-mkt-close (or "")
   const HOUR_UTC = { bmo: "12:30:00", dmh: "16:00:00", amc: "20:30:00" };
   for (let i = 0; i < eqs.length; i++) {
     const result = results[i + 1];
@@ -155,22 +167,63 @@ async function fetchFinnhub(key) {
       const time = HOUR_UTC[r.hour] || "20:30:00";
       const at = new Date(`${r.date}T${time}Z`);
       if (+at < now || +at > horizon) continue;
-      const fc = r.epsEstimate != null ? `EPS est ${r.epsEstimate}` : null;
-      const pv = r.epsActual != null ? `EPS prev ${r.epsActual}` : null;
       events.push({
         title: `${r.symbol} Earnings (Q${r.quarter} ${r.year})`,
         kind: "earnings",
         symbol: r.symbol,
         impact: "high",
         scheduled_at: at.toISOString(),
-        forecast: fc,
-        previous: pv,
+        forecast: r.epsEstimate != null ? `EPS est ${r.epsEstimate}` : null,
+        previous: r.epsActual != null ? `EPS prev ${r.epsActual}` : null,
         source: "finnhub",
       });
     }
   }
-
   return events;
+}
+
+// Last 7 days of company-specific news. Filtered to credible outlets so the
+// list isn't drowned in PR-newswire spam. Top 5 most recent per ticker.
+async function fetchFinnhubArticles(key) {
+  const fmt = (ms) => new Date(ms).toISOString().slice(0, 10);
+  const fromIso = fmt(Date.now() - 7 * 86400000);
+  const toIso = fmt(Date.now());
+  const eqs = ["NVDA", "TSLA", "AMZN", "AAPL", "META"];
+  const TRUSTED = new Set([
+    "Reuters", "Bloomberg", "CNBC", "Yahoo", "MarketWatch",
+    "Wall Street Journal", "WSJ", "Financial Times", "Barrons",
+    "SeekingAlpha", "TheStreet", "Investopedia", "Forbes",
+    "Business Insider", "Investing.com", "Benzinga", "Fortune",
+  ]);
+
+  const results = await Promise.allSettled(
+    eqs.map(s =>
+      fetch(`https://finnhub.io/api/v1/company-news?symbol=${s}&from=${fromIso}&to=${toIso}` +
+            `&token=${encodeURIComponent(key)}`)
+        .then(r => r.ok ? r.json() : [])
+    )
+  );
+
+  const out = [];
+  for (let i = 0; i < eqs.length; i++) {
+    const result = results[i];
+    if (result.status !== "fulfilled" || !Array.isArray(result.value)) continue;
+    const filtered = result.value
+      .filter(a => a.headline && a.url && TRUSTED.has(a.source))
+      .sort((a, b) => b.datetime - a.datetime)
+      .slice(0, 5);
+    for (const a of filtered) {
+      out.push({
+        symbol: eqs[i],
+        headline: a.headline,
+        source: a.source,
+        url: a.url,
+        published_at: new Date(a.datetime * 1000).toISOString(),
+        summary: a.summary || "",
+      });
+    }
+  }
+  return out;
 }
 
 // dedupe key: same earnings is the same earnings regardless of exact time
@@ -432,6 +485,40 @@ function renderUpdatedLabel() {
   el.textContent = `px ${pxAge} · news ${newsAge}`;
 }
 
+// --- render: recent news articles ---
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+}
+function timeAgo(iso) {
+  const ms = Date.now() - +new Date(iso);
+  if (ms < 60000) return "just now";
+  const m = Math.floor(ms / 60000);
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
+}
+function renderArticles() {
+  const sectionH = document.getElementById("articlesH");
+  const el = document.getElementById("articles");
+  let arts = state.articles || [];
+  if (state.filter !== "all") arts = arts.filter(a => a.symbol === state.filter);
+  arts = arts.slice().sort((a, b) => b.published_at.localeCompare(a.published_at)).slice(0, 25);
+  if (!arts.length) { sectionH.hidden = true; el.innerHTML = ""; return; }
+  sectionH.hidden = false;
+  el.innerHTML = arts.map(a => {
+    const symCls = a.symbol === "XAUUSD" ? "symbol-xau" : "symbol-spy";
+    return `
+      <a class="article" href="${escapeHtml(a.url)}" target="_blank" rel="noopener">
+        <div class="article-meta">
+          <span class="badge ${symCls}">${a.symbol}</span>
+          <span class="article-source">${escapeHtml(a.source)} · ${timeAgo(a.published_at)}</span>
+        </div>
+        <div class="article-headline">${escapeHtml(a.headline)}</div>
+      </a>`;
+  }).join("");
+}
+
 // --- master render ---
 function render() {
   renderChips();
@@ -439,6 +526,7 @@ function render() {
   renderPriceStrip();
   renderHero();
   renderList();
+  renderArticles();
   renderUpdatedLabel();
 }
 
@@ -505,7 +593,9 @@ function renderSettings() {
         const got = await provider.fetch(raw);
         const next = { ...state.keys, [id]: { key: raw, enabled: true } };
         saveKeys(next);
-        msg.textContent = `OK — fetched ${got.length} events. Saved on this device only.`;
+        const nE = Array.isArray(got) ? got.length : (got.events?.length || 0);
+        const nA = Array.isArray(got) ? 0           : (got.articles?.length || 0);
+        msg.textContent = `OK — ${nE} events, ${nA} articles. Saved on this device only.`;
         msg.className = "provider-msg ok";
         renderSettings();
         await refreshProviders();

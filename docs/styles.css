@@ -400,6 +400,37 @@ html, body {
 .row .what { font-size: 12.5px; }
 .row .right { display: flex; gap: 4px; align-items: center; }
 
+/* recent news articles */
+.articles { padding: 0 16px 24px; }
+.article {
+  display: block;
+  padding: 12px 14px;
+  margin: 6px 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: rgba(78,161,255,0.12);
+}
+.article:active { background: var(--panel-2); }
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.article-source {
+  font-size: 10.5px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.article-headline {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
 /* detail sheet */
 .sheet {
   position: fixed; left: 8px; right: 8px; bottom: max(8px, env(safe-area-inset-bottom));
