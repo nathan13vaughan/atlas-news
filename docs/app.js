@@ -442,25 +442,45 @@ function pickNextEventForFilter() {
   return all.length ? all[0] : null;
 }
 
-// --- render: upcoming list ---
+// --- render: upcoming list, bucketed by time horizon ---
 function renderList() {
   const el = document.getElementById("list");
   const filtered = visibleUpcoming();
   if (!filtered.length) { el.innerHTML = ""; return; }
-  el.innerHTML = filtered.slice(0, 30).map((e, i) => {
+
+  const weekCutoff = Date.now() + 7 * 86400000;
+  const thisWeek = filtered.filter(e => +new Date(e.scheduled_at) <= weekCutoff);
+  const later    = filtered.filter(e => +new Date(e.scheduled_at) >  weekCutoff).slice(0, 30);
+
+  const renderRow = (e) => {
     const when = FMT_TIME.format(new Date(e.scheduled_at));
     const symCls = e.symbol === "XAUUSD" ? "symbol-xau" : "symbol-spy";
     return `
-      <div class="row" data-idx="${i}">
+      <div class="row">
         <span class="when">${when}</span>
-        <span class="what">${e.title}</span>
+        <span class="what">${escapeHtml(e.title)}</span>
         <span class="right">
           <span class="badge ${symCls}">${e.symbol}</span>
         </span>
       </div>`;
-  }).join("");
+  };
+
+  // Track render order so click handlers map to the right event after the
+  // section headers are interleaved in.
+  const ordered = [];
+  let html = "";
+  if (thisWeek.length) {
+    html += `<div class="section-h section-h--inline">This week · AEST</div>`;
+    thisWeek.forEach(e => { ordered.push(e); html += renderRow(e); });
+  }
+  if (later.length) {
+    html += `<div class="section-h section-h--inline">Later</div>`;
+    later.forEach(e => { ordered.push(e); html += renderRow(e); });
+  }
+  el.innerHTML = html;
+
   el.querySelectorAll(".row").forEach((row, i) =>
-    row.addEventListener("click", () => openSheet(filtered[i]))
+    row.addEventListener("click", () => openSheet(ordered[i]))
   );
 }
 

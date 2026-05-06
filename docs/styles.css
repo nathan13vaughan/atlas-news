@@ -448,6 +448,12 @@ html, body {
   color: var(--muted); font-size: 10.5px; letter-spacing: 0.1em;
   text-transform: uppercase; padding: 14px 18px 6px;
 }
+.section-h--inline {
+  padding: 16px 12px 6px;
+}
+.list .section-h--inline:first-child {
+  padding-top: 4px;
+}
 .list { padding: 0 8px 24px; }
 .row {
   display: grid; grid-template-columns: 70px 1fr auto;
