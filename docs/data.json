@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-06T12:10:26+00:00",
+  "generated_at": "2026-05-06T12:12:06+00:00",
   "next_event": {
     "title": "ADP Non-Farm Employment Change",
     "kind": "macro",
@@ -129,6 +129,50 @@
       "symbol": "NVDA",
       "impact": "high",
       "scheduled_at": "2026-05-20T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "TSLA Earnings",
+      "kind": "earnings",
+      "symbol": "TSLA",
+      "impact": "high",
+      "scheduled_at": "2026-07-22T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "META Earnings",
+      "kind": "earnings",
+      "symbol": "META",
+      "impact": "high",
+      "scheduled_at": "2026-07-29T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "AMZN Earnings",
+      "kind": "earnings",
+      "symbol": "AMZN",
+      "impact": "high",
+      "scheduled_at": "2026-07-30T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "AAPL Earnings",
+      "kind": "earnings",
+      "symbol": "AAPL",
+      "impact": "high",
+      "scheduled_at": "2026-07-30T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
