@@ -1,40 +1,19 @@
 {
-  "generated_at": "2026-05-06T12:12:06+00:00",
+  "generated_at": "2026-05-06T16:25:10+00:00",
   "next_event": {
-    "title": "ADP Non-Farm Employment Change",
+    "title": "Unemployment Claims",
     "kind": "macro",
     "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-05-06T12:15:00+00:00",
-    "blackout_start": "2026-05-06T12:10:00+00:00",
-    "blackout_end": "2026-05-06T12:30:00+00:00",
-    "forecast": "118K",
-    "previous": "62K"
+    "scheduled_at": "2026-05-07T12:30:00+00:00",
+    "blackout_start": "2026-05-07T12:25:00+00:00",
+    "blackout_end": "2026-05-07T12:45:00+00:00",
+    "forecast": "205K",
+    "previous": "189K"
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "ADP Non-Farm Employment Change",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-05-06T12:15:00+00:00",
-    "blackout_start": "2026-05-06T12:10:00+00:00",
-    "blackout_end": "2026-05-06T12:30:00+00:00",
-    "forecast": "118K",
-    "previous": "62K"
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "ADP Non-Farm Employment Change",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-06T12:15:00+00:00",
-      "blackout_start": "2026-05-06T12:10:00+00:00",
-      "blackout_end": "2026-05-06T12:30:00+00:00",
-      "forecast": "118K",
-      "previous": "62K"
-    },
     {
       "title": "Unemployment Claims",
       "kind": "macro",
