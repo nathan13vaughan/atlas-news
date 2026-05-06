@@ -82,6 +82,18 @@ html, body {
   display: block;
 }
 
+/* edge-swipe gripper for iOS-style "swipe-from-left-to-dismiss" */
+.swipe-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 100%;
+  z-index: 100;
+  /* invisible but tappable */
+  background: transparent;
+}
+
 /* article reader — full-screen sheet, AI brief + original excerpt */
 .article-view {
   position: fixed;

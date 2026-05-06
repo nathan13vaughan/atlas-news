@@ -1052,6 +1052,78 @@ document.addEventListener("keydown", (e) => {
   closeChart();
   closeArticleView();
 });
+
+// --- iOS-style edge-swipe-back ---
+// PWAs in standalone mode don't get the native back-swipe gesture, so each
+// full-screen overlay gets a 24px-wide invisible "edge gripper" on its left
+// side. Touchstart there primes the swipe; touchmove translates the overlay
+// horizontally to follow the finger; touchend either dismisses (>35% screen
+// width) or springs back.
+let activeSwipe = null;
+
+function setupSwipeBack(overlayEl, onClose) {
+  const edge = document.createElement("div");
+  edge.className = "swipe-edge";
+  overlayEl.appendChild(edge);
+  edge.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) return;
+    activeSwipe = {
+      overlay: overlayEl,
+      onClose,
+      startX: e.touches[0].clientX,
+      startY: e.touches[0].clientY,
+      dx: 0,
+      decided: false,
+    };
+  }, { passive: true });
+}
+
+document.addEventListener("touchmove", (e) => {
+  if (!activeSwipe) return;
+  const t = e.touches[0];
+  let dx = t.clientX - activeSwipe.startX;
+  const dy = t.clientY - activeSwipe.startY;
+
+  // First 10px decide the gesture direction. Vertical scrolls win and abort.
+  if (!activeSwipe.decided) {
+    if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+    if (Math.abs(dy) > Math.abs(dx)) {
+      activeSwipe.overlay.style.transform = "";
+      activeSwipe.overlay.style.transition = "";
+      activeSwipe = null;
+      return;
+    }
+    activeSwipe.decided = true;
+  }
+
+  if (dx < 0) dx = 0;
+  activeSwipe.dx = dx;
+  activeSwipe.overlay.style.transform = `translateX(${dx}px)`;
+  activeSwipe.overlay.style.transition = "";
+  e.preventDefault();
+}, { passive: false });
+
+function endSwipe(commit) {
+  if (!activeSwipe) return;
+  const { overlay, onClose, dx } = activeSwipe;
+  activeSwipe = null;
+  overlay.style.transition = "transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)";
+  const threshold = window.innerWidth * 0.35;
+  const dismiss = commit && dx > threshold;
+  overlay.style.transform = dismiss ? `translateX(100%)` : "";
+  setTimeout(() => {
+    overlay.style.transform = "";
+    overlay.style.transition = "";
+    if (dismiss) onClose();
+  }, 250);
+}
+document.addEventListener("touchend", () => endSwipe(true),  { passive: true });
+document.addEventListener("touchcancel", () => endSwipe(false), { passive: true });
+
+setupSwipeBack(document.getElementById("settings"),    closeSettings);
+setupSwipeBack(document.getElementById("chart"),       closeChart);
+setupSwipeBack(document.getElementById("articleView"), closeArticleView);
+setupSwipeBack(document.getElementById("sheet"),       closeSheet);
 document.getElementById("settings").addEventListener("click", (e) => {
   // tap directly on the gray bar background (outside any control) → dismiss
   if (e.target.id === "settings") closeSettings();
