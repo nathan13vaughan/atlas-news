@@ -34,8 +34,8 @@ const PROVIDERS = [
   },
   {
     id: "finnhub",
-    name: "Finnhub Economic Calendar",
-    desc: "Adds finer-grained worldwide economic events. Free tier: 60 req/min.",
+    name: "Finnhub Calendar",
+    desc: "Worldwide economic events + earnings dates for NVDA, TSLA, AMZN, AAPL, META. Free tier: 60 req/min.",
     keyUrl: "https://finnhub.io/dashboard",
     fetch: fetchFinnhub,
   },
@@ -97,38 +97,78 @@ async function refreshProviders() {
   state.providerEvents = events;
 }
 
+// Finnhub provider — fetches BOTH economic calendar and earnings dates for the
+// equity tickers. Uses Promise.allSettled so a single failed call doesn't
+// poison the whole batch.
 async function fetchFinnhub(key) {
-  // Look 14 days ahead — Finnhub returns a fairly large window by default.
-  const url = `https://finnhub.io/api/v1/calendar/economic?token=${encodeURIComponent(key)}`;
-  const resp = await fetch(url);
-  if (!resp.ok) throw new Error(`finnhub ${resp.status}`);
-  const data = await resp.json();
-  const rows = data.economicCalendar || [];
+  const now = Date.now();
+  const horizon = now + 60 * 86400000;          // earnings can be up to ~3 months out
+  const fmt = (ms) => new Date(ms).toISOString().slice(0, 10);
+  const eqs = ["NVDA", "TSLA", "AMZN", "AAPL", "META"];
+
+  const econUrl = `https://finnhub.io/api/v1/calendar/economic?token=${encodeURIComponent(key)}`;
+  const earnUrl = (sym) =>
+    `https://finnhub.io/api/v1/calendar/earnings?from=${fmt(now)}&to=${fmt(horizon)}` +
+    `&symbol=${sym}&token=${encodeURIComponent(key)}`;
+
+  const results = await Promise.allSettled([
+    fetch(econUrl).then(r => r.ok ? r.json() : Promise.reject(`econ ${r.status}`)),
+    ...eqs.map(s => fetch(earnUrl(s)).then(r => r.ok ? r.json() : Promise.reject(`earn ${r.status}`))),
+  ]);
+
+  // The first call is the validation gate — if economic events 401/403, the
+  // whole save fails so the user sees the bad-key error inline.
+  if (results[0].status === "rejected") throw new Error(`Finnhub: ${results[0].reason}`);
+
+  const events = [];
+
+  // --- economic calendar ---
   const COUNTRY_TO_SYMBOL = { US: "SPY", EU: "XAUUSD", GB: "XAUUSD" };
   const IMPACT_MAP = { high: "high", medium: "medium", low: "low" };
-  const now = Date.now();
-  const horizon = now + 14 * 86400000;
-
-  return rows
-    .filter(r => COUNTRY_TO_SYMBOL[r.country] && IMPACT_MAP[r.impact])
-    .map(r => {
-      // "2026-05-08 12:30:00" — Finnhub returns UTC.
-      const at = new Date(r.time.replace(" ", "T") + "Z");
-      return {
-        title: r.event,
-        kind: "macro",
-        symbol: COUNTRY_TO_SYMBOL[r.country],
-        impact: IMPACT_MAP[r.impact],
-        scheduled_at: at.toISOString(),
-        forecast: r.estimate || null,
-        previous: r.prev || null,
-        source: "finnhub",
-      };
-    })
-    .filter(e => {
-      const t = +new Date(e.scheduled_at);
-      return t >= now && t <= horizon;
+  const econRows = results[0].value.economicCalendar || [];
+  for (const r of econRows) {
+    if (!COUNTRY_TO_SYMBOL[r.country] || !IMPACT_MAP[r.impact]) continue;
+    const at = new Date(r.time.replace(" ", "T") + "Z");
+    if (+at < now || +at > horizon) continue;
+    events.push({
+      title: r.event,
+      kind: "macro",
+      symbol: COUNTRY_TO_SYMBOL[r.country],
+      impact: IMPACT_MAP[r.impact],
+      scheduled_at: at.toISOString(),
+      forecast: r.estimate || null,
+      previous: r.prev || null,
+      source: "finnhub",
     });
+  }
+
+  // --- per-ticker earnings ---
+  // hour: "bmo" before-mkt-open, "dmh" during, "amc" after-mkt-close (or "")
+  const HOUR_UTC = { bmo: "12:30:00", dmh: "16:00:00", amc: "20:30:00" };
+  for (let i = 0; i < eqs.length; i++) {
+    const result = results[i + 1];
+    if (result.status !== "fulfilled") continue;
+    const rows = (result.value && result.value.earningsCalendar) || [];
+    for (const r of rows) {
+      const time = HOUR_UTC[r.hour] || "20:30:00";
+      const at = new Date(`${r.date}T${time}Z`);
+      if (+at < now || +at > horizon) continue;
+      const fc = r.epsEstimate != null ? `EPS est ${r.epsEstimate}` : null;
+      const pv = r.epsActual != null ? `EPS prev ${r.epsActual}` : null;
+      events.push({
+        title: `${r.symbol} Earnings (Q${r.quarter} ${r.year})`,
+        kind: "earnings",
+        symbol: r.symbol,
+        impact: "high",
+        scheduled_at: at.toISOString(),
+        forecast: fc,
+        previous: pv,
+        source: "finnhub",
+      });
+    }
+  }
+
+  return events;
 }
 
 // merge data.json upcoming + provider events; dedupe by (title, scheduled_at to the minute)

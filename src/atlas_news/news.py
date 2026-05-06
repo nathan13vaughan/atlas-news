@@ -106,23 +106,33 @@ def fetch_macro_events() -> list[Event]:
 
 
 def fetch_earnings_events(settings: Settings) -> list[Event]:
-    """yfinance earnings dates per equity. Public, keyless. Tolerant to failures."""
+    """yfinance earnings dates per equity. Public, keyless. Tolerant to failures.
+
+    Logs each ticker's outcome so we can diagnose silent emptiness in the
+    Action's run output without re-deploying.
+    """
     events: list[Event] = []
     now = datetime.now(UTC)
-    horizon = now + timedelta(days=14)
+    horizon = now + timedelta(days=60)
 
     for yahoo_sym in settings.watchlist:
         sym = display_symbol(yahoo_sym)
-        # FX and indices don't report earnings.
+        # FX, futures, and the SPY index don't report earnings.
         if "=" in yahoo_sym or sym in {"SPY", "XAUUSD"}:
             continue
+
+        df = None
+        err = None
         try:
             df = yf.Ticker(yahoo_sym).earnings_dates
-        except Exception:
-            continue
+        except Exception as e:
+            err = repr(e)
+
         if df is None or df.empty:
+            print(f"earnings[{sym}]: empty (err={err})")
             continue
 
+        added = 0
         for ts, _row in df.iterrows():
             when = ts.to_pydatetime().astimezone(UTC)
             if when < now or when > horizon:
@@ -136,6 +146,8 @@ def fetch_earnings_events(settings: Settings) -> list[Event]:
                     scheduled_at=when.isoformat(timespec="seconds"),
                 )
             )
+            added += 1
+        print(f"earnings[{sym}]: {added} upcoming row(s) within 60d")
     return events
 
 
