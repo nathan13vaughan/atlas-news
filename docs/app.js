@@ -124,9 +124,10 @@ async function refreshProviders() {
   }
   state.providerEvents = events;
   state.articles = articles;
-  // Apply any cached AI summaries immediately, then kick off a fire-and-forget
-  // batch for any new articles we haven't seen before.
+  // Apply any cached AI summaries / OG images immediately, then kick off
+  // fire-and-forget batches for new articles. Both run in parallel.
   maybeSummarizeArticles();
+  ensureImages();
 }
 
 // Finnhub provider — fetches calendar events AND recent news headlines.
@@ -282,6 +283,54 @@ async function maybeSummarizeArticles() {
   }
 }
 
+// Heuristic: is this URL a publisher-logo fallback rather than a real article
+// image? Finnhub returns the source's site logo when an article has no OG
+// image set, which is why we kept seeing the Yahoo Finance logo on every row.
+function isLikelyGenericImage(url) {
+  if (!url) return true;
+  return /(?:s\.yimg\.com|yahoo\.com\/uu|finance\.yahoo|\/logo[._-]|logo\.png|logo\.svg|favicon|seeklogo)/i.test(url);
+}
+
+// Microlink fetches the OG hero image for an article URL — bypasses Finnhub's
+// fallback-to-publisher-logo behaviour (which is why every article was showing
+// the Yahoo Finance logo). Free tier: 50 req/day per origin, no key, CORS ok.
+// Cached per URL forever; runs in parallel with the Groq summariser.
+async function fetchArticleImage(url) {
+  try {
+    const resp = await fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`);
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    return data.data?.image?.url || null;
+  } catch { return null; }
+}
+
+async function ensureImages() {
+  const cached = loadEnrich();
+  // Apply already-cached image overrides immediately.
+  state.articles.forEach((a) => {
+    if (cached[a.url]?.image) a.image = cached[a.url].image;
+  });
+
+  const todo = state.articles
+    .filter((a) => !cached[a.url]?.image && a.url)
+    .slice(0, 12);
+  if (!todo.length) return;
+
+  const results = await Promise.allSettled(todo.map((a) => fetchArticleImage(a.url)));
+  let dirty = false;
+  results.forEach((r, i) => {
+    if (r.status === "fulfilled" && r.value) {
+      todo[i].image = r.value;
+      cached[todo[i].url] = { ...(cached[todo[i].url] || {}), image: r.value };
+      dirty = true;
+    }
+  });
+  if (dirty) {
+    saveEnrich(cached);
+    renderArticles();
+  }
+}
+
 // Generates the structured analysis for an article — called lazily when the
 // article view is opened, so we don't burn rate-limit on stuff the user
 // never reads.
@@ -378,7 +427,9 @@ async function fetchFinnhubArticles(key) {
         headline: a.headline,
         source: a.source,
         url: a.url,
-        image: a.image || null,
+        // Drop publisher-logo fallbacks (s.yimg.com, finance.yahoo.com, etc).
+        // Microlink fills in the real article image asynchronously.
+        image: isLikelyGenericImage(a.image) ? null : a.image,
         published_at: new Date(a.datetime * 1000).toISOString(),
         summary: a.summary || "",
       });
