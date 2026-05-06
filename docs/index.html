@@ -59,6 +59,18 @@
 </div>
 <div class="dim-overlay" id="overlay" hidden></div>
 
+<!-- TradingView chart — full-height view, opened by tapping a price card -->
+<div class="chart-view" id="chart" hidden>
+  <header class="chart-bar">
+    <div class="chart-title" id="chartTitle">Chart</div>
+    <button class="settings-done" id="chartClose" type="button" aria-label="Close chart">Done</button>
+  </header>
+  <iframe id="tvchart" class="chart-frame"
+    allow="fullscreen"
+    referrerpolicy="origin"
+    sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+</div>
+
 <!-- Settings panel — full-height sheet, opened via the gear icon -->
 <div class="settings" id="settings" hidden>
   <header class="settings-bar">

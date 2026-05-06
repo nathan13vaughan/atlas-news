@@ -12,6 +12,17 @@ const FMT_FULL = new Intl.DateTimeFormat("en-AU", {
 });
 
 const TICKERS = ["NVDA", "TSLA", "SPY", "XAUUSD", "AMZN", "AAPL", "META"];
+// TradingView symbol resolution. Equities work as bare tickers; gold needs an
+// exchange prefix to disambiguate (OANDA spot is the most accurate ref).
+const TV_SYMBOLS = {
+  NVDA: "NASDAQ:NVDA",
+  TSLA: "NASDAQ:TSLA",
+  AMZN: "NASDAQ:AMZN",
+  AAPL: "NASDAQ:AAPL",
+  META: "NASDAQ:META",
+  SPY:  "AMEX:SPY",
+  XAUUSD: "OANDA:XAUUSD",
+};
 const FILTER_KEY = "atlas-news.filter";
 const IMPACT_KEY = "atlas-news.impact";
 const KEYS_KEY = "atlas-news.api-keys";
@@ -359,7 +370,7 @@ function renderPriceStrip() {
     const tag = t.is_open ? `<div class="arrow">${arrow}</div>` : `<div class="closed-tag">closed</div>`;
     const [line, fill] = sparkPath(t.spark, isUp);
     return `
-      <div class="${cls}">
+      <div class="${cls}" data-symbol="${t.symbol}">
         <div class="head"><div class="sym">${t.symbol}</div>${tag}</div>
         <div class="px">${fmtPrice(t.last)}</div>
         <div class="chg"><span class="pct">${fmtPct(t.change_pct)}</span></div>
@@ -369,6 +380,9 @@ function renderPriceStrip() {
         </svg>
       </div>`;
   }).join("");
+  el.querySelectorAll(".pricecard").forEach(card =>
+    card.addEventListener("click", () => openChart(card.dataset.symbol))
+  );
 
   const ageMin = Math.round((Date.now() - new Date(state.prices.generated_at)) / 60000);
   meta.textContent = `prices ${ageMin}m ago · 1-min bars · Yahoo`;
@@ -666,11 +680,41 @@ function openSettings() {
 function closeSettings() {
   document.getElementById("settings").hidden = true;
 }
+
+// --- TradingView chart sheet ---
+function openChart(symbol) {
+  const tv = TV_SYMBOLS[symbol] || symbol;
+  const params = new URLSearchParams({
+    symbol: tv,
+    interval: "15",
+    theme: "dark",
+    style: "1",                      // 1 = candles
+    locale: "en",
+    timezone: "Australia/Sydney",
+    toolbar_bg: "#0b0d10",
+    hideideas: "1",
+    hidesidetoolbar: "0",
+    saveimage: "0",
+    studies: "[]",
+  });
+  document.getElementById("tvchart").src =
+    `https://www.tradingview.com/widgetembed/?${params}`;
+  document.getElementById("chartTitle").textContent = symbol;
+  document.getElementById("chart").hidden = false;
+}
+function closeChart() {
+  document.getElementById("chart").hidden = true;
+  // unload the iframe to stop background quote streaming + free memory
+  document.getElementById("tvchart").src = "about:blank";
+}
+document.getElementById("chartClose").addEventListener("click", closeChart);
 document.getElementById("settingsBtn").addEventListener("click", openSettings);
 document.getElementById("settingsClose").addEventListener("click", closeSettings);
-// extra escape hatches so the user is never trapped
+// extra escape hatches so the user is never trapped in any overlay
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeSettings();
+  if (e.key !== "Escape") return;
+  closeSettings();
+  closeChart();
 });
 document.getElementById("settings").addEventListener("click", (e) => {
   // tap directly on the gray bar background (outside any control) → dismiss

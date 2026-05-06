@@ -66,6 +66,42 @@ html, body {
 }
 .icon-btn:hover, .icon-btn:active { color: var(--text); border-color: var(--muted); }
 
+/* TradingView chart — full-screen overlay above the watchlist */
+.chart-view {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.chart-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(env(safe-area-inset-top) + 12px) 18px 12px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.chart-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.chart-frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: var(--bg);
+  display: block;
+}
+
+/* invite users to tap a price card */
+.pricecard { cursor: pointer; }
+.pricecard:active { background: var(--panel-2); }
+
 /* settings sheet — full-height overlay above everything else */
 .settings {
   position: fixed;
