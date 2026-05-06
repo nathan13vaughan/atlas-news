@@ -102,7 +102,7 @@ async function refreshProviders() {
 // poison the whole batch.
 async function fetchFinnhub(key) {
   const now = Date.now();
-  const horizon = now + 60 * 86400000;          // earnings can be up to ~3 months out
+  const horizon = now + 100 * 86400000;         // capture Q2 earnings ~80-90d out
   const fmt = (ms) => new Date(ms).toISOString().slice(0, 10);
   const eqs = ["NVDA", "TSLA", "AMZN", "AAPL", "META"];
 

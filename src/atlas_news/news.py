@@ -113,7 +113,7 @@ def fetch_earnings_events(settings: Settings) -> list[Event]:
     """
     events: list[Event] = []
     now = datetime.now(UTC)
-    horizon = now + timedelta(days=60)
+    horizon = now + timedelta(days=90)
 
     for yahoo_sym in settings.watchlist:
         sym = display_symbol(yahoo_sym)
