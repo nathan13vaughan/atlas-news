@@ -78,6 +78,19 @@ html, body {
   flex-shrink: 0;
 }
 .settings-title { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
+.settings-done {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 14px;
+  margin: -10px -14px -10px 0;   /* preserves a 44pt+ tap target */
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(78,161,255,0.18);
+  border-radius: 8px;
+}
+.settings-done:active { color: #2b80d6; }
 .settings-body {
   flex: 1;
   overflow-y: auto;

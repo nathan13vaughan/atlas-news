@@ -51,8 +51,10 @@ let state = {
 };
 
 function loadKeys() {
-  try { return JSON.parse(localStorage.getItem(KEYS_KEY) || "{}"); }
-  catch { return {}; }
+  try {
+    const v = JSON.parse(localStorage.getItem(KEYS_KEY) || "{}");
+    return (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
+  } catch { return {}; }
 }
 function saveKeys(keys) {
   localStorage.setItem(KEYS_KEY, JSON.stringify(keys));
@@ -465,6 +467,14 @@ function closeSettings() {
 }
 document.getElementById("settingsBtn").addEventListener("click", openSettings);
 document.getElementById("settingsClose").addEventListener("click", closeSettings);
+// extra escape hatches so the user is never trapped
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeSettings();
+});
+document.getElementById("settings").addEventListener("click", (e) => {
+  // tap directly on the gray bar background (outside any control) → dismiss
+  if (e.target.id === "settings") closeSettings();
+});
 document.getElementById("clearKeys").addEventListener("click", async () => {
   if (!confirm("Clear all API keys from this device?")) return;
   saveKeys({});
