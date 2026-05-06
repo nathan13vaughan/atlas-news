@@ -226,33 +226,32 @@ async function fetchFinnhubArticles(key) {
   return out;
 }
 
-// dedupe key: same earnings is the same earnings regardless of exact time
-// (yfinance gives the press-release minute; Finnhub gives a coarse after-hours
-// slot — both are the same event). Macro events keep finer matching since
-// FF and Finnhub usually agree on minute-level times.
-function dedupKey(e) {
-  const date = e.scheduled_at.slice(0, 10); // YYYY-MM-DD
-  if (e.kind === "earnings") return `earnings|${e.symbol}|${date}`;
-  const t = e.title.toLowerCase().replace(/\([^)]*\)/g, "").trim();
-  return `macro|${e.symbol}|${t}|${date}`;
-}
-
-// merge data.json upcoming + provider events. Provider events come FIRST so
-// that when the same earnings appears in both, the richer copy (EPS estimate,
-// quarter info) wins.
+// Two events are the same if:
+//   - earnings: same ticker and scheduled within ±36h
+//     (yfinance/Finnhub disagree on whether after-hours = today or tomorrow)
+//   - macro:    same symbol, same title (parens stripped), within ±6h
+// Provider events sit ahead of action events in the merge so the richer copy
+// (EPS estimate, quarter info) wins.
 function mergedUpcoming() {
   const fromAction = state.news?.upcoming || [];
   const all = [...state.providerEvents, ...fromAction];
-  const seen = new Set();
-  const out = [];
+  const accepted = [];
+
+  const norm = (s) => s.toLowerCase().replace(/\([^)]*\)/g, "").trim();
+
   for (const e of all) {
-    const k = dedupKey(e);
-    if (seen.has(k)) continue;
-    seen.add(k);
-    out.push(e);
+    const eTs = +new Date(e.scheduled_at);
+    const isDup = accepted.some((a) => {
+      if (a.kind !== e.kind || a.symbol !== e.symbol) return false;
+      const dt = Math.abs(+new Date(a.scheduled_at) - eTs);
+      if (e.kind === "earnings") return dt < 36 * 3600 * 1000;
+      return norm(a.title) === norm(e.title) && dt < 6 * 3600 * 1000;
+    });
+    if (!isDup) accepted.push(e);
   }
-  out.sort((a, b) => a.scheduled_at.localeCompare(b.scheduled_at));
-  return out;
+
+  accepted.sort((a, b) => a.scheduled_at.localeCompare(b.scheduled_at));
+  return accepted;
 }
 
 // final filtered list applied to every consumer (hero, list). Drops events
