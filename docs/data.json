@@ -1,51 +1,117 @@
 {
-  "generated_at": "2026-05-06T00:00:00+00:00",
+  "generated_at": "2026-05-06T10:31:06+00:00",
   "next_event": {
-    "title": "CPI YoY",
+    "title": "ADP Non-Farm Employment Change",
     "kind": "macro",
     "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-05-06T12:30:00+00:00",
-    "blackout_start": "2026-05-06T12:25:00+00:00",
-    "blackout_end": "2026-05-06T12:45:00+00:00",
-    "forecast": "3.4%",
-    "previous": "3.5%"
+    "impact": "medium",
+    "scheduled_at": "2026-05-06T12:15:00+00:00",
+    "blackout_start": "2026-05-06T12:10:00+00:00",
+    "blackout_end": "2026-05-06T12:30:00+00:00",
+    "forecast": "118K",
+    "previous": "62K"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
     {
-      "title": "CPI YoY",
+      "title": "ADP Non-Farm Employment Change",
       "kind": "macro",
       "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-06T12:30:00+00:00",
-      "blackout_start": "2026-05-06T12:25:00+00:00",
-      "blackout_end": "2026-05-06T12:45:00+00:00",
-      "forecast": "3.4%",
-      "previous": "3.5%"
+      "impact": "medium",
+      "scheduled_at": "2026-05-06T12:15:00+00:00",
+      "blackout_start": "2026-05-06T12:10:00+00:00",
+      "blackout_end": "2026-05-06T12:30:00+00:00",
+      "forecast": "118K",
+      "previous": "62K"
     },
     {
-      "title": "NVDA Earnings",
-      "kind": "earnings",
-      "symbol": "NVDA",
-      "impact": "high",
-      "scheduled_at": "2026-05-21T20:20:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
+      "title": "Unemployment Claims",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-07T12:30:00+00:00",
+      "blackout_start": "2026-05-07T12:25:00+00:00",
+      "blackout_end": "2026-05-07T12:45:00+00:00",
+      "forecast": "205K",
+      "previous": "189K"
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-05-08T07:00:00+00:00",
+      "blackout_start": "2026-05-08T06:55:00+00:00",
+      "blackout_end": "2026-05-08T07:15:00+00:00",
       "forecast": null,
       "previous": null
     },
     {
-      "title": "FOMC Statement",
+      "title": "BOE Gov Bailey Speaks",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-05-08T12:20:00+00:00",
+      "blackout_start": "2026-05-08T12:15:00+00:00",
+      "blackout_end": "2026-05-08T12:35:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "Average Hourly Earnings m/m",
       "kind": "macro",
       "symbol": "SPY",
       "impact": "high",
-      "scheduled_at": "2026-05-06T18:00:00+00:00",
-      "blackout_start": "2026-05-06T17:55:00+00:00",
-      "blackout_end": "2026-05-06T18:30:00+00:00",
+      "scheduled_at": "2026-05-08T12:30:00+00:00",
+      "blackout_start": "2026-05-08T12:25:00+00:00",
+      "blackout_end": "2026-05-08T12:45:00+00:00",
+      "forecast": "0.3%",
+      "previous": "0.2%"
+    },
+    {
+      "title": "Non-Farm Employment Change",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-05-08T12:30:00+00:00",
+      "blackout_start": "2026-05-08T12:25:00+00:00",
+      "blackout_end": "2026-05-08T12:45:00+00:00",
+      "forecast": "65K",
+      "previous": "178K"
+    },
+    {
+      "title": "Unemployment Rate",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-05-08T12:30:00+00:00",
+      "blackout_start": "2026-05-08T12:25:00+00:00",
+      "blackout_end": "2026-05-08T12:45:00+00:00",
+      "forecast": "4.3%",
+      "previous": "4.3%"
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-08T14:00:00+00:00",
+      "blackout_start": "2026-05-08T13:55:00+00:00",
+      "blackout_end": "2026-05-08T14:15:00+00:00",
+      "forecast": "49.7",
+      "previous": "47.6"
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-08T14:00:00+00:00",
+      "blackout_start": "2026-05-08T13:55:00+00:00",
+      "blackout_end": "2026-05-08T14:15:00+00:00",
       "forecast": null,
-      "previous": null
+      "previous": "4.8%"
     }
   ]
 }
