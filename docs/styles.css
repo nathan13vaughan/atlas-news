@@ -41,6 +41,159 @@ html, body {
 .title.stale .dot { color: var(--warn); }
 .title.blackout .dot { color: var(--bad); }
 .updated { color: var(--dim); font-size: 10.5px; }
+.app-bar-right { display: flex; align-items: center; gap: 12px; }
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.icon-btn:hover, .icon-btn:active { color: var(--text); border-color: var(--muted); }
+
+/* settings sheet — full-height overlay above everything else */
+.settings {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: env(safe-area-inset-top);
+}
+.settings-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.settings-title { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
+.settings-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 16px max(24px, env(safe-area-inset-bottom));
+}
+.settings-section-h {
+  color: var(--muted);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 18px 2px 8px;
+}
+.settings-hint {
+  color: var(--dim);
+  font-size: 11.5px;
+  margin: 0 2px 10px;
+  line-height: 1.5;
+}
+.settings-hint strong { color: var(--text); font-weight: 600; }
+.settings-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.settings-p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+.settings-p:last-child { margin-bottom: 0; }
+.settings-p code {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.settings-p a { color: var(--accent); text-decoration: none; }
+
+/* provider card */
+.provider-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  margin-bottom: 4px;
+}
+.provider-name { font-size: 13px; font-weight: 600; }
+.provider-status {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.provider-status.active {
+  color: var(--good);
+  border-color: rgba(61,220,151,0.4);
+  background: rgba(61,220,151,0.08);
+}
+.provider-status.builtin {
+  color: var(--accent);
+  border-color: rgba(78,161,255,0.4);
+  background: rgba(78,161,255,0.08);
+}
+.provider-desc { color: var(--muted); font-size: 11.5px; line-height: 1.5; margin: 4px 0 10px; }
+.provider-link {
+  font-size: 11px;
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.provider-input-row { display: flex; gap: 8px; align-items: center; }
+.provider-input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  padding: 8px 10px;
+  outline: none;
+}
+.provider-input:focus { border-color: var(--accent); }
+
+.settings-btn {
+  background: var(--accent);
+  color: #04121f;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.settings-btn:hover { filter: brightness(1.1); }
+.settings-btn.secondary {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+.settings-btn.danger {
+  background: transparent;
+  color: var(--bad);
+  border: 1px solid rgba(255,85,102,0.4);
+}
+.settings-btn.danger:hover { background: rgba(255,85,102,0.08); }
+
+.provider-msg { font-size: 11px; margin-top: 8px; }
+.provider-msg.ok   { color: var(--good); }
+.provider-msg.err  { color: var(--bad); }
 
 /* chips */
 .chips {

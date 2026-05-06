@@ -20,7 +20,10 @@
 
 <header class="app-bar">
   <div class="title"><span class="dot" id="dot">●</span>ATLAS NEWS</div>
-  <div class="updated" id="updated">loading…</div>
+  <div class="app-bar-right">
+    <div class="updated" id="updated">loading…</div>
+    <button class="icon-btn" id="settingsBtn" aria-label="Settings">⚙</button>
+  </div>
 </header>
 
 <div class="chips" id="chips"></div>
@@ -53,6 +56,42 @@
   <div class="kv" id="sheetKv"></div>
 </div>
 <div class="dim-overlay" id="overlay" hidden></div>
+
+<!-- Settings panel — full-height sheet, opened via the gear icon -->
+<div class="settings" id="settings" hidden>
+  <header class="settings-bar">
+    <div class="settings-title">Settings</div>
+    <button class="icon-btn" id="settingsClose" aria-label="Close">✕</button>
+  </header>
+
+  <div class="settings-body">
+    <div class="settings-section-h">Event sources</div>
+    <p class="settings-hint">
+      Add free API keys to pull richer event data. Keys are saved
+      <strong>only on this device</strong> — never uploaded to GitHub or any
+      server we control.
+    </p>
+    <div id="providers"></div>
+
+    <div class="settings-section-h">Privacy</div>
+    <div class="settings-card">
+      <p class="settings-p">
+        All API keys live in your browser's <code>localStorage</code>. They are
+        sent only to the API provider directly when fetching events. Clearing
+        your browser data wipes them.
+      </p>
+      <button class="settings-btn danger" id="clearKeys">Clear all keys</button>
+    </div>
+
+    <div class="settings-section-h">About</div>
+    <div class="settings-card">
+      <p class="settings-p">
+        Atlas News v0.1 ·
+        <a href="https://github.com/nathan13vaughan/atlas-news" target="_blank" rel="noopener">source</a>
+      </p>
+    </div>
+  </div>
+</div>
 
 <script type="module" src="app.js"></script>
 </body>

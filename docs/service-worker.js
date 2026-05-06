@@ -4,7 +4,7 @@
 //   - data.json + intraday.json: network-first, fall back to cache
 //   - bump CACHE_VERSION when shipping new shell assets
 
-const CACHE_VERSION = "atlas-news-v1";
+const CACHE_VERSION = "atlas-news-v2";
 const SHELL = [
   "./",
   "index.html",
