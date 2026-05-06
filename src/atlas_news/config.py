@@ -11,16 +11,24 @@ import os
 from dataclasses import dataclass
 
 
-# Yahoo symbols — equities use plain tickers, FX/metals use the =X suffix.
+# Yahoo symbols. Gold uses GC=F (continuous futures) because Yahoo's
+# XAUUSD=X spot pair is unreliable for intraday bars — futures track spot
+# within a few dollars and update every minute, 23/5.
 DEFAULT_WATCHLIST: tuple[str, ...] = (
     "NVDA",
     "TSLA",
     "SPY",
-    "XAUUSD=X",
+    "GC=F",
     "AMZN",
     "AAPL",
     "META",
 )
+
+# Yahoo symbol → user-facing label. Anything not listed falls through to
+# `<symbol>` with a trailing `=X` stripped.
+DISPLAY_OVERRIDES: dict[str, str] = {
+    "GC=F": "XAUUSD",
+}
 
 
 @dataclass(frozen=True, slots=True)
@@ -41,5 +49,7 @@ class Settings:
 
 
 def display_symbol(yahoo_symbol: str) -> str:
-    """`XAUUSD=X` → `XAUUSD` for UI display. Equities pass through unchanged."""
+    """`GC=F` → `XAUUSD`, `XAUUSD=X` → `XAUUSD`. Equities pass through unchanged."""
+    if yahoo_symbol in DISPLAY_OVERRIDES:
+        return DISPLAY_OVERRIDES[yahoo_symbol]
     return yahoo_symbol.removesuffix("=X")
