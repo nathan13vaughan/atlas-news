@@ -573,11 +573,39 @@ function renderArticles() {
   }).join("");
 }
 
+// --- inline TradingView chart ---
+// Follows the chip filter. "All" defaults to SPY (broad-market reference).
+function activeChartSymbol() {
+  if (state.filter !== "all" && TV_SYMBOLS[state.filter]) return state.filter;
+  return "SPY";
+}
+function renderInlineChart() {
+  const sym = activeChartSymbol();
+  const frame = document.getElementById("inlineTvChart");
+  // Avoid reloading the iframe (and its websocket) on every render tick.
+  if (frame.dataset.symbol === sym) return;
+  frame.dataset.symbol = sym;
+  const params = new URLSearchParams({
+    symbol: TV_SYMBOLS[sym],
+    interval: "15",
+    theme: "dark",
+    style: "1",
+    locale: "en",
+    timezone: "Australia/Sydney",
+    toolbar_bg: "#0b0d10",
+    hideideas: "1",
+    hidesidetoolbar: "1",
+    saveimage: "0",
+  });
+  frame.src = `https://www.tradingview.com/widgetembed/?${params}`;
+}
+
 // --- master render ---
 function render() {
   renderChips();
   renderBlackout();
   renderPriceStrip();
+  renderInlineChart();
   renderHero();
   renderList();
   renderArticles();
