@@ -26,6 +26,9 @@ html, body {
   min-height: 100vh;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
+  /* disable double-tap zoom + iOS text-size adjust on rotation */
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* app bar */
