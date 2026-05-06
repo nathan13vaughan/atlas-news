@@ -82,6 +82,162 @@ html, body {
   display: block;
 }
 
+/* article reader — full-screen sheet, AI brief + original excerpt */
+.article-view {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.article-view-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(env(safe-area-inset-top) + 12px) 18px 12px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.article-view-title {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.article-view-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.article-view-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--panel-2);
+  display: block;
+}
+.article-view-content {
+  padding: 16px 18px max(28px, env(safe-area-inset-bottom));
+}
+.article-view-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.article-view-source {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.article-view-time {
+  font-size: 11px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+.article-view-headline {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+  color: var(--text);
+}
+.article-view-symbol-row { margin-bottom: 18px; }
+.article-view-ai {
+  background: linear-gradient(180deg, rgba(78,161,255,0.06), rgba(78,161,255,0.02));
+  border: 1px solid rgba(78,161,255,0.22);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.article-view-ai .ai-section + .ai-section { margin-top: 12px; }
+.article-view-ai .ai-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.article-view-ai .ai-text {
+  font-size: 14.5px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.ai-loading {
+  font-size: 12.5px;
+  color: var(--muted);
+  text-align: center;
+  padding: 18px 8px;
+}
+.ai-loading .dots::after {
+  display: inline-block;
+  margin-left: 4px;
+  animation: ai-dots 1.4s steps(4, end) infinite;
+  content: "";
+  width: 1.2em;
+  text-align: left;
+}
+@keyframes ai-dots {
+  0%   { content: ""; }
+  25%  { content: "."; }
+  50%  { content: ".."; }
+  75%  { content: "..."; }
+  100% { content: ""; }
+}
+.ai-fallback {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.ai-fallback strong {
+  color: var(--text);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+.article-view-original {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.article-view-original .ai-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 6px;
+}
+.article-view-link {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+.article-view-link:active { background: var(--panel); color: var(--accent); }
+.ai-disclaimer {
+  font-size: 10.5px;
+  color: var(--dim);
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
 /* TradingView chart — full-screen overlay above the watchlist */
 .chart-view {
   position: fixed;

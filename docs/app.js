@@ -203,15 +203,17 @@ async function fetchFinnhubEvents(key) {
   return events;
 }
 
-// --- Groq AI: validates the key + summarises news headlines ---
-const SUMMARIES_KEY = "atlas-news.summaries";
-function loadSummaries() {
+// --- Groq AI: validates the key + summarises + analyses news headlines ---
+// Cached enrichments shape, keyed by article URL:
+//   { summary?: "string", analysis?: { what, impact, watch } }
+const ENRICH_KEY = "atlas-news.enrich";
+function loadEnrich() {
   try {
-    const v = JSON.parse(localStorage.getItem(SUMMARIES_KEY) || "{}");
+    const v = JSON.parse(localStorage.getItem(ENRICH_KEY) || "{}");
     return (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
   } catch { return {}; }
 }
-function saveSummaries(map) { localStorage.setItem(SUMMARIES_KEY, JSON.stringify(map)); }
+function saveEnrich(map) { localStorage.setItem(ENRICH_KEY, JSON.stringify(map)); }
 
 async function testGroqKey(key) {
   // Cheap key-validation call — 5-token reply, ~ 30ms billed.
@@ -251,8 +253,11 @@ async function groqSummarize(article, key) {
 }
 
 async function maybeSummarizeArticles() {
-  const cached = loadSummaries();
-  state.articles.forEach((a) => { if (cached[a.url]) a.aiSummary = cached[a.url]; });
+  const cached = loadEnrich();
+  state.articles.forEach((a) => {
+    if (cached[a.url]?.summary)  a.aiSummary  = cached[a.url].summary;
+    if (cached[a.url]?.analysis) a.aiAnalysis = cached[a.url].analysis;
+  });
 
   const cfg = state.keys.groq;
   if (!cfg?.enabled || !cfg?.key) return;
@@ -267,14 +272,74 @@ async function maybeSummarizeArticles() {
   results.forEach((r, i) => {
     if (r.status === "fulfilled" && r.value) {
       todo[i].aiSummary = r.value;
-      cached[todo[i].url] = r.value;
+      cached[todo[i].url] = { ...(cached[todo[i].url] || {}), summary: r.value };
       dirty = true;
     }
   });
   if (dirty) {
-    saveSummaries(cached);
+    saveEnrich(cached);
     renderArticles();
   }
+}
+
+// Generates the structured analysis for an article — called lazily when the
+// article view is opened, so we don't burn rate-limit on stuff the user
+// never reads.
+async function ensureAnalysis(article) {
+  if (article.aiAnalysis) return article.aiAnalysis;
+  const cached = loadEnrich();
+  if (cached[article.url]?.analysis) {
+    article.aiAnalysis = cached[article.url].analysis;
+    return article.aiAnalysis;
+  }
+  const cfg = state.keys.groq;
+  if (!cfg?.enabled || !cfg?.key) return null;
+  try {
+    const analysis = await groqAnalyze(article, cfg.key);
+    if (!analysis) return null;
+    article.aiAnalysis = analysis;
+    cached[article.url] = { ...(cached[article.url] || {}), analysis };
+    saveEnrich(cached);
+    return analysis;
+  } catch (e) {
+    console.warn("groqAnalyze failed:", e);
+    return null;
+  }
+}
+
+async function groqAnalyze(article, key) {
+  const sys = "You are a financial analyst. Reply with ONLY valid JSON (no prose, no markdown).";
+  const user =
+    `Symbol: ${article.symbol}\nHeadline: ${article.headline}\n\n` +
+    `Article excerpt:\n${article.summary || "(no excerpt available)"}\n\n` +
+    `Reply as: {"what": "...", "impact": "...", "watch": "..."}\n` +
+    `- "what":   one sentence on what happened (≤25 words)\n` +
+    `- "impact": one sentence on how this likely affects ${article.symbol} (≤25 words)\n` +
+    `- "watch":  one sentence on what to watch for next (≤25 words)\n` +
+    `Plain English, no hedging, no caveats.`;
+
+  const resp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "llama-3.1-8b-instant",
+      messages: [
+        { role: "system", content: sys },
+        { role: "user", content: user },
+      ],
+      max_tokens: 280,
+      temperature: 0.3,
+      response_format: { type: "json_object" },
+    }),
+  });
+  if (!resp.ok) throw new Error(`Groq ${resp.status}`);
+  const data = await resp.json();
+  const text = data.choices?.[0]?.message?.content?.trim() || "{}";
+  try {
+    const p = JSON.parse(text);
+    if (!p.what && !p.impact && !p.watch) return null;
+    return { what: p.what || "", impact: p.impact || "", watch: p.watch || "" };
+  } catch { return null; }
 }
 
 // Last 7 days of company-specific news. Filtered to credible outlets so the
@@ -660,7 +725,7 @@ function renderArticles() {
           ? `<div class="article-summary">${escapeHtml(a.summary)}</div>`
           : "");
     return `
-      <a class="article" href="${escapeHtml(a.url)}" target="_blank" rel="noopener">
+      <a class="article" href="${escapeHtml(a.url)}" rel="noopener">
         ${img}
         <div class="article-body">
           <div class="article-source-row">
@@ -673,6 +738,14 @@ function renderArticles() {
         </div>
       </a>`;
   }).join("");
+
+  // Intercept the tap so we open the in-app reader instead of Safari.
+  el.querySelectorAll(".article").forEach((card, i) => {
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+      openArticleView(arts[i]);
+    });
+  });
 }
 
 // --- inline TradingView chart ---
@@ -811,6 +884,86 @@ function closeSettings() {
   document.getElementById("settings").hidden = true;
 }
 
+// --- in-app article reader ---
+async function openArticleView(article) {
+  document.getElementById("avSource").textContent = article.source;
+  document.getElementById("avSource").className =
+    `article-view-source ${sourceClass(article.source)}`;
+  document.getElementById("avTime").textContent = timeAgo(article.published_at);
+  document.getElementById("avHeadline").textContent = article.headline;
+  document.getElementById("avLink").href = article.url;
+
+  const img = document.getElementById("avImg");
+  if (article.image) { img.src = article.image; img.style.display = ""; }
+  else                { img.removeAttribute("src"); img.style.display = "none"; }
+
+  const sym = document.getElementById("avSymbol");
+  sym.textContent = article.symbol;
+  sym.className = `badge ${article.symbol === "XAUUSD" ? "symbol-xau" : "symbol-spy"}`;
+
+  // original excerpt block — only show if Finnhub had any prose
+  const orig = document.getElementById("avOriginal");
+  if (article.summary) {
+    orig.innerHTML = `
+      <div class="ai-label">Original excerpt</div>
+      ${escapeHtml(article.summary)}`;
+    orig.hidden = false;
+  } else {
+    orig.hidden = true;
+  }
+
+  const ai = document.getElementById("avAi");
+  const groqOn = state.keys.groq?.enabled && state.keys.groq?.key;
+
+  // If we already have a cached analysis, render immediately. Otherwise show
+  // a loading state (or a fallback if Groq isn't configured).
+  if (article.aiAnalysis) {
+    ai.innerHTML = renderAnalysis(article.aiAnalysis, article.symbol);
+  } else if (groqOn) {
+    ai.innerHTML = `<div class="ai-loading">Generating brief<span class="dots"></span></div>`;
+  } else {
+    ai.innerHTML = `
+      <div class="ai-fallback">
+        <strong>AI brief disabled</strong>
+        Add a free Groq key in Settings to get a 3-line WHAT / IMPACT / WATCH summary on every article.
+      </div>`;
+  }
+
+  document.getElementById("articleView").hidden = false;
+  document.getElementById("articleView").scrollTop = 0;
+
+  if (groqOn && !article.aiAnalysis) {
+    const analysis = await ensureAnalysis(article);
+    if (analysis) {
+      ai.innerHTML = renderAnalysis(analysis, article.symbol);
+    } else {
+      ai.innerHTML = `
+        <div class="ai-fallback">
+          <strong>Couldn't reach Groq</strong>
+          Check your key in Settings or try again. Original excerpt is below.
+        </div>`;
+    }
+  }
+}
+
+function renderAnalysis(a, symbol) {
+  const row = (label, text) => `
+    <div class="ai-section">
+      <div class="ai-label">${escapeHtml(label)}</div>
+      <div class="ai-text">${escapeHtml(text)}</div>
+    </div>`;
+  return [
+    row("What happened", a.what),
+    row(`Impact on ${symbol}`, a.impact),
+    row("What to watch", a.watch),
+  ].join("") +
+  `<div class="ai-disclaimer">AI brief generated from headline + excerpt.</div>`;
+}
+
+function closeArticleView() {
+  document.getElementById("articleView").hidden = true;
+}
+
 // --- TradingView chart sheet ---
 function openChart(symbol) {
   const tv = TV_SYMBOLS[symbol] || symbol;
@@ -840,11 +993,13 @@ function closeChart() {
 document.getElementById("chartClose").addEventListener("click", closeChart);
 document.getElementById("settingsBtn").addEventListener("click", openSettings);
 document.getElementById("settingsClose").addEventListener("click", closeSettings);
+document.getElementById("articleClose").addEventListener("click", closeArticleView);
 // extra escape hatches so the user is never trapped in any overlay
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
   closeSettings();
   closeChart();
+  closeArticleView();
 });
 document.getElementById("settings").addEventListener("click", (e) => {
   // tap directly on the gray bar background (outside any control) → dismiss
