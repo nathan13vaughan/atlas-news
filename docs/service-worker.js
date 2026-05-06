@@ -7,7 +7,7 @@
 //     without waiting for a second visit
 //   - Bump CACHE_VERSION when shipping new shell assets
 
-const CACHE_VERSION = "atlas-news-v17";
+const CACHE_VERSION = "atlas-news-v18";
 const SHELL = [
   "./",
   "index.html",

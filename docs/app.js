@@ -51,6 +51,13 @@ const PROVIDERS = [
     keyUrl: "https://finnhub.io/dashboard",
     fetch: fetchFinnhub,
   },
+  {
+    id: "groq",
+    name: "Groq AI Summaries",
+    desc: "1-sentence AI summaries on every news headline (Llama 3.1 via Groq). Free tier: 30 req/min.",
+    keyUrl: "https://console.groq.com/keys",
+    fetch: testGroqKey,
+  },
 ];
 
 // --- state ---
@@ -117,6 +124,9 @@ async function refreshProviders() {
   }
   state.providerEvents = events;
   state.articles = articles;
+  // Apply any cached AI summaries immediately, then kick off a fire-and-forget
+  // batch for any new articles we haven't seen before.
+  maybeSummarizeArticles();
 }
 
 // Finnhub provider — fetches calendar events AND recent news headlines.
@@ -193,6 +203,80 @@ async function fetchFinnhubEvents(key) {
   return events;
 }
 
+// --- Groq AI: validates the key + summarises news headlines ---
+const SUMMARIES_KEY = "atlas-news.summaries";
+function loadSummaries() {
+  try {
+    const v = JSON.parse(localStorage.getItem(SUMMARIES_KEY) || "{}");
+    return (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
+  } catch { return {}; }
+}
+function saveSummaries(map) { localStorage.setItem(SUMMARIES_KEY, JSON.stringify(map)); }
+
+async function testGroqKey(key) {
+  // Cheap key-validation call — 5-token reply, ~ 30ms billed.
+  const resp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "llama-3.1-8b-instant",
+      messages: [{ role: "user", content: "Reply with the single word OK." }],
+      max_tokens: 5,
+    }),
+  });
+  if (!resp.ok) throw new Error(`Groq ${resp.status}`);
+  // Provider contract returns nothing — Groq enriches existing data, doesn't fetch new.
+  return { events: [], articles: [] };
+}
+
+async function groqSummarize(article, key) {
+  const sys = "You write one-sentence summaries of financial news for traders. Plain English, ≤25 words, no fluff, no hedging.";
+  const user = `Symbol: ${article.symbol}\nHeadline: ${article.headline}\n${article.summary || ""}\n\nWhat is the takeaway in one sentence?`;
+  const resp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "llama-3.1-8b-instant",
+      messages: [
+        { role: "system", content: sys },
+        { role: "user", content: user },
+      ],
+      max_tokens: 80,
+      temperature: 0.3,
+    }),
+  });
+  if (!resp.ok) throw new Error(`Groq ${resp.status}`);
+  const data = await resp.json();
+  return data.choices?.[0]?.message?.content?.trim() || null;
+}
+
+async function maybeSummarizeArticles() {
+  const cached = loadSummaries();
+  state.articles.forEach((a) => { if (cached[a.url]) a.aiSummary = cached[a.url]; });
+
+  const cfg = state.keys.groq;
+  if (!cfg?.enabled || !cfg?.key) return;
+
+  // Cap how many we summarise per refresh — Groq free tier is 30/min and we
+  // don't want to burn budget on stuff that may already be off-screen.
+  const todo = state.articles.filter((a) => !a.aiSummary).slice(0, 12);
+  if (!todo.length) return;
+
+  const results = await Promise.allSettled(todo.map((a) => groqSummarize(a, cfg.key)));
+  let dirty = false;
+  results.forEach((r, i) => {
+    if (r.status === "fulfilled" && r.value) {
+      todo[i].aiSummary = r.value;
+      cached[todo[i].url] = r.value;
+      dirty = true;
+    }
+  });
+  if (dirty) {
+    saveSummaries(cached);
+    renderArticles();
+  }
+}
+
 // Last 7 days of company-specific news. Filtered to credible outlets so the
 // list isn't drowned in PR-newswire spam. Top 5 most recent per ticker.
 async function fetchFinnhubArticles(key) {
@@ -229,6 +313,7 @@ async function fetchFinnhubArticles(key) {
         headline: a.headline,
         source: a.source,
         url: a.url,
+        image: a.image || null,
         published_at: new Date(a.datetime * 1000).toISOString(),
         summary: a.summary || "",
       });
@@ -552,6 +637,9 @@ function timeAgo(iso) {
   if (h < 24) return `${h}h ago`;
   return `${Math.floor(h / 24)}d ago`;
 }
+function sourceClass(name) {
+  return "source-" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 function renderArticles() {
   const sectionH = document.getElementById("articlesH");
   const el = document.getElementById("articles");
@@ -562,13 +650,27 @@ function renderArticles() {
   sectionH.hidden = false;
   el.innerHTML = arts.map(a => {
     const symCls = a.symbol === "XAUUSD" ? "symbol-xau" : "symbol-spy";
+    const srcCls = sourceClass(a.source);
+    const img = a.image
+      ? `<img class="article-image" src="${escapeHtml(a.image)}" alt="" loading="lazy" onerror="this.remove()">`
+      : "";
+    const summary = a.aiSummary
+      ? `<div class="article-summary"><span class="ai-badge">AI</span>${escapeHtml(a.aiSummary)}</div>`
+      : (a.summary
+          ? `<div class="article-summary">${escapeHtml(a.summary)}</div>`
+          : "");
     return `
       <a class="article" href="${escapeHtml(a.url)}" target="_blank" rel="noopener">
-        <div class="article-meta">
-          <span class="badge ${symCls}">${a.symbol}</span>
-          <span class="article-source">${escapeHtml(a.source)} · ${timeAgo(a.published_at)}</span>
+        ${img}
+        <div class="article-body">
+          <div class="article-source-row">
+            <span class="article-source-name ${srcCls}">${escapeHtml(a.source)}</span>
+            <span class="article-time">${timeAgo(a.published_at)}</span>
+          </div>
+          <div class="article-headline">${escapeHtml(a.headline)}</div>
+          ${summary}
+          <div class="article-tickers"><span class="badge ${symCls}">${a.symbol}</span></div>
         </div>
-        <div class="article-headline">${escapeHtml(a.headline)}</div>
       </a>`;
   }).join("");
 }
