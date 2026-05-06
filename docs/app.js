@@ -173,17 +173,29 @@ async function fetchFinnhub(key) {
   return events;
 }
 
-// merge data.json upcoming + provider events; dedupe by (title, scheduled_at to the minute)
+// dedupe key: same earnings is the same earnings regardless of exact time
+// (yfinance gives the press-release minute; Finnhub gives a coarse after-hours
+// slot — both are the same event). Macro events keep finer matching since
+// FF and Finnhub usually agree on minute-level times.
+function dedupKey(e) {
+  const date = e.scheduled_at.slice(0, 10); // YYYY-MM-DD
+  if (e.kind === "earnings") return `earnings|${e.symbol}|${date}`;
+  const t = e.title.toLowerCase().replace(/\([^)]*\)/g, "").trim();
+  return `macro|${e.symbol}|${t}|${date}`;
+}
+
+// merge data.json upcoming + provider events. Provider events come FIRST so
+// that when the same earnings appears in both, the richer copy (EPS estimate,
+// quarter info) wins.
 function mergedUpcoming() {
   const fromAction = state.news?.upcoming || [];
-  const all = [...fromAction, ...state.providerEvents];
+  const all = [...state.providerEvents, ...fromAction];
   const seen = new Set();
   const out = [];
   for (const e of all) {
-    const minute = e.scheduled_at.slice(0, 16); // YYYY-MM-DDTHH:MM
-    const key = `${e.title.toLowerCase()}|${minute}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
+    const k = dedupKey(e);
+    if (seen.has(k)) continue;
+    seen.add(k);
     out.push(e);
   }
   out.sort((a, b) => a.scheduled_at.localeCompare(b.scheduled_at));
