@@ -240,6 +240,15 @@ html, body {
 .chip.gold.on {
   background: var(--gold); border-color: var(--gold); color: #1c1402;
 }
+.chip.on.impact {
+  background: var(--bad); border-color: var(--bad); color: #1c0408;
+}
+.chip-sep {
+  flex: 0 0 1px;
+  background: var(--line);
+  margin: 4px 4px;
+  align-self: stretch;
+}
 
 /* blackout banner */
 .blackout {

@@ -13,6 +13,7 @@ const FMT_FULL = new Intl.DateTimeFormat("en-AU", {
 
 const TICKERS = ["NVDA", "TSLA", "SPY", "XAUUSD", "AMZN", "AAPL", "META"];
 const FILTER_KEY = "atlas-news.filter";
+const IMPACT_KEY = "atlas-news.impact";
 const KEYS_KEY = "atlas-news.api-keys";
 
 // --- provider catalog ---
@@ -47,6 +48,7 @@ let state = {
   prices: null,       // intraday.json
   providerEvents: [], // events fetched client-side from user-configured APIs
   filter: localStorage.getItem(FILTER_KEY) || "all",
+  impact: localStorage.getItem(IMPACT_KEY) || "high",   // "high" | "all"
   keys: loadKeys(),
 };
 
@@ -188,6 +190,14 @@ function mergedUpcoming() {
   return out;
 }
 
+// final filtered list applied to every consumer (hero, list).
+function visibleUpcoming() {
+  let events = mergedUpcoming();
+  if (state.impact === "high") events = events.filter(e => e.impact === "high");
+  if (state.filter !== "all") events = events.filter(e => e.symbol === state.filter);
+  return events;
+}
+
 // --- formatting helpers ---
 function fmtPct(x) {
   const sign = x >= 0 ? "+" : "−";
@@ -230,18 +240,32 @@ function renderChips() {
     { key: "all", label: "All" },
     ...TICKERS.map(t => ({ key: t, label: t, gold: t === "XAUUSD" })),
   ];
-  el.innerHTML = items.map(i => {
+  const symbolHtml = items.map(i => {
     const on = state.filter === i.key;
     const cls = ["chip", on ? "on" : "", i.gold ? "gold" : ""].filter(Boolean).join(" ");
     return `<div class="${cls}" data-filter="${i.key}">${i.label}</div>`;
   }).join("");
-  el.querySelectorAll(".chip").forEach(c =>
+  // separator + impact toggle
+  const impactOn = state.impact === "high";
+  const impactHtml = `
+    <div class="chip-sep"></div>
+    <div class="chip ${impactOn ? "on impact" : ""}" data-impact-toggle aria-pressed="${impactOn}">
+      ${impactOn ? "High only ✓" : "High only"}
+    </div>`;
+  el.innerHTML = symbolHtml + impactHtml;
+
+  el.querySelectorAll("[data-filter]").forEach(c =>
     c.addEventListener("click", () => {
       state.filter = c.dataset.filter;
       localStorage.setItem(FILTER_KEY, state.filter);
       render();
     })
   );
+  el.querySelector("[data-impact-toggle]").addEventListener("click", () => {
+    state.impact = state.impact === "high" ? "all" : "high";
+    localStorage.setItem(IMPACT_KEY, state.impact);
+    render();
+  });
 }
 
 // --- render: price strip ---
@@ -328,20 +352,15 @@ function renderHero() {
 }
 
 function pickNextEventForFilter() {
-  const all = mergedUpcoming();
-  if (!all.length) return null;
-  if (state.filter === "all") return all[0];
-  return all.find(e => e.symbol === state.filter) || null;
+  const all = visibleUpcoming();
+  return all.length ? all[0] : null;
 }
 
 // --- render: upcoming list ---
 function renderList() {
   const el = document.getElementById("list");
-  const all = mergedUpcoming();
-  if (!all.length) { el.innerHTML = ""; return; }
-  const filtered = state.filter === "all"
-    ? all
-    : all.filter(e => e.symbol === state.filter);
+  const filtered = visibleUpcoming();
+  if (!filtered.length) { el.innerHTML = ""; return; }
   el.innerHTML = filtered.slice(0, 30).map((e, i) => {
     const when = FMT_TIME.format(new Date(e.scheduled_at));
     const symCls = e.symbol === "XAUUSD" ? "symbol-xau" : "symbol-spy";
