@@ -6,10 +6,10 @@ on:
     - cron: "*/15 * * * *"
   workflow_dispatch: {}
 
-# Only one in-flight at a time; cancel queued duplicates so we don't pile up.
+# Shared with refresh-news so both auto-commits can't race against the same branch.
 concurrency:
-  group: refresh-prices
-  cancel-in-progress: true
+  group: atlas-news-data
+  cancel-in-progress: false
 
 permissions:
   contents: write   # needed to commit the regenerated JSON

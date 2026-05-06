@@ -6,9 +6,10 @@ on:
     - cron: "0 * * * *"
   workflow_dispatch: {}
 
+# Shared with refresh-prices so both auto-commits can't race against the same branch.
 concurrency:
-  group: refresh-news
-  cancel-in-progress: true
+  group: atlas-news-data
+  cancel-in-progress: false
 
 permissions:
   contents: write
