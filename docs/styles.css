@@ -14,6 +14,10 @@
 }
 
 * { box-sizing: border-box; }
+/* the HTML `hidden` attribute is overridden by any rule that sets `display`
+   (e.g. .settings { display: flex }). Force it to win — this is what makes
+   closeSettings() actually close the panel. */
+[hidden] { display: none !important; }
 html, body {
   margin: 0;
   background: var(--bg);
