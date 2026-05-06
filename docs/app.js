@@ -718,13 +718,17 @@ function openSheet(evt) {
   ].filter(Boolean);
   document.getElementById("sheetKv").innerHTML =
     kv.map(([k, v]) => `<div class="k">${k}</div><div>${v}</div>`).join("");
-  sheet.hidden = false;
-  overlay.hidden = false;
+  showOverlay(sheet);
+  showOverlay(overlay);
   overlay.onclick = closeSheet;
 }
 function closeSheet() {
-  document.getElementById("sheet").hidden = true;
-  document.getElementById("overlay").hidden = true;
+  hideOverlay(document.getElementById("sheet"), 380);
+  hideOverlay(document.getElementById("overlay"), 380);
+}
+function dismissSheet() {
+  dismissOverlay(document.getElementById("sheet"));
+  dismissOverlay(document.getElementById("overlay"));
 }
 
 // --- updated indicator ---
@@ -927,13 +931,31 @@ function renderSettings() {
   });
 }
 
-function openSettings() {
-  renderSettings();
-  document.getElementById("settings").hidden = false;
+// --- iOS-style overlay show/hide helpers ---
+// Open: unhide → reflow → add .open → CSS transition slides it in.
+// Close: remove .open → wait for the slide-out → set hidden.
+// Dismiss: instant cleanup — used after swipe-back has already animated.
+function showOverlay(el) {
+  el.hidden = false;
+  void el.offsetWidth;          // force reflow so the .open class transition fires
+  el.classList.add("open");
 }
-function closeSettings() {
-  document.getElementById("settings").hidden = true;
+function hideOverlay(el, ms = 420) {
+  el.classList.remove("open");
+  setTimeout(() => {
+    if (!el.classList.contains("open")) el.hidden = true;
+  }, ms);
 }
+function dismissOverlay(el) {
+  el.classList.remove("open");
+  el.style.transform = "";
+  el.style.transition = "";
+  el.hidden = true;
+}
+
+function openSettings()    { renderSettings(); showOverlay(document.getElementById("settings")); }
+function closeSettings()   { hideOverlay(document.getElementById("settings")); }
+function dismissSettings() { dismissOverlay(document.getElementById("settings")); }
 
 // --- in-app article reader ---
 async function openArticleView(article) {
@@ -980,7 +1002,7 @@ async function openArticleView(article) {
       </div>`;
   }
 
-  document.getElementById("articleView").hidden = false;
+  showOverlay(document.getElementById("articleView"));
   document.getElementById("articleView").scrollTop = 0;
 
   if (groqOn && !article.aiAnalysis) {
@@ -1011,9 +1033,8 @@ function renderAnalysis(a, symbol) {
   `<div class="ai-disclaimer">AI brief generated from headline + excerpt.</div>`;
 }
 
-function closeArticleView() {
-  document.getElementById("articleView").hidden = true;
-}
+function closeArticleView()   { hideOverlay(document.getElementById("articleView")); }
+function dismissArticleView() { dismissOverlay(document.getElementById("articleView")); }
 
 // --- TradingView chart sheet ---
 function openChart(symbol) {
@@ -1034,11 +1055,15 @@ function openChart(symbol) {
   document.getElementById("tvchart").src =
     `https://www.tradingview.com/widgetembed/?${params}`;
   document.getElementById("chartTitle").textContent = symbol;
-  document.getElementById("chart").hidden = false;
+  showOverlay(document.getElementById("chart"));
 }
 function closeChart() {
-  document.getElementById("chart").hidden = true;
+  hideOverlay(document.getElementById("chart"));
   // unload the iframe to stop background quote streaming + free memory
+  setTimeout(() => { document.getElementById("tvchart").src = "about:blank"; }, 420);
+}
+function dismissChart() {
+  dismissOverlay(document.getElementById("chart"));
   document.getElementById("tvchart").src = "about:blank";
 }
 document.getElementById("chartClose").addEventListener("click", closeChart);
@@ -1084,7 +1109,7 @@ document.addEventListener("touchmove", (e) => {
   let dx = t.clientX - activeSwipe.startX;
   const dy = t.clientY - activeSwipe.startY;
 
-  // First 10px decide the gesture direction. Vertical scrolls win and abort.
+  // First 8px decide the gesture direction. Vertical scrolls win and abort.
   if (!activeSwipe.decided) {
     if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
     if (Math.abs(dy) > Math.abs(dx)) {
@@ -1094,12 +1119,14 @@ document.addEventListener("touchmove", (e) => {
       return;
     }
     activeSwipe.decided = true;
+    // Disable the .open-class transition so the overlay tracks the finger
+    // 1:1 instead of easing into every dx update.
+    activeSwipe.overlay.style.transition = "none";
   }
 
   if (dx < 0) dx = 0;
   activeSwipe.dx = dx;
   activeSwipe.overlay.style.transform = `translateX(${dx}px)`;
-  activeSwipe.overlay.style.transition = "";
   e.preventDefault();
 }, { passive: false });
 
@@ -1107,23 +1134,22 @@ function endSwipe(commit) {
   if (!activeSwipe) return;
   const { overlay, onClose, dx } = activeSwipe;
   activeSwipe = null;
-  overlay.style.transition = "transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)";
-  const threshold = window.innerWidth * 0.35;
-  const dismiss = commit && dx > threshold;
-  overlay.style.transform = dismiss ? `translateX(100%)` : "";
+  const dismiss = commit && dx > window.innerWidth * 0.35;
+  // iOS-native curve for the snap-back / slide-off
+  overlay.style.transition = "transform 0.28s cubic-bezier(0.32, 0.72, 0, 1)";
+  overlay.style.transform = dismiss ? "translateX(100%)" : "";
   setTimeout(() => {
-    overlay.style.transform = "";
-    overlay.style.transition = "";
-    if (dismiss) onClose();
-  }, 250);
+    if (dismiss && onClose) onClose();    // dismissX — instant cleanup
+    else { overlay.style.transition = ""; overlay.style.transform = ""; }
+  }, 280);
 }
-document.addEventListener("touchend", () => endSwipe(true),  { passive: true });
+document.addEventListener("touchend",   () => endSwipe(true),  { passive: true });
 document.addEventListener("touchcancel", () => endSwipe(false), { passive: true });
 
-setupSwipeBack(document.getElementById("settings"),    closeSettings);
-setupSwipeBack(document.getElementById("chart"),       closeChart);
-setupSwipeBack(document.getElementById("articleView"), closeArticleView);
-setupSwipeBack(document.getElementById("sheet"),       closeSheet);
+setupSwipeBack(document.getElementById("settings"),    dismissSettings);
+setupSwipeBack(document.getElementById("chart"),       dismissChart);
+setupSwipeBack(document.getElementById("articleView"), dismissArticleView);
+setupSwipeBack(document.getElementById("sheet"),       dismissSheet);
 document.getElementById("settings").addEventListener("click", (e) => {
   // tap directly on the gray bar background (outside any control) → dismiss
   if (e.target.id === "settings") closeSettings();

@@ -31,17 +31,42 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* app bar */
+/* iOS-style press states — small scale + bg darken on tap, snappy spring back */
+.row, .pricecard, .article, .chip, .icon-btn,
+.settings-done, .settings-btn {
+  transition:
+    transform 0.18s cubic-bezier(0.32, 0.72, 0, 1),
+    background-color 0.18s ease-out,
+    opacity 0.15s ease-out;
+}
+.row:active        { background: var(--panel-2); }
+.pricecard:active  { transform: scale(0.97); }
+.article:active    { transform: scale(0.985); background: var(--panel-2); }
+.chip:active       { transform: scale(0.94); opacity: 0.85; }
+.icon-btn:active   { transform: scale(0.92); }
+.settings-done:active { opacity: 0.55; }
+
+/* Honour the user's accessibility preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}
+
+/* app bar — translucent blur like iOS native bars */
 .app-bar {
   /* extra top padding clears the iPhone status bar / Dynamic Island */
   padding: calc(env(safe-area-inset-top) + 12px) 18px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(35, 42, 49, 0.6);
   position: sticky;
   top: 0;
-  background: var(--bg);
+  background: rgba(11, 13, 16, 0.78);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  backdrop-filter: saturate(180%) blur(22px);
   z-index: 10;
 }
 .title { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
@@ -94,7 +119,7 @@ html, body {
   background: transparent;
 }
 
-/* article reader — full-screen sheet, AI brief + original excerpt */
+/* article reader — modal sheet, slides up from bottom (iOS modal-present) */
 .article-view {
   position: fixed;
   inset: 0;
@@ -103,7 +128,11 @@ html, body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transform: translateY(100%);
+  transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
 }
+.article-view.open { transform: translateY(0); }
 .article-view-bar {
   display: flex;
   align-items: center;
@@ -250,7 +279,7 @@ html, body {
   margin-bottom: 4px;
 }
 
-/* TradingView chart — full-screen overlay above the watchlist */
+/* TradingView chart — modal sheet, slides up from bottom (iOS modal-present) */
 .chart-view {
   position: fixed;
   inset: 0;
@@ -259,7 +288,11 @@ html, body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transform: translateY(100%);
+  transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
 }
+.chart-view.open { transform: translateY(0); }
 .chart-bar {
   display: flex;
   align-items: center;
@@ -286,7 +319,7 @@ html, body {
 .pricecard { cursor: pointer; }
 .pricecard:active { background: var(--panel-2); }
 
-/* settings sheet — full-height overlay above everything else */
+/* settings sheet — push-from-right (iOS settings-style navigation) */
 .settings {
   position: fixed;
   inset: 0;
@@ -295,7 +328,11 @@ html, body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
 }
+.settings.open { transform: translateX(0); }
 .settings-bar {
   display: flex;
   align-items: center;
@@ -784,7 +821,7 @@ html, body {
 }
 .article-tickers { margin-top: 10px; }
 
-/* detail sheet */
+/* detail sheet — partial bottom sheet, slides up */
 .sheet {
   position: fixed; left: 8px; right: 8px; bottom: max(8px, env(safe-area-inset-bottom));
   background: var(--panel); border: 1px solid var(--line);
@@ -792,7 +829,16 @@ html, body {
   padding: 14px 16px 22px;
   z-index: 30;
   box-shadow: 0 -20px 40px rgba(0,0,0,0.5);
+  transform: translateY(110%);
+  transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
 }
+.sheet.open { transform: translateY(0); }
+.dim-overlay {
+  opacity: 0;
+  transition: opacity 0.32s ease-out;
+}
+.dim-overlay.open { opacity: 1; }
 .sheet .grabber {
   width: 36px; height: 4px; border-radius: 2px;
   background: var(--dim); margin: 0 auto 10px; opacity: 0.5;
