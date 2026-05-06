@@ -255,9 +255,13 @@ function mergedUpcoming() {
   return out;
 }
 
-// final filtered list applied to every consumer (hero, list).
+// final filtered list applied to every consumer (hero, list). Drops events
+// more than 30 min in the past — keeps the recently-released ones around so
+// the hero can show a "LIVE NOW" banner during the immediate aftermath.
 function visibleUpcoming() {
+  const cutoff = Date.now() - 30 * 60 * 1000;
   let events = mergedUpcoming();
+  events = events.filter(e => +new Date(e.scheduled_at) >= cutoff);
   if (state.impact === "high") events = events.filter(e => e.impact === "high");
   if (state.filter !== "all") events = events.filter(e => e.symbol === state.filter);
   return events;
@@ -401,8 +405,25 @@ function renderHero() {
   el.hidden = false;
   titleEl.textContent = evt.title;
   const t = timeUntil(evt.scheduled_at);
-  if (!t) { cdEl.innerHTML = `<div class="cell"><div class="num">live</div></div>`; }
-  else {
+  if (!t) {
+    // Event has passed — within our 30-min "live" window, show a polished banner.
+    const elapsedMs = Date.now() - +new Date(evt.scheduled_at);
+    const elapsedM = Math.floor(elapsedMs / 60000);
+    const elapsedS = Math.floor((elapsedMs % 60000) / 1000);
+    const sub = elapsedM === 0
+      ? `released ${elapsedS}s ago`
+      : `released ${elapsedM}m ${pad2(elapsedS)}s ago`;
+    cdEl.classList.add("live");
+    cdEl.innerHTML = `
+      <div class="live-cell">
+        <div class="live-row">
+          <span class="live-dot"></span>
+          <span class="live-label">LIVE NOW</span>
+        </div>
+        <div class="live-elapsed">${sub}</div>
+      </div>`;
+  } else {
+    cdEl.classList.remove("live");
     cdEl.innerHTML = ["d", "h", "m", "s"].map((u, i) => {
       const v = [t.d, t.h, t.m, t.s][i];
       return `<div class="cell"><div class="num">${pad2(v)}</div><div class="unit">${

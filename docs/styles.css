@@ -371,6 +371,67 @@ html, body {
   font-size: 9px; color: var(--muted); letter-spacing: 0.08em;
   text-transform: uppercase; margin-top: 2px;
 }
+/* When the next event is happening right now, swap the 4-cell countdown
+   for a single full-width pulsing "LIVE NOW" banner. */
+.countdown.live {
+  grid-template-columns: 1fr;
+}
+.live-cell {
+  background: linear-gradient(180deg, rgba(255,85,102,0.10), rgba(255,85,102,0.04));
+  border: 1px solid rgba(255,85,102,0.4);
+  border-radius: 10px;
+  padding: 14px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
+}
+.live-cell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,85,102,0.15), transparent 70%);
+  animation: live-glow 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes live-glow {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+.live-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1;
+}
+.live-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--bad);
+  box-shadow: 0 0 10px var(--bad), 0 0 4px var(--bad);
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+@keyframes live-pulse {
+  0%, 100% { transform: scale(1);   opacity: 1;   }
+  50%      { transform: scale(1.35); opacity: 0.6; }
+}
+.live-label {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: var(--bad);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+.live-elapsed {
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  z-index: 1;
+}
 
 .badges { display: flex; gap: 6px; flex-wrap: wrap; }
 .badge {
