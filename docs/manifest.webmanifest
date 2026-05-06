@@ -1,0 +1,19 @@
+{
+  "name": "Atlas News",
+  "short_name": "Atlas",
+  "description": "Live prices and high-impact news for a 7-ticker watchlist.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0d10",
+  "theme_color": "#0b0d10",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

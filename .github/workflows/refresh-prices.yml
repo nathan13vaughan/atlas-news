@@ -1,0 +1,42 @@
+name: refresh-prices
+
+on:
+  schedule:
+    # every 15 min — yfinance is keyless, fits free Action minutes
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+# Only one in-flight at a time; cancel queued duplicates so we don't pile up.
+concurrency:
+  group: refresh-prices
+  cancel-in-progress: true
+
+permissions:
+  contents: write   # needed to commit the regenerated JSON
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - run: uv sync
+
+      - name: Fetch prices
+        # No secrets needed for the default watchlist — yfinance is keyless.
+        # If you later add a paid provider, expose its key here as:
+        #   env:
+        #     SOME_API_KEY: ${{ secrets.SOME_API_KEY }}
+        run: uv run python scripts/export_prices.py
+        working-directory: ${{ github.workspace }}
+
+      - name: Commit if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(prices): auto-refresh"
+          file_pattern: docs/intraday.json

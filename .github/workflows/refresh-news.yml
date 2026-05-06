@@ -1,0 +1,42 @@
+name: refresh-news
+
+on:
+  schedule:
+    # hourly — ForexFactory only updates a few times per day
+    - cron: "0 * * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: refresh-news
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - run: uv sync
+
+      - name: Fetch news
+        env:
+          # Optional. Only set if you've added FRED_API_KEY at:
+          #   Settings → Secrets and variables → Actions
+          # Empty string is fine — atlas_news.config treats it as "no key".
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: uv run python scripts/export_news.py
+        working-directory: ${{ github.workspace }}
+
+      - name: Commit if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(news): auto-refresh"
+          file_pattern: docs/data.json
