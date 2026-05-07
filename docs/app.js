@@ -824,8 +824,11 @@ function articleCardHtml(a) {
     : (a.summary
         ? `<div class="article-summary">${escapeHtml(a.summary)}</div>`
         : "");
-  const thumbInner = a.image
-    ? `<img src="${escapeHtml(a.image)}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='';">`
+  // Only render the thumb if we have a usable image. If the image later fails
+  // to load, `onerror` removes the entire thumb element so the body fills the
+  // card width — no half-empty grey placeholder.
+  const thumb = a.image
+    ? `<div class="article-thumb"><img src="${escapeHtml(a.image)}" alt="" loading="lazy" onerror="this.parentElement.remove();"></div>`
     : "";
   return `
     <a class="article" href="${escapeHtml(a.url)}" rel="noopener">
@@ -838,7 +841,7 @@ function articleCardHtml(a) {
         ${summary}
         <div class="article-tickers"><span class="badge ${symCls}">${a.symbol}</span></div>
       </div>
-      <div class="article-thumb">${thumbInner}</div>
+      ${thumb}
     </a>`;
 }
 

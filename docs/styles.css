@@ -360,10 +360,10 @@ html, body {
 
 /* ─── Compact news cards (thumbnail-on-right Apple-Stocks style) ─── */
 .articles { padding: 4px 16px 0; }
-/* Override the previous full-width-image article style for compact layout */
 .article {
   display: grid;
-  grid-template-columns: minmax(0,1fr) 64px;
+  /* `auto` second column collapses to 0 when no thumb is present */
+  grid-template-columns: minmax(0,1fr) auto;
   gap: 12px;
   align-items: center;
   margin: 8px 0;
@@ -375,7 +375,7 @@ html, body {
   color: inherit;
   -webkit-tap-highlight-color: rgba(78,161,255,0.12);
 }
-/* hide the old big hero image — we use the small thumb instead */
+/* hide the old big hero image — replaced by the right-side thumb */
 .article > .article-image { display: none; }
 .article > .article-body { padding: 0; }
 .article .article-source-row { margin-bottom: 5px; }
@@ -394,18 +394,20 @@ html, body {
   margin-bottom: 4px;
 }
 .article .article-tickers { margin-top: 0; }
+/* 88px square thumb — bigger + better-proportioned vs the card body */
 .article-thumb {
-  width: 64px;
-  height: 64px;
+  width: 88px;
+  height: 88px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #1c2530 0%, #0e1820 50%, #0b0f15 100%);
-  display: block;
+  background: linear-gradient(135deg, #1c2530 0%, #0e1820 60%, #0b0f15 100%);
   overflow: hidden;
   flex-shrink: 0;
+  align-self: center;
 }
 .article-thumb img {
   width: 100%; height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
