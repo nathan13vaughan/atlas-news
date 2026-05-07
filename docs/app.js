@@ -866,19 +866,7 @@ function renderInlineChart() {
   // Avoid reloading the iframe (and its websocket) on every render tick.
   if (frame.dataset.symbol === sym) return;
   frame.dataset.symbol = sym;
-  const params = new URLSearchParams({
-    symbol: TV_SYMBOLS[sym],
-    interval: "15",
-    theme: "dark",
-    style: "1",
-    locale: "en",
-    timezone: "Australia/Sydney",
-    toolbar_bg: "#0b0d10",
-    hideideas: "1",
-    hidesidetoolbar: "1",
-    saveimage: "0",
-  });
-  frame.src = `https://www.tradingview.com/widgetembed/?${params}`;
+  frame.src = buildTvUrl(TV_SYMBOLS[sym]);
 }
 
 // --- master render ---
@@ -1088,23 +1076,40 @@ function closeArticleView()   { hideOverlay(document.getElementById("articleView
 function dismissArticleView() { dismissOverlay(document.getElementById("articleView")); }
 
 // --- TradingView chart sheet ---
+// Stripped TradingView config — bare-candle look, no volume / studies / panels.
+// `studies_overrides` hides volume even if `hide_volume` isn't honoured by the
+// embed, by setting both volume series + MA to 100% transparency.
+const TV_BASE_PARAMS = {
+  interval: "15",
+  theme: "dark",
+  style: "1",                              // 1 = candles
+  locale: "en",
+  timezone: "Australia/Sydney",
+  toolbar_bg: "#0b0d10",
+  hideideas: "1",
+  hide_volume: "1",                        // explicit volume off
+  hidesidetoolbar: "1",                    // no drawing toolbar
+  withdateranges: "0",                     // no date-range strip at bottom
+  details: "0", hotlist: "0", calendar: "0",
+  saveimage: "0",
+  enable_publishing: "0",
+  studies: "[]",
+  studies_overrides: JSON.stringify({
+    "volume.volume.transparency":    100,
+    "volume.volume ma.transparency": 100,
+    "volume.show ma":                false,
+    "volume.options.showLabelsOnPriceScale": false,
+  }),
+};
+
+function buildTvUrl(tvSym) {
+  const params = new URLSearchParams({ ...TV_BASE_PARAMS, symbol: tvSym });
+  return `https://www.tradingview.com/widgetembed/?${params}`;
+}
+
 function openChart(symbol) {
   const tv = TV_SYMBOLS[symbol] || symbol;
-  const params = new URLSearchParams({
-    symbol: tv,
-    interval: "15",
-    theme: "dark",
-    style: "1",                      // 1 = candles
-    locale: "en",
-    timezone: "Australia/Sydney",
-    toolbar_bg: "#0b0d10",
-    hideideas: "1",
-    hidesidetoolbar: "0",
-    saveimage: "0",
-    studies: "[]",
-  });
-  document.getElementById("tvchart").src =
-    `https://www.tradingview.com/widgetembed/?${params}`;
+  document.getElementById("tvchart").src = buildTvUrl(tv);
   document.getElementById("chartTitle").textContent = symbol;
   showOverlay(document.getElementById("chart"));
 }
