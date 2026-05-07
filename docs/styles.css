@@ -302,7 +302,8 @@ html, body {
 .detail-session.closed .dot { background: var(--dim); box-shadow: none; }
 .detail-chart {
   width: 100%;
-  height: 260px;
+  /* clamp so the chart is big on phones, capped on tablets */
+  height: clamp(380px, 60vh, 560px);
   border: none;
   display: block;
   background: var(--panel);
