@@ -1633,6 +1633,30 @@ document.getElementById("clearKeys").addEventListener("click", async () => {
   render();
 });
 
+// --- TradingView "Tickers" widget — single embedded widget showing all
+//     watchlist symbols with live price + change, refreshed via TradingView's
+//     own WebSocket every few seconds. Sits at the top of the homescreen. ---
+function loadTickerTape() {
+  const container = document.getElementById("tvTickers");
+  if (!container) return;
+  container.innerHTML = `<div class="tradingview-widget-container__widget"></div>`;
+  const config = {
+    symbols: TICKERS.map((t) => ({ proName: TV_SYMBOLS[t] || t, title: t })),
+    isTransparent: true,
+    showSymbolLogo: false,
+    displayMode: "adaptive",
+    colorTheme: "dark",
+    locale: "en",
+  };
+  const script = document.createElement("script");
+  script.src = "https://s3.tradingview.com/external-embedding/embed-widget-tickers.js";
+  script.async = true;
+  script.text = JSON.stringify(config);
+  container.appendChild(script);
+}
+// Defer one frame so the page's first paint isn't blocked by the widget.
+requestAnimationFrame(loadTickerTape);
+
 // service worker registration
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js").catch(() => {});
