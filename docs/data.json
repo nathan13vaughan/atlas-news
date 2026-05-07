@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-05-07T11:44:39+00:00",
+  "generated_at": "2026-05-07T16:27:38+00:00",
   "next_event": {
-    "title": "Unemployment Claims",
+    "title": "ECB President Lagarde Speaks",
     "kind": "macro",
-    "symbol": "SPY",
+    "symbol": "XAUUSD",
     "impact": "medium",
-    "scheduled_at": "2026-05-07T12:30:00+00:00",
-    "blackout_start": "2026-05-07T12:25:00+00:00",
-    "blackout_end": "2026-05-07T12:45:00+00:00",
-    "forecast": "205K",
-    "previous": "189K"
+    "scheduled_at": "2026-05-08T07:00:00+00:00",
+    "blackout_start": "2026-05-08T06:55:00+00:00",
+    "blackout_end": "2026-05-08T07:15:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-07T12:30:00+00:00",
-      "blackout_start": "2026-05-07T12:25:00+00:00",
-      "blackout_end": "2026-05-07T12:45:00+00:00",
-      "forecast": "205K",
-      "previous": "189K"
-    },
     {
       "title": "ECB President Lagarde Speaks",
       "kind": "macro",
