@@ -854,6 +854,39 @@ function renderArticles() {
   });
 }
 
+// --- high-impact events ribbon (sits with the chart) ---
+function renderEventsRibbon() {
+  const el = document.getElementById("eventsRibbon");
+  const all = mergedUpcoming();
+  const high = all
+    .filter(e => e.impact === "high" && +new Date(e.scheduled_at) >= Date.now())
+    .slice(0, 8);
+  if (!high.length) { el.hidden = true; el.innerHTML = ""; return; }
+  el.hidden = false;
+
+  el.innerHTML = high.map((e, i) => {
+    const t = timeUntil(e.scheduled_at);
+    let cd = `${t.s}s`;
+    if (t.d > 0)      cd = `${t.d}d ${pad2(t.h)}h`;
+    else if (t.h > 0) cd = `${t.h}h ${pad2(t.m)}m`;
+    else if (t.m > 0) cd = `${t.m}m ${pad2(t.s)}s`;
+    const kindLabel = e.kind === "earnings" ? "Earnings" : "Macro";
+    return `
+      <div class="event-chip" data-evt-idx="${i}">
+        <div class="event-chip-head">
+          <span class="led"></span>
+          <span class="countdown">${cd}</span>
+        </div>
+        <div class="label">${escapeHtml(e.title)}</div>
+        <div class="meta">${escapeHtml(e.symbol)} · ${kindLabel}</div>
+      </div>`;
+  }).join("");
+
+  el.querySelectorAll(".event-chip").forEach((chip, i) =>
+    chip.addEventListener("click", () => openSheet(high[i]))
+  );
+}
+
 // --- inline TradingView chart ---
 // Follows the chip filter. "All" defaults to SPY (broad-market reference).
 function activeChartSymbol() {
@@ -875,6 +908,7 @@ function render() {
   renderBlackout();
   renderPriceStrip();
   renderInlineChart();
+  renderEventsRibbon();
   renderHero();
   renderList();
   renderArticles();
@@ -885,6 +919,7 @@ function render() {
 setInterval(() => {
   renderHero();
   renderBlackout();
+  renderEventsRibbon();
   renderUpdatedLabel();
 }, 1000);
 
