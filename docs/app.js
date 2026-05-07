@@ -991,7 +991,7 @@ function renderWatchlist() {
           <path class="line" d="${line || ""}"/>
         </svg>
         <div class="wlrow-rstack">
-          <div class="wlrow-px">${fmtPrice(t.last)}</div>
+          <div class="wlrow-px">${liveRowMark.has(t.symbol) ? `<span class="wlrow-live-dot" title="Live"></span>` : ""}${fmtPrice(t.last)}</div>
           <span class="wlrow-chip">${fmtPct(t.change_pct)}</span>
         </div>
       </div>`;
@@ -1064,6 +1064,8 @@ function renderSettings() {
         renderSettings();
         await refreshProviders();
         render();
+        // Saving a Finnhub key also unlocks the live-price WebSocket.
+        if (id === "finnhub") openFinnhubWs();
       } catch (e) {
         msg.textContent = `Failed: ${e.message}. Check the key and try again.`;
         msg.className = "provider-msg err";
@@ -1633,29 +1635,69 @@ document.getElementById("clearKeys").addEventListener("click", async () => {
   render();
 });
 
-// --- TradingView "Tickers" widget — single embedded widget showing all
-//     watchlist symbols with live price + change, refreshed via TradingView's
-//     own WebSocket every few seconds. Sits at the top of the homescreen. ---
-function loadTickerTape() {
-  const container = document.getElementById("tvTickers");
-  if (!container) return;
-  container.innerHTML = `<div class="tradingview-widget-container__widget"></div>`;
-  const config = {
-    symbols: TICKERS.map((t) => ({ proName: TV_SYMBOLS[t] || t, title: t })),
-    isTransparent: true,
-    showSymbolLogo: false,
-    displayMode: "adaptive",
-    colorTheme: "dark",
-    locale: "en",
-  };
-  const script = document.createElement("script");
-  script.src = "https://s3.tradingview.com/external-embedding/embed-widget-tickers.js";
-  script.async = true;
-  script.text = JSON.stringify(config);
-  container.appendChild(script);
+// --- Live per-row price updates via Finnhub WebSocket ---
+// Mutates state.prices[ticker].last on each trade tick and re-renders the
+// affected watchlist row in place. Free-tier coverage: US-listed equities +
+// ETFs (NVDA, TSLA, AAPL, MSFT, AMZN, META, GOOGL, AMD, NFLX, SPY, QQQ, IWM).
+// Gold (GC=F → XAUUSD) and Bitcoin (BTC-USD → BTC) require Finnhub's paid
+// tier so they keep their 15-min cron values.
+const LIVE_SYMBOLS = ["NVDA","TSLA","AAPL","MSFT","AMZN","META","GOOGL","AMD","NFLX","SPY","QQQ","IWM"];
+let finnhubWs = null;
+let finnhubReconnectTimer = null;
+const liveRowMark = new Set();          // symbols that have received at least one tick
+
+function openFinnhubWs() {
+  const key = state.keys.finnhub?.key;
+  if (!key) return;
+  if (finnhubWs && (finnhubWs.readyState === WebSocket.OPEN || finnhubWs.readyState === WebSocket.CONNECTING)) return;
+
+  try { finnhubWs = new WebSocket(`wss://ws.finnhub.io?token=${encodeURIComponent(key)}`); }
+  catch (e) { console.warn("Finnhub WS failed to construct:", e); return; }
+
+  finnhubWs.addEventListener("open", () => {
+    LIVE_SYMBOLS.forEach((sym) => {
+      finnhubWs.send(JSON.stringify({ type: "subscribe", symbol: sym }));
+    });
+  });
+
+  finnhubWs.addEventListener("message", (ev) => {
+    let msg;
+    try { msg = JSON.parse(ev.data); } catch { return; }
+    if (msg.type !== "trade" || !Array.isArray(msg.data)) return;
+
+    // Take the LAST trade per symbol in this batch (deduplicate)
+    const lastBySym = {};
+    for (const t of msg.data) lastBySym[t.s] = t.p;
+
+    let dirty = false;
+    for (const [sym, price] of Object.entries(lastBySym)) {
+      const ticker = state.prices?.tickers?.find((t) => t.symbol === sym);
+      if (!ticker || typeof price !== "number") continue;
+      ticker.last = price;
+      if (ticker.open) {
+        ticker.change = price - ticker.open;
+        ticker.change_pct = (price - ticker.open) / ticker.open;
+      }
+      liveRowMark.add(sym);
+      dirty = true;
+    }
+    if (dirty) renderWatchlist();
+  });
+
+  finnhubWs.addEventListener("close", () => {
+    if (finnhubReconnectTimer) return;
+    finnhubReconnectTimer = setTimeout(() => {
+      finnhubReconnectTimer = null;
+      openFinnhubWs();
+    }, 5000);
+  });
+  finnhubWs.addEventListener("error", (e) => console.warn("Finnhub WS error:", e));
 }
-// Defer one frame so the page's first paint isn't blocked by the widget.
-requestAnimationFrame(loadTickerTape);
+
+// Connect on load if a Finnhub key is configured. Re-runs after key save too,
+// because saving a key calls render() → no, that doesn't reach here. Add
+// explicit hook: when the user saves a Finnhub key, also call openFinnhubWs().
+if (state.keys.finnhub?.key) openFinnhubWs();
 
 // service worker registration
 if ("serviceWorker" in navigator) {
