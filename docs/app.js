@@ -1189,28 +1189,38 @@ function closeArticleView()   { hideOverlay(document.getElementById("articleView
 function dismissArticleView() { dismissOverlay(document.getElementById("articleView")); }
 
 // --- Detail view (Apple-Stocks-style drill-down per ticker) ---
+let detailChart = null;        // Lightweight Charts instance
+let detailSeries = null;       // Area series
+
 function openDetail(symbol) {
   state.detailSym = symbol;
-  renderDetail(symbol);
   showOverlay(document.getElementById("detailView"));
-  // ensure the body starts scrolled to the top after opening
-  const body = document.querySelector(".detail-body");
-  if (body) body.scrollTop = 0;
+  // Render after the container becomes visible so the chart picks up the
+  // right clientWidth/clientHeight; otherwise it'd init at 0×0.
+  requestAnimationFrame(() => {
+    renderDetail(symbol);
+    const body = document.querySelector(".detail-body");
+    if (body) body.scrollTop = 0;
+  });
+}
+function disposeDetailChart() {
+  if (detailChart) {
+    try { detailChart.remove(); } catch { /* already disposed */ }
+  }
+  detailChart = null;
+  detailSeries = null;
+  const c = document.getElementById("detailLwChart");
+  if (c) c.innerHTML = "";
 }
 function closeDetail() {
   state.detailSym = null;
   hideOverlay(document.getElementById("detailView"));
-  // unload the iframe after the slide-out completes so the WebSocket frees
-  setTimeout(() => {
-    const f = document.getElementById("detailTvChart");
-    if (f) f.src = "about:blank";
-  }, 420);
+  setTimeout(disposeDetailChart, 420);
 }
 function dismissDetail() {
   state.detailSym = null;
   dismissOverlay(document.getElementById("detailView"));
-  const f = document.getElementById("detailTvChart");
-  if (f) f.src = "about:blank";
+  disposeDetailChart();
 }
 
 function renderDetail(symbol) {
@@ -1230,13 +1240,8 @@ function renderDetail(symbol) {
 
   renderDetailSession(symbol);
 
-  // Chart — load the iframe only when the symbol changes (avoid restarting websocket)
-  const tvSym = TV_SYMBOLS[symbol] || symbol;
-  const frame = document.getElementById("detailTvChart");
-  if (frame.dataset.symbol !== symbol) {
-    frame.dataset.symbol = symbol;
-    frame.src = buildTvUrl(tvSym);
-  }
+  // Chart — Lightweight Charts canvas, not an iframe. Supports markers.
+  renderDetailLwChart(symbol, ticker);
 
   // Favourite toggle in the nav-right
   const favBtn = document.getElementById("detailFav");
@@ -1247,6 +1252,119 @@ function renderDetail(symbol) {
   renderDetailStats(symbol, ticker);
   renderDetailEvents(symbol);
   renderDetailArticles(symbol);
+}
+
+function renderDetailLwChart(symbol, ticker) {
+  const container = document.getElementById("detailLwChart");
+  if (!container) return;
+  if (typeof LightweightCharts === "undefined") {
+    container.innerHTML = `<div style="padding:24px;color:var(--muted);font-size:12px;text-align:center">Chart library failed to load (offline?)</div>`;
+    return;
+  }
+  if (!ticker?.spark?.length) {
+    container.innerHTML = `<div style="padding:24px;color:var(--muted);font-size:12px;text-align:center">No price data for this symbol yet.</div>`;
+    return;
+  }
+  // Always tear down + rebuild on symbol switch — simplest, avoids stale state
+  disposeDetailChart();
+
+  const isUp = ticker.change >= 0;
+  const lineCol  = isUp ? "#3ddc97" : "#ff5566";
+  const fillTop  = isUp ? "rgba(61,220,151,0.35)" : "rgba(255,85,102,0.35)";
+  const fillBtm  = isUp ? "rgba(61,220,151,0)"    : "rgba(255,85,102,0)";
+
+  detailChart = LightweightCharts.createChart(container, {
+    width: container.clientWidth || window.innerWidth,
+    height: container.clientHeight || 380,
+    layout: {
+      background: { type: "solid", color: "rgba(0,0,0,0)" },
+      textColor: "#8a95a3",
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+      fontSize: 11,
+    },
+    grid: {
+      vertLines: { color: "transparent" },
+      horzLines: { color: "rgba(91,102,117,0.10)" },
+    },
+    timeScale: {
+      timeVisible: true,
+      secondsVisible: false,
+      borderColor: "rgba(91,102,117,0.20)",
+      rightOffset: 4,
+    },
+    rightPriceScale: {
+      borderColor: "rgba(91,102,117,0.20)",
+    },
+    crosshair: {
+      mode: LightweightCharts.CrosshairMode.Magnet,
+      vertLine: { color: "rgba(78,161,255,0.4)", width: 1, style: 2 },
+      horzLine: { color: "rgba(78,161,255,0.4)", width: 1, style: 2 },
+    },
+    handleScroll: false,
+    handleScale: false,
+  });
+  detailSeries = detailChart.addAreaSeries({
+    lineColor:   lineCol,
+    topColor:    fillTop,
+    bottomColor: fillBtm,
+    lineWidth: 2,
+    priceLineVisible: false,
+    lastValueVisible: false,
+  });
+  // Map spark closes to LWC bar format. LWC needs UTC seconds.
+  const bars = ticker.spark.map(p => ({
+    time:  Math.floor(+new Date(p.t) / 1000),
+    value: p.c,
+  }));
+  detailSeries.setData(bars);
+
+  // Drop event markers for any high-impact event whose time falls within the
+  // visible price-data window. For the chart's "this ticker" sense:
+  //  - earnings → only that exact symbol
+  //  - macro    → SPY-affecting macro shows on the SPY chart, EU/UK macro on XAU
+  const startT = bars[0]?.time || 0;
+  const endT   = bars[bars.length - 1]?.time || 0;
+  const events = mergedUpcoming()
+    .concat(state.news?.upcoming?.filter(e => e.scheduled_at < new Date().toISOString()) || [])
+    .filter(e => e.impact === "high")
+    .filter(e => {
+      if (e.kind === "earnings") return e.symbol === symbol;
+      // macro events apply to indices/equities (SPY proxy) or gold
+      if (symbol === "XAUUSD") return e.symbol === "XAUUSD";
+      return e.symbol === "SPY";
+    });
+  const markers = events
+    .map(e => {
+      const t = Math.floor(+new Date(e.scheduled_at) / 1000);
+      const label = e.title.length > 14 ? e.title.slice(0, 14) + "…" : e.title;
+      return { time: t, label, kind: e.kind };
+    })
+    .filter(m => m.time >= startT && m.time <= endT)
+    .sort((a, b) => a.time - b.time)
+    .map(m => ({
+      time: m.time,
+      position: "aboveBar",
+      color: m.kind === "earnings" ? "#f4c95d" : "#ff5566",
+      shape: "arrowDown",
+      text: m.label,
+    }));
+  detailSeries.setMarkers(markers);
+
+  detailChart.timeScale().fitContent();
+
+  // Resize on viewport change so the chart respects clamp(380px, 60vh, 560px)
+  if (!detailChart._resizeBound) {
+    detailChart._resizeBound = true;
+    const resizeHandler = () => {
+      if (!detailChart) return;
+      detailChart.applyOptions({
+        width: container.clientWidth,
+        height: container.clientHeight,
+      });
+    };
+    window.addEventListener("resize", resizeHandler);
+    detailChart._resizeHandler = resizeHandler;
+  }
 }
 
 function renderDetailSession(symbol) {
