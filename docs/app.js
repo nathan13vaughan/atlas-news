@@ -1206,13 +1206,13 @@ function openDetail(symbol) {
   });
 }
 function disposeDetailChart() {
-  if (detailChart) {
-    try { detailChart.remove(); } catch { /* already disposed */ }
+  // Lightweight Charts is no longer used for the detail view; nothing to dispose
+  // for the TradingView iframe (its WebSocket will GC when src is cleared).
+  const f = document.getElementById("detailTvChart");
+  if (f) {
+    f.removeAttribute("data-symbol");
+    f.src = "about:blank";
   }
-  detailChart = null;
-  detailSeries = null;
-  const c = document.getElementById("detailLwChart");
-  if (c) c.innerHTML = "";
 }
 function closeDetail() {
   state.detailSym = null;
@@ -1223,6 +1223,21 @@ function dismissDetail() {
   state.detailSym = null;
   dismissOverlay(document.getElementById("detailView"));
   disposeDetailChart();
+}
+
+// Lightweight per-tick update for the detail-view header — called from the
+// Finnhub WebSocket handler so the price/change reflect live trades without
+// rebuilding the chart iframe (which would flash + reload it).
+function renderDetailHero(symbol) {
+  const ticker = state.prices?.tickers?.find((t) => t.symbol === symbol);
+  if (!ticker) return;
+  const isUp = ticker.change >= 0;
+  const px  = document.getElementById("detailPx");
+  const chg = document.getElementById("detailChg");
+  if (!px || !chg) return;
+  px.textContent  = fmtPrice(ticker.last);
+  chg.className   = `detail-chg ${isUp ? "up" : "down"}`;
+  chg.textContent = `${isUp ? "▲" : "▼"} ${fmtAbs(ticker.change)}   ${fmtPct(ticker.change_pct)}`;
 }
 
 function renderDetail(symbol) {
@@ -1242,8 +1257,15 @@ function renderDetail(symbol) {
 
   renderDetailSession(symbol);
 
-  // Chart — Lightweight Charts canvas, not an iframe. Supports markers.
-  renderDetailLwChart(symbol, ticker);
+  // Chart — TradingView iframe (full candle/bar chart with toolbar).
+  // Note: free embed widget doesn't support custom markers; events appear in
+  // the events ribbon below instead.
+  const tvSym = TV_SYMBOLS[symbol] || symbol;
+  const frame = document.getElementById("detailTvChart");
+  if (frame.dataset.symbol !== symbol) {
+    frame.dataset.symbol = symbol;
+    frame.src = buildTvUrl(tvSym);
+  }
 
   // Favourite toggle in the nav-right
   const favBtn = document.getElementById("detailFav");
@@ -1670,6 +1692,7 @@ function openFinnhubWs() {
     for (const t of msg.data) lastBySym[t.s] = t.p;
 
     let dirty = false;
+    let detailDirty = false;
     for (const [sym, price] of Object.entries(lastBySym)) {
       const ticker = state.prices?.tickers?.find((t) => t.symbol === sym);
       if (!ticker || typeof price !== "number") continue;
@@ -1680,8 +1703,10 @@ function openFinnhubWs() {
       }
       liveRowMark.add(sym);
       dirty = true;
+      if (state.detailSym === sym) detailDirty = true;
     }
     if (dirty) renderWatchlist();
+    if (detailDirty) renderDetailHero(state.detailSym);
   });
 
   finnhubWs.addEventListener("close", () => {

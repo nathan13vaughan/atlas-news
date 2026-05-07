@@ -72,7 +72,9 @@
       <div class="detail-session" id="detailSession"></div>
     </section>
 
-    <div id="detailLwChart" class="detail-chart"></div>
+    <iframe id="detailTvChart" class="detail-chart"
+      sandbox="allow-scripts allow-same-origin allow-popups"
+      referrerpolicy="origin"></iframe>
 
     <section class="stats-grid" id="detailStats"></section>
 
@@ -167,8 +169,6 @@
   </div>
 </div>
 
-<!-- TradingView Lightweight Charts — free, open-source, supports setMarkers() -->
-<script src="https://unpkg.com/lightweight-charts@4.2/dist/lightweight-charts.standalone.production.js"></script>
 <script type="module" src="app.js"></script>
 </body>
 </html>
