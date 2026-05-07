@@ -519,6 +519,10 @@ function fmtPct(x) {
 function fmtPrice(x) {
   return x >= 1000 ? `$${x.toFixed(2)}` : `$${x.toFixed(2)}`;
 }
+function fmtAbs(x) {
+  const sign = x >= 0 ? "+" : "−";
+  return `${sign}$${Math.abs(x).toFixed(2)}`;
+}
 function timeUntil(iso) {
   const ms = new Date(iso) - Date.now();
   if (ms <= 0) return null;
@@ -600,12 +604,10 @@ function renderPriceStrip() {
       ? state.prices.tickers.filter(t => state.favs.has(t.symbol))
       : state.prices.tickers.filter(t => t.symbol === state.filter);
 
-  const wide = filtered.length === 1;
-
   el.innerHTML = filtered.map(t => {
     const isUp = t.change >= 0;
     const arrow = isUp ? "▲" : "▼";
-    const cls = ["pricecard", isUp ? "up" : "down", t.is_open ? "" : "muted", wide ? "wide" : ""]
+    const cls = ["pricecard", isUp ? "up" : "down", t.is_open ? "" : "muted"]
       .filter(Boolean).join(" ");
     const tag = t.is_open ? `<div class="arrow">${arrow}</div>` : `<div class="closed-tag">closed</div>`;
     const [line, fill] = sparkPath(t.spark, isUp);
@@ -618,7 +620,10 @@ function renderPriceStrip() {
         </button>
         <div class="head"><div class="sym">${t.symbol}</div>${tag}</div>
         <div class="px">${fmtPrice(t.last)}</div>
-        <div class="chg"><span class="pct">${fmtPct(t.change_pct)}</span></div>
+        <div class="chg">
+          <span class="pct">${fmtPct(t.change_pct)}</span>
+          <span class="abs">${fmtAbs(t.change)}</span>
+        </div>
         <svg class="spark" viewBox="0 0 100 26" preserveAspectRatio="none">
           <path class="fill" d="${fill}"/>
           <path class="line" d="${line}"/>
