@@ -15,19 +15,30 @@ from dataclasses import dataclass
 # XAUUSD=X spot pair is unreliable for intraday bars — futures track spot
 # within a few dollars and update every minute, 23/5.
 DEFAULT_WATCHLIST: tuple[str, ...] = (
+    # mega-cap tech
     "NVDA",
     "TSLA",
-    "SPY",
-    "GC=F",
-    "AMZN",
     "AAPL",
+    "MSFT",
+    "AMZN",
     "META",
+    "GOOGL",
+    "AMD",
+    "NFLX",
+    # indices
+    "SPY",
+    "QQQ",
+    "IWM",
+    # commodities + crypto
+    "GC=F",      # gold futures, displayed as XAUUSD
+    "BTC-USD",   # bitcoin
 )
 
 # Yahoo symbol → user-facing label. Anything not listed falls through to
-# `<symbol>` with a trailing `=X` stripped.
+# `<symbol>` with `=X` and `-USD` suffixes stripped.
 DISPLAY_OVERRIDES: dict[str, str] = {
-    "GC=F": "XAUUSD",
+    "GC=F":   "XAUUSD",
+    "BTC-USD": "BTC",
 }
 
 
@@ -49,7 +60,7 @@ class Settings:
 
 
 def display_symbol(yahoo_symbol: str) -> str:
-    """`GC=F` → `XAUUSD`, `XAUUSD=X` → `XAUUSD`. Equities pass through unchanged."""
+    """`GC=F` → `XAUUSD`, `BTC-USD` → `BTC`, `XAUUSD=X` → `XAUUSD`."""
     if yahoo_symbol in DISPLAY_OVERRIDES:
         return DISPLAY_OVERRIDES[yahoo_symbol]
-    return yahoo_symbol.removesuffix("=X")
+    return yahoo_symbol.removesuffix("=X").removesuffix("-USD")

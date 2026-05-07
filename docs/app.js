@@ -11,21 +11,36 @@ const FMT_FULL = new Intl.DateTimeFormat("en-AU", {
   hour: "2-digit", minute: "2-digit", hour12: false,
 });
 
-const TICKERS = ["NVDA", "TSLA", "SPY", "XAUUSD", "AMZN", "AAPL", "META"];
+const TICKERS = [
+  "NVDA", "TSLA", "AAPL", "MSFT", "AMZN", "META", "GOOGL", "AMD", "NFLX",
+  "SPY", "QQQ", "IWM",
+  "XAUUSD", "BTC",
+];
 // TradingView symbol resolution. Equities work as bare tickers; gold needs an
 // exchange prefix to disambiguate (OANDA spot is the most accurate ref).
 const TV_SYMBOLS = {
-  NVDA: "NASDAQ:NVDA",
-  TSLA: "NASDAQ:TSLA",
-  AMZN: "NASDAQ:AMZN",
-  AAPL: "NASDAQ:AAPL",
-  META: "NASDAQ:META",
-  SPY:  "AMEX:SPY",
+  NVDA:  "NASDAQ:NVDA",
+  TSLA:  "NASDAQ:TSLA",
+  AAPL:  "NASDAQ:AAPL",
+  MSFT:  "NASDAQ:MSFT",
+  AMZN:  "NASDAQ:AMZN",
+  META:  "NASDAQ:META",
+  GOOGL: "NASDAQ:GOOGL",
+  AMD:   "NASDAQ:AMD",
+  NFLX:  "NASDAQ:NFLX",
+  SPY:   "AMEX:SPY",
+  QQQ:   "NASDAQ:QQQ",
+  IWM:   "AMEX:IWM",
   XAUUSD: "OANDA:XAUUSD",
+  BTC:   "COINBASE:BTCUSD",
 };
 const FILTER_KEY = "atlas-news.filter";
 const IMPACT_KEY = "atlas-news.impact";
-const KEYS_KEY = "atlas-news.api-keys";
+const KEYS_KEY   = "atlas-news.api-keys";
+const FAVS_KEY   = "atlas-news.favs";
+
+// Tickers that have actual earnings (used by Finnhub fetchers).
+const EQUITY_SYMBOLS = ["NVDA", "TSLA", "AAPL", "MSFT", "AMZN", "META", "GOOGL", "AMD", "NFLX"];
 
 // --- provider catalog ---
 // Each entry knows how to fetch from a public API and map results into the
@@ -69,7 +84,24 @@ let state = {
   filter: localStorage.getItem(FILTER_KEY) || "all",
   impact: localStorage.getItem(IMPACT_KEY) || "high",   // "high" | "all"
   keys: loadKeys(),
+  favs: loadFavs(),   // Set<string> of favourited tickers
 };
+
+function loadFavs() {
+  try {
+    const v = JSON.parse(localStorage.getItem(FAVS_KEY) || "[]");
+    return new Set(Array.isArray(v) ? v : []);
+  } catch { return new Set(); }
+}
+function saveFavs() {
+  localStorage.setItem(FAVS_KEY, JSON.stringify([...state.favs]));
+}
+function toggleFav(symbol) {
+  if (state.favs.has(symbol)) state.favs.delete(symbol);
+  else state.favs.add(symbol);
+  saveFavs();
+  render();
+}
 
 function loadKeys() {
   try {
@@ -145,7 +177,7 @@ async function fetchFinnhubEvents(key) {
   const now = Date.now();
   const horizon = now + 100 * 86400000;
   const fmt = (ms) => new Date(ms).toISOString().slice(0, 10);
-  const eqs = ["NVDA", "TSLA", "AMZN", "AAPL", "META"];
+  const eqs = EQUITY_SYMBOLS;
 
   const econUrl = `https://finnhub.io/api/v1/calendar/economic?token=${encodeURIComponent(key)}`;
   const earnUrl = (sym) =>
@@ -397,7 +429,7 @@ async function fetchFinnhubArticles(key) {
   const fmt = (ms) => new Date(ms).toISOString().slice(0, 10);
   const fromIso = fmt(Date.now() - 7 * 86400000);
   const toIso = fmt(Date.now());
-  const eqs = ["NVDA", "TSLA", "AMZN", "AAPL", "META"];
+  const eqs = EQUITY_SYMBOLS;
   const TRUSTED = new Set([
     "Reuters", "Bloomberg", "CNBC", "Yahoo", "MarketWatch",
     "Wall Street Journal", "WSJ", "Financial Times", "Barrons",
@@ -474,7 +506,8 @@ function visibleUpcoming() {
   let events = mergedUpcoming();
   events = events.filter(e => +new Date(e.scheduled_at) >= cutoff);
   if (state.impact === "high") events = events.filter(e => e.impact === "high");
-  if (state.filter !== "all") events = events.filter(e => e.symbol === state.filter);
+  if (state.filter === "favs")     events = events.filter(e => state.favs.has(e.symbol));
+  else if (state.filter !== "all") events = events.filter(e => e.symbol === state.filter);
   return events;
 }
 
@@ -517,12 +550,16 @@ function sparkPath(spark, isUp) {
 function renderChips() {
   const el = document.getElementById("chips");
   const items = [
-    { key: "all", label: "All" },
+    { key: "all",  label: "All" },
+    { key: "favs", label: "★", isFavs: true },
     ...TICKERS.map(t => ({ key: t, label: t, gold: t === "XAUUSD" })),
   ];
   const symbolHtml = items.map(i => {
     const on = state.filter === i.key;
-    const cls = ["chip", on ? "on" : "", i.gold ? "gold" : ""].filter(Boolean).join(" ");
+    const cls = ["chip",
+                 on ? "on" : "",
+                 i.gold ? "gold" : "",
+                 i.isFavs ? "fav" : ""].filter(Boolean).join(" ");
     return `<div class="${cls}" data-filter="${i.key}">${i.label}</div>`;
   }).join("");
   // separator + impact toggle
@@ -559,7 +596,9 @@ function renderPriceStrip() {
   }
   const filtered = state.filter === "all"
     ? state.prices.tickers
-    : state.prices.tickers.filter(t => t.symbol === state.filter);
+    : state.filter === "favs"
+      ? state.prices.tickers.filter(t => state.favs.has(t.symbol))
+      : state.prices.tickers.filter(t => t.symbol === state.filter);
 
   const wide = filtered.length === 1;
 
@@ -570,8 +609,13 @@ function renderPriceStrip() {
       .filter(Boolean).join(" ");
     const tag = t.is_open ? `<div class="arrow">${arrow}</div>` : `<div class="closed-tag">closed</div>`;
     const [line, fill] = sparkPath(t.spark, isUp);
+    const isFav = state.favs.has(t.symbol);
     return `
       <div class="${cls}" data-symbol="${t.symbol}">
+        <button class="fav-btn ${isFav ? "on" : ""}" data-fav="${t.symbol}"
+                aria-label="${isFav ? "Unfavourite" : "Favourite"} ${t.symbol}">
+          ${isFav ? "★" : "☆"}
+        </button>
         <div class="head"><div class="sym">${t.symbol}</div>${tag}</div>
         <div class="px">${fmtPrice(t.last)}</div>
         <div class="chg"><span class="pct">${fmtPct(t.change_pct)}</span></div>
@@ -583,6 +627,12 @@ function renderPriceStrip() {
   }).join("");
   el.querySelectorAll(".pricecard").forEach(card =>
     card.addEventListener("click", () => openChart(card.dataset.symbol))
+  );
+  el.querySelectorAll(".fav-btn").forEach(btn =>
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();   // don't also open the chart
+      toggleFav(btn.dataset.fav);
+    })
   );
 
   const ageMin = Math.round((Date.now() - new Date(state.prices.generated_at)) / 60000);
@@ -764,7 +814,8 @@ function renderArticles() {
   const sectionH = document.getElementById("articlesH");
   const el = document.getElementById("articles");
   let arts = state.articles || [];
-  if (state.filter !== "all") arts = arts.filter(a => a.symbol === state.filter);
+  if (state.filter === "favs")     arts = arts.filter(a => state.favs.has(a.symbol));
+  else if (state.filter !== "all") arts = arts.filter(a => a.symbol === state.filter);
   arts = arts.slice().sort((a, b) => b.published_at.localeCompare(a.published_at)).slice(0, 25);
   if (!arts.length) { sectionH.hidden = true; el.innerHTML = ""; return; }
   sectionH.hidden = false;

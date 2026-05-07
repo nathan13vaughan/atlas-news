@@ -115,10 +115,13 @@ def fetch_earnings_events(settings: Settings) -> list[Event]:
     now = datetime.now(UTC)
     horizon = now + timedelta(days=90)
 
+    # Only true equities report earnings. Skip indices/ETFs, FX, futures, crypto.
+    EQUITY_SYMBOLS = {
+        "NVDA", "TSLA", "AAPL", "MSFT", "AMZN", "META", "GOOGL", "AMD", "NFLX",
+    }
     for yahoo_sym in settings.watchlist:
         sym = display_symbol(yahoo_sym)
-        # FX, futures, and the SPY index don't report earnings.
-        if "=" in yahoo_sym or sym in {"SPY", "XAUUSD"}:
+        if sym not in EQUITY_SYMBOLS:
             continue
 
         df = None
