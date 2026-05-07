@@ -81,10 +81,11 @@ let state = {
   prices: null,       // intraday.json
   providerEvents: [], // calendar events fetched client-side from APIs
   articles: [],       // recent news headlines fetched client-side from APIs
-  filter: localStorage.getItem(FILTER_KEY) || "all",
+  filter: "all",      // legacy ticker filter — Apple-Stocks layout uses detail-view drill-down instead
   impact: localStorage.getItem(IMPACT_KEY) || "high",   // "high" | "all"
   keys: loadKeys(),
-  favs: loadFavs(),   // Set<string> of favourited tickers
+  favs: loadFavs(),         // Set<string> of favourited tickers
+  detailSym: null,           // currently-open detail-view ticker, or null
 };
 
 function loadFavs() {
@@ -648,7 +649,6 @@ function renderPriceStrip() {
 function renderBlackout() {
   const el = document.getElementById("blackout");
   const sub = document.getElementById("blackoutSub");
-  const dot = document.getElementById("dot");
   if (state.news?.in_blackout && state.news.active_blackout) {
     const a = state.news.active_blackout;
     const until = timeUntil(a.blackout_end);
@@ -656,10 +656,8 @@ function renderBlackout() {
       ? `${a.title} · ends in ${until.h ? until.h + "h " : ""}${until.m}m ${pad2(until.s)}s`
       : `${a.title} · ending now`;
     el.hidden = false;
-    dot.parentElement.classList.add("blackout");
   } else {
     el.hidden = true;
-    dot.parentElement.classList.remove("blackout");
   }
 }
 
@@ -815,42 +813,45 @@ function timeAgo(iso) {
 function sourceClass(name) {
   return "source-" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
+
+// Shared article-card markup — Apple-Stocks-style "headline + thumbnail-on-right".
+// Used by the main view (Top stories) and the detail view (News for X).
+function articleCardHtml(a) {
+  const symCls = a.symbol === "XAUUSD" ? "symbol-xau" : "symbol-spy";
+  const srcCls = sourceClass(a.source);
+  const summary = a.aiSummary
+    ? `<div class="article-summary"><span class="ai-badge">AI</span>${escapeHtml(a.aiSummary)}</div>`
+    : (a.summary
+        ? `<div class="article-summary">${escapeHtml(a.summary)}</div>`
+        : "");
+  const thumbInner = a.image
+    ? `<img src="${escapeHtml(a.image)}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='';">`
+    : "";
+  return `
+    <a class="article" href="${escapeHtml(a.url)}" rel="noopener">
+      <div class="article-body">
+        <div class="article-source-row">
+          <span class="article-source-name ${srcCls}">${escapeHtml(a.source)}</span>
+          <span class="article-time">${timeAgo(a.published_at)}</span>
+        </div>
+        <div class="article-headline">${escapeHtml(a.headline)}</div>
+        ${summary}
+        <div class="article-tickers"><span class="badge ${symCls}">${a.symbol}</span></div>
+      </div>
+      <div class="article-thumb">${thumbInner}</div>
+    </a>`;
+}
+
 function renderArticles() {
   const sectionH = document.getElementById("articlesH");
   const el = document.getElementById("articles");
-  let arts = state.articles || [];
-  if (state.filter === "favs")     arts = arts.filter(a => state.favs.has(a.symbol));
-  else if (state.filter !== "all") arts = arts.filter(a => a.symbol === state.filter);
-  arts = arts.slice().sort((a, b) => b.published_at.localeCompare(a.published_at)).slice(0, 25);
+  let arts = (state.articles || []).slice()
+    .sort((a, b) => b.published_at.localeCompare(a.published_at))
+    .slice(0, 25);
   if (!arts.length) { sectionH.hidden = true; el.innerHTML = ""; return; }
   sectionH.hidden = false;
-  el.innerHTML = arts.map(a => {
-    const symCls = a.symbol === "XAUUSD" ? "symbol-xau" : "symbol-spy";
-    const srcCls = sourceClass(a.source);
-    const img = a.image
-      ? `<img class="article-image" src="${escapeHtml(a.image)}" alt="" loading="lazy" onerror="this.remove()">`
-      : "";
-    const summary = a.aiSummary
-      ? `<div class="article-summary"><span class="ai-badge">AI</span>${escapeHtml(a.aiSummary)}</div>`
-      : (a.summary
-          ? `<div class="article-summary">${escapeHtml(a.summary)}</div>`
-          : "");
-    return `
-      <a class="article" href="${escapeHtml(a.url)}" rel="noopener">
-        ${img}
-        <div class="article-body">
-          <div class="article-source-row">
-            <span class="article-source-name ${srcCls}">${escapeHtml(a.source)}</span>
-            <span class="article-time">${timeAgo(a.published_at)}</span>
-          </div>
-          <div class="article-headline">${escapeHtml(a.headline)}</div>
-          ${summary}
-          <div class="article-tickers"><span class="badge ${symCls}">${a.symbol}</span></div>
-        </div>
-      </a>`;
-  }).join("");
-
-  // Intercept the tap so we open the in-app reader instead of Safari.
+  sectionH.textContent = "Top stories";
+  el.innerHTML = arts.map(articleCardHtml).join("");
   el.querySelectorAll(".article").forEach((card, i) => {
     card.addEventListener("click", (e) => {
       e.preventDefault();
@@ -909,24 +910,93 @@ function renderInlineChart() {
 
 // --- master render ---
 function render() {
-  renderChips();
+  renderNavDate();
   renderBlackout();
-  renderPriceStrip();
-  renderInlineChart();
+  renderWatchlist();
   renderEventsRibbon();
-  renderHero();
-  renderList();
   renderArticles();
   renderUpdatedLabel();
+  if (state.detailSym) renderDetail(state.detailSym);
 }
 
 // tick the countdown every second so the user sees live progress
 setInterval(() => {
-  renderHero();
   renderBlackout();
   renderEventsRibbon();
   renderUpdatedLabel();
+  if (state.detailSym) renderDetailSession(state.detailSym);
 }, 1000);
+
+// --- nav date (e.g. "Wednesday 7 May") ---
+const FMT_NAVDATE = new Intl.DateTimeFormat("en-AU", {
+  timeZone: TZ, weekday: "long", day: "numeric", month: "short",
+});
+function renderNavDate() {
+  const el = document.getElementById("navDate");
+  if (el) el.textContent = FMT_NAVDATE.format(new Date());
+}
+
+// --- Apple-Stocks-style watchlist rows ---
+// Sort: favourites first, then alphabetical within each group.
+function watchlistOrder(tickers) {
+  const favs = [];
+  const rest = [];
+  for (const t of tickers) (state.favs.has(t.symbol) ? favs : rest).push(t);
+  const byName = (a, b) => a.symbol.localeCompare(b.symbol);
+  favs.sort(byName); rest.sort(byName);
+  return [...favs, ...rest];
+}
+const TICKER_NAMES = {
+  NVDA:  "NVIDIA Corp",
+  TSLA:  "Tesla, Inc",
+  AAPL:  "Apple Inc",
+  MSFT:  "Microsoft Corp",
+  AMZN:  "Amazon.com",
+  META:  "Meta Platforms",
+  GOOGL: "Alphabet (Class A)",
+  AMD:   "Advanced Micro",
+  NFLX:  "Netflix Inc",
+  SPY:   "S&P 500 ETF",
+  QQQ:   "Invesco QQQ Trust",
+  IWM:   "Russell 2000 ETF",
+  XAUUSD: "Gold spot (futures)",
+  BTC:   "Bitcoin",
+};
+
+function renderWatchlist() {
+  const el = document.getElementById("watchlist");
+  if (!state.prices?.tickers?.length) {
+    el.innerHTML = `<div class="watchlist-empty">Loading prices…</div>`;
+    return;
+  }
+  const ordered = watchlistOrder(state.prices.tickers);
+  el.innerHTML = ordered.map((t) => {
+    const isUp = t.change >= 0;
+    const cls = ["wlrow", isUp ? "up" : "down", t.is_open ? "" : "muted"]
+      .filter(Boolean).join(" ");
+    const [line] = sparkPath(t.spark, isUp);
+    const isFav = state.favs.has(t.symbol);
+    const star = isFav ? `<span class="star">★</span>` : "";
+    const name = TICKER_NAMES[t.symbol] || t.symbol;
+    return `
+      <div class="${cls}" data-symbol="${t.symbol}">
+        <div class="wlrow-symblock">
+          <div class="wlrow-sym">${star}${t.symbol}</div>
+          <div class="wlrow-name">${escapeHtml(name)}</div>
+        </div>
+        <svg class="wlrow-spark" viewBox="0 0 80 28" preserveAspectRatio="none">
+          <path class="line" d="${line || ""}"/>
+        </svg>
+        <div class="wlrow-rstack">
+          <div class="wlrow-px">${fmtPrice(t.last)}</div>
+          <span class="wlrow-chip">${fmtPct(t.change_pct)}</span>
+        </div>
+      </div>`;
+  }).join("");
+  el.querySelectorAll(".wlrow").forEach((row) =>
+    row.addEventListener("click", () => openDetail(row.dataset.symbol))
+  );
+}
 
 // --- settings panel ---
 function renderSettings() {
@@ -1115,6 +1185,180 @@ function renderAnalysis(a, symbol) {
 function closeArticleView()   { hideOverlay(document.getElementById("articleView")); }
 function dismissArticleView() { dismissOverlay(document.getElementById("articleView")); }
 
+// --- Detail view (Apple-Stocks-style drill-down per ticker) ---
+function openDetail(symbol) {
+  state.detailSym = symbol;
+  renderDetail(symbol);
+  showOverlay(document.getElementById("detailView"));
+  // ensure the body starts scrolled to the top after opening
+  const body = document.querySelector(".detail-body");
+  if (body) body.scrollTop = 0;
+}
+function closeDetail() {
+  state.detailSym = null;
+  hideOverlay(document.getElementById("detailView"));
+  // unload the iframe after the slide-out completes so the WebSocket frees
+  setTimeout(() => {
+    const f = document.getElementById("detailTvChart");
+    if (f) f.src = "about:blank";
+  }, 420);
+}
+function dismissDetail() {
+  state.detailSym = null;
+  dismissOverlay(document.getElementById("detailView"));
+  const f = document.getElementById("detailTvChart");
+  if (f) f.src = "about:blank";
+}
+
+function renderDetail(symbol) {
+  const ticker = state.prices?.tickers?.find(t => t.symbol === symbol);
+  if (!ticker) return;
+
+  // Nav bar (small)
+  document.getElementById("detailNavSym").textContent = symbol;
+  document.getElementById("detailNavName").textContent = TICKER_NAMES[symbol] || symbol;
+
+  // Hero
+  const isUp = ticker.change >= 0;
+  document.getElementById("detailPx").textContent = fmtPrice(ticker.last);
+  const chg = document.getElementById("detailChg");
+  chg.className = `detail-chg ${isUp ? "up" : "down"}`;
+  chg.textContent = `${isUp ? "▲" : "▼"} ${fmtAbs(ticker.change)}   ${fmtPct(ticker.change_pct)}`;
+
+  renderDetailSession(symbol);
+
+  // Chart — load the iframe only when the symbol changes (avoid restarting websocket)
+  const tvSym = TV_SYMBOLS[symbol] || symbol;
+  const frame = document.getElementById("detailTvChart");
+  if (frame.dataset.symbol !== symbol) {
+    frame.dataset.symbol = symbol;
+    frame.src = buildTvUrl(tvSym);
+  }
+
+  // Favourite toggle in the nav-right
+  const favBtn = document.getElementById("detailFav");
+  const isFav = state.favs.has(symbol);
+  favBtn.textContent = isFav ? "★" : "☆";
+  favBtn.classList.toggle("off", !isFav);
+
+  renderDetailStats(symbol, ticker);
+  renderDetailEvents(symbol);
+  renderDetailArticles(symbol);
+}
+
+function renderDetailSession(symbol) {
+  const ticker = state.prices?.tickers?.find(t => t.symbol === symbol);
+  if (!ticker) return;
+  const el = document.getElementById("detailSession");
+  if (!el) return;
+  if (ticker.is_open) {
+    el.className = "detail-session";
+    el.innerHTML = `<span class="dot"></span>Market open · live`;
+  } else {
+    el.className = "detail-session closed";
+    el.innerHTML = `<span class="dot"></span>Market closed · last close`;
+  }
+}
+
+function computeStats(ticker) {
+  const closes = (ticker.spark || []).map(p => p.c);
+  const high = closes.length ? Math.max(...closes) : ticker.last;
+  const low  = closes.length ? Math.min(...closes) : ticker.last;
+  return { open: ticker.open, high, low };
+}
+function earningsCountdown(symbol) {
+  const next = mergedUpcoming().find(e => e.kind === "earnings" && e.symbol === symbol);
+  if (!next) return "—";
+  const t = timeUntil(next.scheduled_at);
+  if (!t) return "today";
+  if (t.d > 0) return `${t.d}d ${t.h}h`;
+  if (t.h > 0) return `${t.h}h ${t.m}m`;
+  return `${t.m}m`;
+}
+
+function renderDetailStats(symbol, ticker) {
+  const s = computeStats(ticker);
+  // 8 cells laid out as 4 rows × 2 cols. "—" for stats we don't have data for yet.
+  const cells = [
+    ["Open",     fmtPrice(s.open)],
+    ["Mkt cap",  "—"],
+    ["High",     fmtPrice(s.high)],
+    ["52W H",    "—"],
+    ["Low",      fmtPrice(s.low)],
+    ["52W L",    "—"],
+    ["Last",     fmtPrice(ticker.last)],
+    ["Earnings", earningsCountdown(symbol)],
+  ];
+  let html = "";
+  for (let i = 0; i < cells.length; i += 2) {
+    html += `<div class="stats-row">`;
+    for (let j = 0; j < 2; j++) {
+      const [lbl, val] = cells[i + j];
+      html += `
+        <div class="stat-cell">
+          <span class="stat-lbl">${escapeHtml(lbl)}</span>
+          <span class="stat-val">${escapeHtml(String(val))}</span>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+  document.getElementById("detailStats").innerHTML = html;
+}
+
+function renderDetailEvents(symbol) {
+  const headerEl = document.getElementById("detailEventsH");
+  const ribbonEl = document.getElementById("detailEvents");
+  const events = mergedUpcoming()
+    .filter(e => e.symbol === symbol && +new Date(e.scheduled_at) >= Date.now())
+    .slice(0, 6);
+  if (!events.length) {
+    headerEl.hidden = true; ribbonEl.hidden = true; ribbonEl.innerHTML = "";
+    return;
+  }
+  headerEl.hidden = false; ribbonEl.hidden = false;
+  ribbonEl.innerHTML = events.map((e) => {
+    const t = timeUntil(e.scheduled_at);
+    let cd = `${t.s}s`;
+    if (t.d > 0)      cd = `${t.d}d ${pad2(t.h)}h`;
+    else if (t.h > 0) cd = `${t.h}h ${pad2(t.m)}m`;
+    else if (t.m > 0) cd = `${t.m}m ${pad2(t.s)}s`;
+    return `
+      <div class="event-chip">
+        <div class="event-chip-head">
+          <span class="led"></span>
+          <span class="countdown">${cd}</span>
+        </div>
+        <div class="label">${escapeHtml(e.title)}</div>
+        <div class="meta">${e.kind === "earnings" ? "Earnings" : "Macro"}</div>
+      </div>`;
+  }).join("");
+  ribbonEl.querySelectorAll(".event-chip").forEach((chip, i) =>
+    chip.addEventListener("click", () => openSheet(events[i]))
+  );
+}
+
+function renderDetailArticles(symbol) {
+  const headerEl = document.getElementById("detailArticlesH");
+  const el = document.getElementById("detailArticles");
+  const arts = (state.articles || [])
+    .filter(a => a.symbol === symbol)
+    .slice()
+    .sort((a, b) => b.published_at.localeCompare(a.published_at))
+    .slice(0, 10);
+  if (!arts.length) {
+    headerEl.hidden = true; el.innerHTML = "";
+    return;
+  }
+  headerEl.hidden = false;
+  el.innerHTML = arts.map(articleCardHtml).join("");
+  el.querySelectorAll(".article").forEach((card, i) => {
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+      openArticleView(arts[i]);
+    });
+  });
+}
+
 // --- TradingView chart sheet ---
 // Stripped TradingView config — bare-candle look, no volume / studies / panels.
 // `studies_overrides` hides volume even if `hide_volume` isn't honoured by the
@@ -1166,12 +1410,21 @@ document.getElementById("chartClose").addEventListener("click", closeChart);
 document.getElementById("settingsBtn").addEventListener("click", openSettings);
 document.getElementById("settingsClose").addEventListener("click", closeSettings);
 document.getElementById("articleClose").addEventListener("click", closeArticleView);
+// "+" in the large nav — opens settings for now (will become a manage-tickers sheet)
+document.getElementById("manageBtn").addEventListener("click", openSettings);
+// detail view back + fav buttons
+document.getElementById("detailBack").addEventListener("click", closeDetail);
+document.getElementById("detailFav").addEventListener("click", () => {
+  if (!state.detailSym) return;
+  toggleFav(state.detailSym);   // also re-renders the detail view (via render())
+});
 // extra escape hatches so the user is never trapped in any overlay
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
   closeSettings();
   closeChart();
   closeArticleView();
+  closeDetail();
 });
 
 // --- iOS-style edge-swipe-back ---
@@ -1246,6 +1499,7 @@ setupSwipeBack(document.getElementById("settings"),    dismissSettings);
 setupSwipeBack(document.getElementById("chart"),       dismissChart);
 setupSwipeBack(document.getElementById("articleView"), dismissArticleView);
 setupSwipeBack(document.getElementById("sheet"),       dismissSheet);
+setupSwipeBack(document.getElementById("detailView"),  dismissDetail);
 document.getElementById("settings").addEventListener("click", (e) => {
   // tap directly on the gray bar background (outside any control) → dismiss
   if (e.target.id === "settings") closeSettings();

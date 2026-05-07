@@ -54,9 +54,9 @@ html, body {
   }
 }
 
-/* app bar — translucent blur like iOS native bars */
+/* app bar — translucent blur like iOS native bars (legacy class kept for any
+   reused element references; new layout uses .nav-large / .nav-small) */
 .app-bar {
-  /* extra top padding clears the iPhone status bar / Dynamic Island */
   padding: calc(env(safe-area-inset-top) + 12px) 18px 12px;
   display: flex;
   align-items: center;
@@ -68,6 +68,345 @@ html, body {
   -webkit-backdrop-filter: saturate(180%) blur(22px);
   backdrop-filter: saturate(180%) blur(22px);
   z-index: 10;
+}
+
+/* ─── Apple-Stocks-style large-title nav (main view) ─── */
+.nav-large {
+  padding: calc(env(safe-area-inset-top) + 6px) 18px 14px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  background: rgba(11, 13, 16, 0.82);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  backdrop-filter: saturate(180%) blur(22px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav-title { display: flex; flex-direction: column; }
+.nav-date {
+  font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: -0.01em;
+}
+.nav-heading {
+  margin: 2px 0 0;
+  font-size: 28px; font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+.nav-actions { display: flex; gap: 6px; }
+.nav-icon {
+  width: 32px; height: 32px;
+  background: rgba(120, 134, 150, 0.16);
+  border: none;
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.18s cubic-bezier(0.32, 0.72, 0, 1), background 0.15s;
+}
+.nav-icon:active { transform: scale(0.9); background: rgba(120, 134, 150, 0.28); }
+
+/* ─── Compact small-title nav (detail view) ─── */
+.nav-small {
+  padding: calc(env(safe-area-inset-top) + 8px) 14px 10px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(35, 42, 49, 0.6);
+  background: rgba(11, 13, 16, 0.82);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  backdrop-filter: saturate(180%) blur(22px);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  flex-shrink: 0;
+}
+.nav-back {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 4px 6px 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav-back:active { opacity: 0.5; }
+.nav-back-glyph { font-size: 18px; line-height: 1; margin-left: -2px; }
+.nav-back-label  { font-weight: 500; }
+.nav-center { text-align: center; min-width: 0; overflow: hidden; }
+.nav-center-sym {
+  font-size: 14px; font-weight: 700; letter-spacing: 0.01em;
+  color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nav-center-name {
+  font-size: 10.5px; color: var(--muted); margin-top: 1px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nav-right { display: flex; justify-content: flex-end; }
+.nav-fav {
+  background: transparent;
+  border: none;
+  color: var(--gold);
+  font-size: 18px;
+  padding: 6px 4px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-fav.off { color: var(--dim); }
+.nav-fav:active { transform: scale(0.85); }
+
+/* ─── Watchlist rows (Apple Stocks pattern) ─── */
+.watchlist {
+  padding: 4px 16px 4px;
+}
+.wlrow {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 80px auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(35, 42, 49, 0.5);
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(78, 161, 255, 0.10);
+}
+.wlrow:last-child { border-bottom: none; }
+.wlrow:active .wlrow-sym,
+.wlrow:active .wlrow-name { opacity: 0.55; }
+.wlrow-symblock { overflow: hidden; }
+.wlrow-sym {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  display: flex; align-items: center; gap: 5px;
+  color: var(--text);
+}
+.wlrow-sym .star {
+  color: var(--gold);
+  font-size: 11px;
+  margin-top: 1px;
+}
+.wlrow-name {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.wlrow-spark {
+  width: 80px;
+  height: 28px;
+}
+.wlrow-spark path.line {
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.wlrow.up   .wlrow-spark path.line { stroke: var(--good); }
+.wlrow.down .wlrow-spark path.line { stroke: var(--bad);  }
+.wlrow.muted .wlrow-spark path.line { stroke: var(--dim); }
+.wlrow-rstack {
+  text-align: right;
+  min-width: 80px;
+}
+.wlrow-px {
+  font-variant-numeric: tabular-nums;
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.wlrow-chip {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.wlrow.up   .wlrow-chip { background: var(--good); color: #04130a; }
+.wlrow.down .wlrow-chip { background: var(--bad);  color: #1a0306; }
+.wlrow.muted .wlrow-chip { background: rgba(120, 134, 150, 0.18); color: var(--muted); }
+
+/* small "tap a star to manage" hint when watchlist is empty */
+.watchlist-empty {
+  padding: 32px 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* ─── Detail view (drill-down per ticker) ─── */
+.detail-view {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 65;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
+}
+.detail-view.open { transform: translateX(0); }
+.detail-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+.detail-hero {
+  padding: 16px 18px 12px;
+}
+.detail-px {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.detail-chg {
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+.detail-chg.up   { color: var(--good); }
+.detail-chg.down { color: var(--bad); }
+.detail-session {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--muted);
+  display: flex; align-items: center; gap: 6px;
+}
+.detail-session .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--good);
+  box-shadow: 0 0 4px var(--good);
+}
+.detail-session.closed .dot { background: var(--dim); box-shadow: none; }
+.detail-chart {
+  width: 100%;
+  height: 260px;
+  border: none;
+  display: block;
+  background: var(--panel);
+  margin-top: 4px;
+}
+
+/* ─── Stats grid (2 columns x N rows, Apple-style hairlines) ─── */
+.stats-grid {
+  margin: 12px 16px 0;
+  background: var(--panel);
+  border: 1px solid rgba(35, 42, 49, 0.6);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.stats-row + .stats-row { border-top: 1px solid rgba(35, 42, 49, 0.4); }
+.stat-cell {
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stat-cell + .stat-cell { border-left: 1px solid rgba(35, 42, 49, 0.4); }
+.stat-lbl {
+  font-size: 11px;
+  color: var(--muted);
+}
+.stat-val {
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+/* ─── News section title (replaces "section-h" for the news section) ─── */
+.news-section-h {
+  padding: 18px 18px 6px;
+  color: var(--text);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+/* ─── Compact news cards (thumbnail-on-right Apple-Stocks style) ─── */
+.articles { padding: 4px 16px 0; }
+/* Override the previous full-width-image article style for compact layout */
+.article {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 64px;
+  gap: 12px;
+  align-items: center;
+  margin: 8px 0;
+  padding: 12px 14px;
+  background: var(--panel);
+  border: 1px solid rgba(35, 42, 49, 0.6);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: rgba(78,161,255,0.12);
+}
+/* hide the old big hero image — we use the small thumb instead */
+.article > .article-image { display: none; }
+.article > .article-body { padding: 0; }
+.article .article-source-row { margin-bottom: 5px; }
+.article .article-source-name { font-size: 10px; }
+.article .article-time        { font-size: 10px; }
+.article .article-headline {
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.32;
+  -webkit-line-clamp: 3;
+  margin: 0 0 6px;
+}
+.article .article-summary {
+  font-size: 11.5px;
+  -webkit-line-clamp: 2;
+  margin-bottom: 4px;
+}
+.article .article-tickers { margin-top: 0; }
+.article-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1c2530 0%, #0e1820 50%, #0b0f15 100%);
+  display: block;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.article-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* updated-bottom — small, muted footer that replaces the old "updated 4m" badge */
+.updated-bottom {
+  padding: 16px 18px max(24px, env(safe-area-inset-bottom));
+  text-align: center;
+  font-size: 10.5px;
+  color: var(--dim);
+  letter-spacing: 0.04em;
 }
 .title { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
 .title .dot { color: var(--good); margin-right: 6px; }
