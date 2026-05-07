@@ -91,18 +91,26 @@ html, body {
 }
 .icon-btn:hover, .icon-btn:active { color: var(--text); border-color: var(--muted); }
 
-/* high-impact events ribbon — below the chart, scrolls horizontally */
+/* high-impact events ribbon — below the chart, scrolls horizontally.
+   Edge alignment uses phantom ::before/::after spacers (each 8px) +
+   the 8px flex gap to produce a consistent 16px page margin on iOS,
+   where padding-left on overflow-x containers is unreliable. */
 .events-ribbon {
   display: flex;
   gap: 8px;
-  padding: 10px 16px 0;
+  padding: 10px 0 0;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
+  scroll-padding-left: 16px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 .events-ribbon::-webkit-scrollbar { display: none; }
+.events-ribbon::before {
+  content: "";
+  flex: 0 0 8px;
+}
 .event-chip {
   flex: 0 0 auto;
   scroll-snap-align: start;
