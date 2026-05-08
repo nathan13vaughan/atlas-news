@@ -1639,7 +1639,7 @@ function renderThemes() {
           <div class="theme-name">${escapeHtml(theme)}</div>
           <span class="theme-heat ${heat}">${heatLabel[heat] || heat}</span>
         </div>
-        <div class="theme-outlook ${outlookCls}">${outlook}</div>
+        <div class="theme-outlook ${outlookCls}">${outlookText}</div>
         <div class="theme-pills">${pills}</div>
       </div>`;
   }).join("");
