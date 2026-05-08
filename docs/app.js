@@ -11,14 +11,11 @@ const FMT_FULL = new Intl.DateTimeFormat("en-AU", {
   hour: "2-digit", minute: "2-digit", hour12: false,
 });
 
-const TICKERS = [
-  "NVDA", "TSLA", "AAPL", "MSFT", "AMZN", "META", "GOOGL", "AMD", "NFLX",
-  "SPY", "QQQ", "IWM",
-  "XAUUSD", "BTC",
-];
-// TradingView symbol resolution. Equities work as bare tickers; gold needs an
-// exchange prefix to disambiguate (OANDA spot is the most accurate ref).
+// Full catalog of supported tickers. Server-side cron fetches only the
+// CRON_TICKERS subset (the 14 baseline). Anything else is fetched on-demand
+// via Finnhub when the user adds it to their watchlist (state.favs).
 const TV_SYMBOLS = {
+  // ── Cron-fetched baseline (always available, no Finnhub key needed) ──
   NVDA:  "NASDAQ:NVDA",
   TSLA:  "NASDAQ:TSLA",
   AAPL:  "NASDAQ:AAPL",
@@ -33,14 +30,74 @@ const TV_SYMBOLS = {
   IWM:   "AMEX:IWM",
   XAUUSD: "OANDA:XAUUSD",
   BTC:   "COINBASE:BTCUSD",
+  // ── Lazy-fetched NASDAQ-100 catalog (need Finnhub key) ──
+  AVGO:  "NASDAQ:AVGO",
+  COST:  "NASDAQ:COST",
+  TMUS:  "NASDAQ:TMUS",
+  PEP:   "NASDAQ:PEP",
+  ADBE:  "NASDAQ:ADBE",
+  CSCO:  "NASDAQ:CSCO",
+  CMCSA: "NASDAQ:CMCSA",
+  TXN:   "NASDAQ:TXN",
+  INTU:  "NASDAQ:INTU",
+  QCOM:  "NASDAQ:QCOM",
+  ISRG:  "NASDAQ:ISRG",
+  BKNG:  "NASDAQ:BKNG",
+  AMAT:  "NASDAQ:AMAT",
+  AMGN:  "NASDAQ:AMGN",
+  HON:   "NASDAQ:HON",
+  MU:    "NASDAQ:MU",
+  PLTR:  "NASDAQ:PLTR",
+  PANW:  "NASDAQ:PANW",
+  CRWD:  "NASDAQ:CRWD",
+  LRCX:  "NASDAQ:LRCX",
+  KLAC:  "NASDAQ:KLAC",
+  ASML:  "NASDAQ:ASML",
+  ADI:   "NASDAQ:ADI",
+  MELI:  "NASDAQ:MELI",
+  ABNB:  "NASDAQ:ABNB",
+  SBUX:  "NASDAQ:SBUX",
+  MDLZ:  "NASDAQ:MDLZ",
+  ADP:   "NASDAQ:ADP",
+  GILD:  "NASDAQ:GILD",
+  VRTX:  "NASDAQ:VRTX",
+  REGN:  "NASDAQ:REGN",
+  ARM:   "NASDAQ:ARM",
+  MAR:   "NASDAQ:MAR",
+  CDNS:  "NASDAQ:CDNS",
+  SNPS:  "NASDAQ:SNPS",
+  FTNT:  "NASDAQ:FTNT",
+  PYPL:  "NASDAQ:PYPL",
+  WDAY:  "NASDAQ:WDAY",
+  ORLY:  "NASDAQ:ORLY",
+  MNST:  "NASDAQ:MNST",
+  MRVL:  "NASDAQ:MRVL",
+  COIN:  "NASDAQ:COIN",
+  SMCI:  "NASDAQ:SMCI",
+  DDOG:  "NASDAQ:DDOG",
+  TTD:   "NASDAQ:TTD",
+  INTC:  "NASDAQ:INTC",
+  NXPI:  "NASDAQ:NXPI",
+  ADSK:  "NASDAQ:ADSK",
+  EA:    "NASDAQ:EA",
+  MSTR:  "NASDAQ:MSTR",
 };
+const TICKERS = Object.keys(TV_SYMBOLS);
+// Tickers the GitHub Action's cron fetches into intraday.json. Anything else
+// in the catalog is fetched lazily via Finnhub when added to the watchlist.
+const CRON_TICKERS = new Set([
+  "NVDA","TSLA","AAPL","MSFT","AMZN","META","GOOGL","AMD","NFLX",
+  "SPY","QQQ","IWM","XAUUSD","BTC",
+]);
 const FILTER_KEY = "atlas-news.filter";
 const IMPACT_KEY = "atlas-news.impact";
 const KEYS_KEY   = "atlas-news.api-keys";
 const FAVS_KEY   = "atlas-news.favs";
 
-// Tickers that have actual earnings (used by Finnhub fetchers).
-const EQUITY_SYMBOLS = ["NVDA", "TSLA", "AAPL", "MSFT", "AMZN", "META", "GOOGL", "AMD", "NFLX"];
+// Symbols that have actual earnings (used by Finnhub /calendar/earnings).
+// Anything not an index/ETF/futures/crypto.
+const NON_EQUITY = new Set(["SPY", "QQQ", "IWM", "XAUUSD", "BTC"]);
+const EQUITY_SYMBOLS = TICKERS.filter((s) => !NON_EQUITY.has(s));
 
 // --- provider catalog ---
 // Each entry knows how to fetch from a public API and map results into the
@@ -84,22 +141,96 @@ let state = {
   filter: "all",      // legacy ticker filter — Apple-Stocks layout uses detail-view drill-down instead
   impact: localStorage.getItem(IMPACT_KEY) || "high",   // "high" | "all"
   keys: loadKeys(),
-  favs: loadFavs(),         // Set<string> of favourited tickers
+  favs: loadFavs(),         // Set<string> — user's active watchlist
   detailSym: null,           // currently-open detail-view ticker, or null
+  dynamicPrices: {},         // {symbol: tickerData} for non-cron tickers (lazy Finnhub /quote fetch)
 };
 
+// Look up a ticker — first check the cron data, then any lazy-fetched quotes.
+function getTickerData(symbol) {
+  return state.prices?.tickers?.find((t) => t.symbol === symbol)
+      || state.dynamicPrices[symbol]
+      || null;
+}
+
+// One-shot Finnhub /quote fetch for a ticker not in the cron dataset.
+// Caches the result in state.dynamicPrices so subsequent renders reuse it.
+async function fetchDynamicQuote(symbol) {
+  if (CRON_TICKERS.has(symbol)) return null;          // cron will provide
+  const key = state.keys.finnhub?.key;
+  if (!key) return null;
+  if (state.dynamicPrices[symbol]) return state.dynamicPrices[symbol];
+
+  // Map our display symbols to Finnhub format (most US tickers are bare).
+  const finnSym = symbol;
+  try {
+    const resp = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(finnSym)}&token=${encodeURIComponent(key)}`);
+    if (!resp.ok) return null;
+    const d = await resp.json();
+    if (typeof d.c !== "number" || d.c === 0) return null;
+    state.dynamicPrices[symbol] = {
+      symbol,
+      last: d.c,
+      open: d.o ?? d.c,
+      change: typeof d.d === "number" ? d.d : (d.c - (d.o || d.c)),
+      change_pct: typeof d.dp === "number" ? d.dp / 100 : 0,
+      currency: "USD",
+      is_open: true,
+      spark: [{ t: new Date().toISOString(), c: d.c }],
+    };
+    return state.dynamicPrices[symbol];
+  } catch { return null; }
+}
+
+// Make sure every watchlist ticker has data; lazy-fetch if needed.
+async function ensureWatchlistData() {
+  const need = [...state.favs].filter((sym) => !getTickerData(sym));
+  if (!need.length) return;
+  const results = await Promise.allSettled(need.map(fetchDynamicQuote));
+  if (results.some((r) => r.status === "fulfilled" && r.value)) {
+    renderWatchlist();
+  }
+}
+
+// state.favs IS the user's watchlist. Existing data preserved; new users get
+// the original 14-ticker default so the app has something to show on first run.
+const DEFAULT_WATCHLIST_FAVS = [
+  "NVDA","TSLA","AAPL","MSFT","AMZN","META","GOOGL","AMD","NFLX",
+  "SPY","QQQ","IWM","XAUUSD","BTC",
+];
 function loadFavs() {
   try {
-    const v = JSON.parse(localStorage.getItem(FAVS_KEY) || "[]");
-    return new Set(Array.isArray(v) ? v : []);
-  } catch { return new Set(); }
+    const v = JSON.parse(localStorage.getItem(FAVS_KEY) || "null");
+    if (Array.isArray(v)) {
+      // Existing user (even empty array). Preserve their setting but if empty
+      // and they've never explicitly cleared, fall back to defaults so the
+      // first-run experience has something.
+      if (v.length) return new Set(v);
+    }
+  } catch {}
+  return new Set(DEFAULT_WATCHLIST_FAVS);
 }
 function saveFavs() {
   localStorage.setItem(FAVS_KEY, JSON.stringify([...state.favs]));
 }
 function toggleFav(symbol) {
-  if (state.favs.has(symbol)) state.favs.delete(symbol);
-  else state.favs.add(symbol);
+  const wasIn = state.favs.has(symbol);
+  if (wasIn) {
+    state.favs.delete(symbol);
+    delete state.dynamicPrices[symbol];
+    liveRowMark.delete(symbol);
+    // Tell Finnhub to stop streaming this one
+    if (finnhubWs && finnhubWs.readyState === WebSocket.OPEN && LIVE_SYMBOLS.includes(symbol)) {
+      try { finnhubWs.send(JSON.stringify({ type: "unsubscribe", symbol })); } catch {}
+    }
+  } else {
+    state.favs.add(symbol);
+    // Trigger a one-shot quote so the row populates immediately, then live ticks fill in
+    fetchDynamicQuote(symbol).then(() => renderWatchlist());
+    if (finnhubWs && finnhubWs.readyState === WebSocket.OPEN && LIVE_SYMBOLS.includes(symbol)) {
+      try { finnhubWs.send(JSON.stringify({ type: "subscribe", symbol })); } catch {}
+    }
+  }
   saveFavs();
   render();
 }
@@ -132,6 +263,8 @@ async function refresh() {
   if (results[0].status === "fulfilled") state.news = results[0].value;
   if (results[1].status === "fulfilled") state.prices = results[1].value;
   render();
+  // Lazy-fetch quotes for any watchlist tickers not in the cron data
+  ensureWatchlistData();
 }
 
 // --- client-side providers ---
@@ -940,16 +1073,12 @@ function renderNavDate() {
 }
 
 // --- Apple-Stocks-style watchlist rows ---
-// Sort: favourites first, then alphabetical within each group.
-function watchlistOrder(tickers) {
-  const favs = [];
-  const rest = [];
-  for (const t of tickers) (state.favs.has(t.symbol) ? favs : rest).push(t);
-  const byName = (a, b) => a.symbol.localeCompare(b.symbol);
-  favs.sort(byName); rest.sort(byName);
-  return [...favs, ...rest];
+// Watchlist == state.favs. Sorted alphabetically.
+function watchlistOrder() {
+  return [...state.favs].sort();
 }
 const TICKER_NAMES = {
+  // baseline
   NVDA:  "NVIDIA Corp",
   TSLA:  "Tesla, Inc",
   AAPL:  "Apple Inc",
@@ -964,38 +1093,114 @@ const TICKER_NAMES = {
   IWM:   "Russell 2000 ETF",
   XAUUSD: "Gold spot (futures)",
   BTC:   "Bitcoin",
+  // expanded NASDAQ catalog
+  AVGO:  "Broadcom Inc",
+  COST:  "Costco Wholesale",
+  TMUS:  "T-Mobile US",
+  PEP:   "PepsiCo",
+  ADBE:  "Adobe Inc",
+  CSCO:  "Cisco Systems",
+  CMCSA: "Comcast Corp",
+  TXN:   "Texas Instruments",
+  INTU:  "Intuit Inc",
+  QCOM:  "Qualcomm Inc",
+  ISRG:  "Intuitive Surgical",
+  BKNG:  "Booking Holdings",
+  AMAT:  "Applied Materials",
+  AMGN:  "Amgen Inc",
+  HON:   "Honeywell",
+  MU:    "Micron Technology",
+  PLTR:  "Palantir Technologies",
+  PANW:  "Palo Alto Networks",
+  CRWD:  "CrowdStrike Holdings",
+  LRCX:  "Lam Research",
+  KLAC:  "KLA Corporation",
+  ASML:  "ASML Holding",
+  ADI:   "Analog Devices",
+  MELI:  "MercadoLibre",
+  ABNB:  "Airbnb Inc",
+  SBUX:  "Starbucks Corp",
+  MDLZ:  "Mondelez Int'l",
+  ADP:   "Automatic Data Processing",
+  GILD:  "Gilead Sciences",
+  VRTX:  "Vertex Pharmaceuticals",
+  REGN:  "Regeneron Pharma",
+  ARM:   "Arm Holdings",
+  MAR:   "Marriott Int'l",
+  CDNS:  "Cadence Design Systems",
+  SNPS:  "Synopsys Inc",
+  FTNT:  "Fortinet Inc",
+  PYPL:  "PayPal Holdings",
+  WDAY:  "Workday Inc",
+  ORLY:  "O'Reilly Automotive",
+  MNST:  "Monster Beverage",
+  MRVL:  "Marvell Technology",
+  COIN:  "Coinbase Global",
+  SMCI:  "Super Micro Computer",
+  DDOG:  "Datadog Inc",
+  TTD:   "The Trade Desk",
+  INTC:  "Intel Corp",
+  NXPI:  "NXP Semiconductors",
+  ADSK:  "Autodesk Inc",
+  EA:    "Electronic Arts",
+  MSTR:  "MicroStrategy",
 };
 
 function renderWatchlist() {
   const el = document.getElementById("watchlist");
-  if (!state.prices?.tickers?.length) {
-    el.innerHTML = `<div class="watchlist-empty">Loading prices…</div>`;
+  const ordered = watchlistOrder();
+
+  if (!ordered.length) {
+    el.innerHTML = `
+      <div class="watchlist-empty">
+        Your watchlist is empty.<br>
+        Tap <strong>+</strong> at the top to add tickers.
+      </div>`;
     return;
   }
-  const ordered = watchlistOrder(state.prices.tickers);
-  el.innerHTML = ordered.map((t) => {
+
+  el.innerHTML = ordered.map((sym) => {
+    const t = getTickerData(sym);
+    const name = TICKER_NAMES[sym] || sym;
+    // Placeholder row for watchlist tickers without data yet
+    if (!t) {
+      const needsKey = !state.keys.finnhub?.key && !CRON_TICKERS.has(sym);
+      const note = needsKey
+        ? `<span class="wlrow-chip" style="background:transparent;border:1px solid var(--line);color:var(--dim)">add Finnhub key</span>`
+        : `<span class="wlrow-chip" style="background:transparent;border:1px solid var(--line);color:var(--dim)">loading…</span>`;
+      return `
+        <div class="wlrow muted" data-symbol="${sym}">
+          <div class="wlrow-symblock">
+            <div class="wlrow-sym">${sym}</div>
+            <div class="wlrow-name">${escapeHtml(name)}</div>
+          </div>
+          <svg class="wlrow-spark" viewBox="0 0 80 28"></svg>
+          <div class="wlrow-rstack">
+            <div class="wlrow-px" style="color:var(--dim)">—</div>
+            ${note}
+          </div>
+        </div>`;
+    }
     const isUp = t.change >= 0;
     const cls = ["wlrow", isUp ? "up" : "down", t.is_open ? "" : "muted"]
       .filter(Boolean).join(" ");
     const [line] = sparkPath(t.spark, isUp);
-    const isFav = state.favs.has(t.symbol);
-    const star = isFav ? `<span class="star">★</span>` : "";
-    const name = TICKER_NAMES[t.symbol] || t.symbol;
     return `
-      <div class="${cls}" data-symbol="${t.symbol}">
+      <div class="${cls}" data-symbol="${sym}">
         <div class="wlrow-symblock">
-          <div class="wlrow-sym">${star}${t.symbol}</div>
+          <div class="wlrow-sym">${sym}</div>
           <div class="wlrow-name">${escapeHtml(name)}</div>
         </div>
         <svg class="wlrow-spark" viewBox="0 0 80 28" preserveAspectRatio="none">
           <path class="line" d="${line || ""}"/>
         </svg>
         <div class="wlrow-rstack">
-          <div class="wlrow-px">${liveRowMark.has(t.symbol) ? `<span class="wlrow-live-dot" title="Live"></span>` : ""}${fmtPrice(t.last)}</div>
+          <div class="wlrow-px">${liveRowMark.has(sym) ? `<span class="wlrow-live-dot" title="Live"></span>` : ""}${fmtPrice(t.last)}</div>
           <span class="wlrow-chip">${fmtPct(t.change_pct)}</span>
         </div>
       </div>`;
   }).join("");
+
   el.querySelectorAll(".wlrow").forEach((row) =>
     row.addEventListener("click", () => openDetail(row.dataset.symbol))
   );
@@ -1697,7 +1902,9 @@ document.getElementById("clearKeys").addEventListener("click", async () => {
 // ETFs (NVDA, TSLA, AAPL, MSFT, AMZN, META, GOOGL, AMD, NFLX, SPY, QQQ, IWM).
 // Gold (GC=F → XAUUSD) and Bitcoin (BTC-USD → BTC) require Finnhub's paid
 // tier so they keep their 15-min cron values.
-const LIVE_SYMBOLS = ["NVDA","TSLA","AAPL","MSFT","AMZN","META","GOOGL","AMD","NFLX","SPY","QQQ","IWM"];
+// Symbols Finnhub's free WebSocket tier covers (US-listed equities + ETFs).
+// Excludes futures (XAU) and crypto (BTC) which need a paid plan.
+const LIVE_SYMBOLS = TICKERS.filter((s) => !["XAUUSD", "BTC"].includes(s));
 let finnhubWs = null;
 let finnhubReconnectTimer = null;
 const liveRowMark = new Set();          // symbols that have received at least one tick
@@ -1711,9 +1918,12 @@ function openFinnhubWs() {
   catch (e) { console.warn("Finnhub WS failed to construct:", e); return; }
 
   finnhubWs.addEventListener("open", () => {
-    LIVE_SYMBOLS.forEach((sym) => {
+    // Subscribe only to what's in the user's watchlist (and supported by free tier).
+    [...state.favs].filter((s) => LIVE_SYMBOLS.includes(s)).forEach((sym) => {
       finnhubWs.send(JSON.stringify({ type: "subscribe", symbol: sym }));
     });
+    // Lazy-fetch initial quotes for any non-cron tickers in the watchlist
+    ensureWatchlistData();
   });
 
   finnhubWs.addEventListener("message", (ev) => {
