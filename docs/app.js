@@ -1052,16 +1052,20 @@ function renderInlineChart() {
 }
 
 // --- master render ---
+// Each step is wrapped so a failure in one section never takes out the rest.
+function tryRender(name, fn) {
+  try { fn(); } catch (e) { console.warn(`render.${name} failed:`, e); }
+}
 function render() {
-  renderNavDate();
-  renderBlackout();
-  renderSetupBanner();
-  renderWatchlist();
-  renderEventsRibbon();
-  renderThemes();
-  renderArticles();
-  renderUpdatedLabel();
-  if (state.detailSym) renderDetail(state.detailSym);
+  tryRender("navDate",      renderNavDate);
+  tryRender("blackout",     renderBlackout);
+  tryRender("setupBanner",  renderSetupBanner);
+  tryRender("watchlist",    renderWatchlist);
+  tryRender("eventsRibbon", renderEventsRibbon);
+  tryRender("themes",       renderThemes);
+  tryRender("articles",     renderArticles);
+  tryRender("updatedLabel", renderUpdatedLabel);
+  if (state.detailSym) tryRender("detail", () => renderDetail(state.detailSym));
 }
 
 // --- Setup banner: prompts the user to configure missing API keys ---
@@ -1594,7 +1598,12 @@ async function generateThemeOutlooks(force = false) {
 
 function renderThemes() {
   const el = document.getElementById("themes");
-  if (!el) return;
+  if (!el) { console.warn("renderThemes: #themes element missing from DOM"); return; }
+  if (typeof THEMES !== "object" || !THEMES || !Object.keys(THEMES).length) {
+    console.warn("renderThemes: THEMES not loaded yet");
+    el.innerHTML = `<div style="padding:18px;color:var(--dim);font-size:12px;text-align:center">Loading themes…</div>`;
+    return;
+  }
   const cache = loadThemesCache();
   const groqOn = state.keys.groq?.enabled && state.keys.groq?.key;
 
