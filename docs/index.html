@@ -38,6 +38,16 @@
   </div>
 </div>
 
+<!-- Setup banner — surfaces when API keys are missing so the empty/placeholder
+     sections below don't confuse new users -->
+<div class="setup-banner" id="setupBanner" hidden>
+  <div class="setup-banner-text">
+    <strong>Get more from ProjectZ</strong>
+    <span id="setupMissing"></span>
+  </div>
+  <button class="setup-banner-btn" id="setupBtn" type="button">Set up</button>
+</div>
+
 <!-- Watchlist (Apple-Stocks-style rows) -->
 <div class="watchlist" id="watchlist"></div>
 

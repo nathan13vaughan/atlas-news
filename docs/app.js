@@ -1052,12 +1052,29 @@ function renderInlineChart() {
 function render() {
   renderNavDate();
   renderBlackout();
+  renderSetupBanner();
   renderWatchlist();
   renderEventsRibbon();
   renderThemes();
   renderArticles();
   renderUpdatedLabel();
   if (state.detailSym) renderDetail(state.detailSym);
+}
+
+// --- Setup banner: prompts the user to configure missing API keys ---
+function renderSetupBanner() {
+  const el = document.getElementById("setupBanner");
+  if (!el) return;
+  const missing = [];
+  if (!state.keys.finnhub?.key) missing.push("news + extra tickers (Finnhub)");
+  if (!state.keys.groq?.key)    missing.push("AI summaries + theme outlooks (Groq)");
+  if (!missing.length) {
+    el.hidden = true;
+    return;
+  }
+  el.hidden = false;
+  document.getElementById("setupMissing").textContent =
+    "Add free API keys to unlock " + missing.join(" and ") + ".";
 }
 
 // tick the countdown every second so the user sees live progress
@@ -1952,6 +1969,8 @@ document.getElementById("manageBtn").addEventListener("click", openManageSheet);
 document.getElementById("manageClose").addEventListener("click", closeManageSheet);
 // Themes refresh button — force-regenerate all theme outlooks
 document.getElementById("themesRefresh").addEventListener("click", () => generateThemeOutlooks(true));
+// "Set up" button on the missing-keys banner
+document.getElementById("setupBtn").addEventListener("click", openSettings);
 // detail view back + fav buttons
 document.getElementById("detailBack").addEventListener("click", closeDetail);
 document.getElementById("detailFav").addEventListener("click", () => {
