@@ -1472,6 +1472,7 @@ const THEMES = {
 };
 const THEMES_KEY = "atlas-news.themes-cache";
 let themesGenerating = false;
+const themesFailed = new Set();   // theme names that errored on the last run
 
 function loadThemesCache() {
   try {
@@ -1564,21 +1565,26 @@ async function generateThemeOutlooks(force = false) {
   });
 
   themesProgress = { done: 0, total: targets.length };
+  themesFailed.clear();
   updateThemesHeader();
+  renderThemes();   // clear stale "failed" badges
 
-  // Fire all in parallel BUT render each as it arrives so progress is visible.
-  const promises = targets.map(([theme, tickers]) =>
-    groqThemeOutlook(theme, tickers).then((outlook) => {
-      if (outlook) {
-        cache[theme] = { ...outlook, day: today };
-        saveThemesCache(cache);
-      }
-      themesProgress.done++;
-      renderThemes();
-      updateThemesHeader();
-    })
-  );
-  await Promise.allSettled(promises);
+  // Sequential — one Groq call at a time. Burst-parallel runs into Groq's
+  // 30 requests/minute free-tier cap (most calls 429 and return null), which
+  // is what caused all themes except one to stay unfilled. Going one-by-one
+  // is naturally throttled by the call's own latency (~500-1500ms each).
+  for (const [theme, tickers] of targets) {
+    const outlook = await groqThemeOutlook(theme, tickers);
+    if (outlook) {
+      cache[theme] = { ...outlook, day: today };
+      saveThemesCache(cache);
+    } else {
+      themesFailed.add(theme);
+    }
+    themesProgress.done++;
+    renderThemes();
+    updateThemesHeader();
+  }
 
   themesGenerating = false;
   themesProgress = { done: 0, total: 0 };
@@ -1603,9 +1609,12 @@ function renderThemes() {
   el.innerHTML = Object.entries(THEMES).map(([theme, tickers]) => {
     const o = cache[theme];
     const heat = o?.heat || "mixed";
-    const outlook = o?.outlook
-      ? escapeHtml(o.outlook)
-      : (groqOn ? "Generating outlook…" : "Add a Groq key in Settings for AI theme outlooks.");
+    const failed = themesFailed.has(theme);
+    let outlookText;
+    if (o?.outlook)        outlookText = escapeHtml(o.outlook);
+    else if (failed)       outlookText = "Couldn't generate (rate-limited?). Tap ↻ to retry.";
+    else if (groqOn)       outlookText = "Generating outlook…";
+    else                   outlookText = "Add a Groq key in Settings for AI theme outlooks.";
     const outlookCls = o?.outlook ? "" : "placeholder";
 
     const pills = tickers.map((sym) => {
