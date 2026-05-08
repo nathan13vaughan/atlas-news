@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-08T07:02:40+00:00",
+  "generated_at": "2026-05-08T12:17:14+00:00",
   "next_event": {
     "title": "BOE Gov Bailey Speaks",
     "kind": "macro",
@@ -13,13 +13,13 @@
   },
   "in_blackout": true,
   "active_blackout": {
-    "title": "ECB President Lagarde Speaks",
+    "title": "BOE Gov Bailey Speaks",
     "kind": "macro",
     "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-05-08T07:00:00+00:00",
-    "blackout_start": "2026-05-08T06:55:00+00:00",
-    "blackout_end": "2026-05-08T07:15:00+00:00",
+    "impact": "high",
+    "scheduled_at": "2026-05-08T12:20:00+00:00",
+    "blackout_start": "2026-05-08T12:15:00+00:00",
+    "blackout_end": "2026-05-08T12:35:00+00:00",
     "forecast": null,
     "previous": null
   },
@@ -89,6 +89,17 @@
       "blackout_end": "2026-05-08T14:15:00+00:00",
       "forecast": null,
       "previous": "4.8%"
+    },
+    {
+      "title": "President Trump Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-08T16:00:00+00:00",
+      "blackout_start": "2026-05-08T15:55:00+00:00",
+      "blackout_end": "2026-05-08T16:15:00+00:00",
+      "forecast": null,
+      "previous": null
     },
     {
       "title": "NVDA Earnings",
