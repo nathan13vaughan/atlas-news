@@ -1511,7 +1511,7 @@ async function groqThemeOutlook(theme, tickers) {
       body: JSON.stringify({
         model: "llama-3.1-8b-instant",
         messages: [{ role: "system", content: sys }, { role: "user", content: user }],
-        max_tokens: 180,
+        max_tokens: 90,                    // outlook is ~25 words; tighter cap = faster response
         temperature: 0.3,
         response_format: { type: "json_object" },
       }),
@@ -1539,19 +1539,21 @@ async function generateThemeOutlooks(force = false) {
 
   const cache = loadThemesCache();
   const today = todayKey();
-  // Run in parallel (Groq free tier handles ~30/min easily — 12 themes is fine).
   const targets = Object.entries(THEMES).filter(([t]) => force || cache[t]?.day !== today);
-  const results = await Promise.allSettled(
-    targets.map(([theme, tickers]) => groqThemeOutlook(theme, tickers))
+
+  // Fire all in parallel BUT render each one the moment it arrives — so the
+  // user sees themes pop in progressively rather than waiting for all 12 to
+  // finish. Groq free tier (30 req/min) easily handles 12 burst calls.
+  const promises = targets.map(([theme, tickers]) =>
+    groqThemeOutlook(theme, tickers).then((outlook) => {
+      if (outlook) {
+        cache[theme] = { ...outlook, day: today };
+        saveThemesCache(cache);
+        renderThemes();
+      }
+    })
   );
-  results.forEach((r, i) => {
-    if (r.status === "fulfilled" && r.value) {
-      const [theme] = targets[i];
-      cache[theme] = { ...r.value, day: today };
-    }
-  });
-  saveThemesCache(cache);
-  renderThemes();
+  await Promise.allSettled(promises);
 
   themesGenerating = false;
   if (btn) btn.classList.remove("loading");

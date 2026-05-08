@@ -1448,13 +1448,15 @@ html, body {
   top: -1px;
 }
 
-/* detail sheet — partial bottom sheet, slides up */
+/* detail sheet — partial bottom sheet, slides up.
+   Z-index needs to be ABOVE detail-view (40) so it stacks correctly when an
+   event chip is tapped inside the detail view. */
 .sheet {
   position: fixed; left: 8px; right: 8px; bottom: max(8px, env(safe-area-inset-bottom));
   background: var(--panel); border: 1px solid var(--line);
   border-radius: 18px 18px 14px 14px;
   padding: 14px 16px 22px;
-  z-index: 30;
+  z-index: 50;
   box-shadow: 0 -20px 40px rgba(0,0,0,0.5);
   transform: translateY(110%);
   transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
@@ -1480,7 +1482,7 @@ html, body {
 .sheet .kv .k { color: var(--muted); }
 
 .dim-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 20;
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 49;
 }
 
 /* offline banner */
