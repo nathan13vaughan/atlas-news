@@ -1296,6 +1296,8 @@ function renderSettings() {
         render();
         // Saving a Finnhub key also unlocks the live-price WebSocket.
         if (id === "finnhub") openFinnhubWs();
+        // Saving a Groq key kicks off theme outlooks immediately.
+        if (id === "groq" && state.articles?.length) generateThemeOutlooks(true);
       } catch (e) {
         msg.textContent = `Failed: ${e.message}. Check the key and try again.`;
         msg.className = "provider-msg err";
@@ -1488,9 +1490,10 @@ async function groqThemeOutlook(theme, tickers) {
   if (!key) return null;
 
   // Pull recent headlines for this theme's tickers from what we already have.
+  // Capped tight at 5 headlines — Groq response time scales with prompt size.
   const recent = (state.articles || [])
     .filter((a) => tickers.includes(a.symbol))
-    .slice(0, 12)
+    .slice(0, 5)
     .map((a) => `[${a.symbol}] ${a.headline}`)
     .join("\n");
 
@@ -1531,6 +1534,18 @@ async function groqThemeOutlook(theme, tickers) {
   }
 }
 
+// Live progress counter rendered in the "Themes" header while AI calls are in flight.
+let themesProgress = { done: 0, total: 0 };
+function updateThemesHeader() {
+  const h = document.querySelector("#themesH > span");
+  if (!h) return;
+  if (themesProgress.total && themesProgress.done < themesProgress.total) {
+    h.textContent = `Themes  ·  ${themesProgress.done} / ${themesProgress.total}`;
+  } else {
+    h.textContent = "Themes";
+  }
+}
+
 async function generateThemeOutlooks(force = false) {
   if (themesGenerating) return;
   themesGenerating = true;
@@ -1541,21 +1556,33 @@ async function generateThemeOutlooks(force = false) {
   const today = todayKey();
   const targets = Object.entries(THEMES).filter(([t]) => force || cache[t]?.day !== today);
 
-  // Fire all in parallel BUT render each one the moment it arrives — so the
-  // user sees themes pop in progressively rather than waiting for all 12 to
-  // finish. Groq free tier (30 req/min) easily handles 12 burst calls.
+  // Sort: themes containing the user's watched tickers first → user sees their
+  // most-relevant outlooks appear first.
+  targets.sort(([, a], [, b]) => {
+    const score = (xs) => xs.filter((s) => state.favs.has(s)).length;
+    return score(b) - score(a);
+  });
+
+  themesProgress = { done: 0, total: targets.length };
+  updateThemesHeader();
+
+  // Fire all in parallel BUT render each as it arrives so progress is visible.
   const promises = targets.map(([theme, tickers]) =>
     groqThemeOutlook(theme, tickers).then((outlook) => {
       if (outlook) {
         cache[theme] = { ...outlook, day: today };
         saveThemesCache(cache);
-        renderThemes();
       }
+      themesProgress.done++;
+      renderThemes();
+      updateThemesHeader();
     })
   );
   await Promise.allSettled(promises);
 
   themesGenerating = false;
+  themesProgress = { done: 0, total: 0 };
+  updateThemesHeader();
   if (btn) btn.classList.remove("loading");
 }
 
