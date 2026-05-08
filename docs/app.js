@@ -92,7 +92,8 @@ const CRON_TICKERS = new Set([
 const FILTER_KEY = "atlas-news.filter";
 const IMPACT_KEY = "atlas-news.impact";
 const KEYS_KEY   = "atlas-news.api-keys";
-const FAVS_KEY   = "atlas-news.favs";
+const FAVS_KEY    = "atlas-news.favs";
+const COLLAPSE_KEY = "atlas-news.collapsed";
 
 // Symbols that have actual earnings (used by Finnhub /calendar/earnings).
 // Anything not an index/ETF/futures/crypto.
@@ -153,7 +154,29 @@ let state = {
   favs: loadFavs(),         // Set<string> — user's active watchlist
   detailSym: null,           // currently-open detail-view ticker, or null
   dynamicPrices: {},         // {symbol: tickerData} for non-cron tickers (lazy Finnhub /quote fetch)
+  collapsed: loadCollapsed(),// {themes: bool, articles: bool} — section collapse state
 };
+
+function loadCollapsed() {
+  try {
+    const v = JSON.parse(localStorage.getItem(COLLAPSE_KEY) || "{}");
+    return (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
+  } catch { return {}; }
+}
+function saveCollapsed(map) { localStorage.setItem(COLLAPSE_KEY, JSON.stringify(map)); }
+function applyCollapsed() {
+  for (const id of ["themesH", "articlesH"]) {
+    const header = document.getElementById(id);
+    if (!header) continue;
+    const sect = header.dataset.section;       // "themes" or "articles"
+    header.classList.toggle("collapsed", !!state.collapsed[sect]);
+  }
+}
+function toggleSection(name) {
+  state.collapsed[name] = !state.collapsed[name];
+  saveCollapsed(state.collapsed);
+  applyCollapsed();
+}
 
 // Look up a ticker — first check the cron data, then any lazy-fetched quotes.
 function getTickerData(symbol) {
@@ -1066,6 +1089,7 @@ function render() {
   tryRender("themes",       renderThemes);
   tryRender("articles",     renderArticles);
   tryRender("updatedLabel", renderUpdatedLabel);
+  tryRender("collapsed",    applyCollapsed);
   if (state.detailSym) tryRender("detail", () => renderDetail(state.detailSym));
 }
 
@@ -2025,8 +2049,16 @@ document.getElementById("articleClose").addEventListener("click", closeArticleVi
 // "+" in the large nav opens the Manage Tickers sheet
 document.getElementById("manageBtn").addEventListener("click", openManageSheet);
 document.getElementById("manageClose").addEventListener("click", closeManageSheet);
-// Themes refresh button — force-regenerate all theme outlooks
-document.getElementById("themesRefresh").addEventListener("click", () => generateThemeOutlooks(true));
+// Themes refresh button — force-regenerate all theme outlooks.
+// stopPropagation so the click doesn't bubble to the collapsible header below.
+document.getElementById("themesRefresh").addEventListener("click", (e) => {
+  e.stopPropagation();
+  generateThemeOutlooks(true);
+});
+// Collapse-toggle on the section headers
+document.querySelectorAll(".collapsible").forEach((h) =>
+  h.addEventListener("click", () => toggleSection(h.dataset.section))
+);
 // "Set up" button on the missing-keys banner
 document.getElementById("setupBtn").addEventListener("click", openSettings);
 // detail view back + fav buttons

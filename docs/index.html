@@ -55,14 +55,16 @@
 <div class="events-ribbon" id="eventsRibbon" hidden></div>
 
 <!-- Themes — multi-tag groupings with AI heat + outlook -->
-<div class="themes-section-h" id="themesH">
-  <span>Themes</span>
+<div class="themes-section-h collapsible" id="themesH" data-section="themes">
+  <span class="section-title"><span class="chevron">▾</span><span>Themes</span></span>
   <button class="themes-refresh" id="themesRefresh" type="button" aria-label="Refresh themes">↻</button>
 </div>
 <div class="themes" id="themes"></div>
 
 <!-- News section (compact cards with thumbnails) -->
-<div class="news-section-h" id="articlesH" hidden>Top stories</div>
+<div class="news-section-h collapsible" id="articlesH" data-section="articles" hidden>
+  <span class="section-title"><span class="chevron">▾</span><span>Top stories</span></span>
+</div>
 <div class="articles" id="articles"></div>
 
 <div class="updated-bottom" id="updated">loading…</div>
