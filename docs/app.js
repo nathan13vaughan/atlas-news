@@ -98,6 +98,15 @@ const FAVS_KEY   = "atlas-news.favs";
 // Anything not an index/ETF/futures/crypto.
 const NON_EQUITY = new Set(["SPY", "QQQ", "IWM", "XAUUSD", "BTC"]);
 const EQUITY_SYMBOLS = TICKERS.filter((s) => !NON_EQUITY.has(s));
+// Symbols Finnhub's free WebSocket tier covers (US-listed equities + ETFs).
+// Excludes futures (XAU) and crypto (BTC) which need a paid plan.
+const LIVE_SYMBOLS = TICKERS.filter((s) => !["XAUUSD", "BTC"].includes(s));
+// state.favs IS the user's watchlist. Existing data preserved; new users get
+// the original 14-ticker default so the app has something to show on first run.
+const DEFAULT_WATCHLIST_FAVS = [
+  "NVDA","TSLA","AAPL","MSFT","AMZN","META","GOOGL","AMD","NFLX",
+  "SPY","QQQ","IWM","XAUUSD","BTC",
+];
 
 // --- provider catalog ---
 // Each entry knows how to fetch from a public API and map results into the
@@ -192,12 +201,6 @@ async function ensureWatchlistData() {
   }
 }
 
-// state.favs IS the user's watchlist. Existing data preserved; new users get
-// the original 14-ticker default so the app has something to show on first run.
-const DEFAULT_WATCHLIST_FAVS = [
-  "NVDA","TSLA","AAPL","MSFT","AMZN","META","GOOGL","AMD","NFLX",
-  "SPY","QQQ","IWM","XAUUSD","BTC",
-];
 function loadFavs() {
   try {
     const v = JSON.parse(localStorage.getItem(FAVS_KEY) || "null");
@@ -2079,9 +2082,7 @@ document.getElementById("clearKeys").addEventListener("click", async () => {
 // ETFs (NVDA, TSLA, AAPL, MSFT, AMZN, META, GOOGL, AMD, NFLX, SPY, QQQ, IWM).
 // Gold (GC=F → XAUUSD) and Bitcoin (BTC-USD → BTC) require Finnhub's paid
 // tier so they keep their 15-min cron values.
-// Symbols Finnhub's free WebSocket tier covers (US-listed equities + ETFs).
-// Excludes futures (XAU) and crypto (BTC) which need a paid plan.
-const LIVE_SYMBOLS = TICKERS.filter((s) => !["XAUUSD", "BTC"].includes(s));
+// (LIVE_SYMBOLS is declared earlier near TICKERS so other module-init code can use it.)
 let finnhubWs = null;
 let finnhubReconnectTimer = null;
 const liveRowMark = new Set();          // symbols that have received at least one tick
