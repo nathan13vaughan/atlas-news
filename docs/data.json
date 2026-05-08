@@ -1,6 +1,18 @@
 {
-  "generated_at": "2026-05-08T00:07:31+00:00",
+  "generated_at": "2026-05-08T07:02:40+00:00",
   "next_event": {
+    "title": "BOE Gov Bailey Speaks",
+    "kind": "macro",
+    "symbol": "XAUUSD",
+    "impact": "high",
+    "scheduled_at": "2026-05-08T12:20:00+00:00",
+    "blackout_start": "2026-05-08T12:15:00+00:00",
+    "blackout_end": "2026-05-08T12:35:00+00:00",
+    "forecast": null,
+    "previous": null
+  },
+  "in_blackout": true,
+  "active_blackout": {
     "title": "ECB President Lagarde Speaks",
     "kind": "macro",
     "symbol": "XAUUSD",
@@ -11,20 +23,7 @@
     "forecast": null,
     "previous": null
   },
-  "in_blackout": false,
-  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-08T07:00:00+00:00",
-      "blackout_start": "2026-05-08T06:55:00+00:00",
-      "blackout_end": "2026-05-08T07:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "BOE Gov Bailey Speaks",
       "kind": "macro",
