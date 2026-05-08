@@ -437,8 +437,9 @@ async function maybeSummarizeArticles() {
   if (!cfg?.enabled || !cfg?.key) return;
 
   // Cap how many we summarise per refresh — Groq free tier is 30/min and we
-  // don't want to burn budget on stuff that may already be off-screen.
-  const todo = state.articles.filter((a) => !a.aiSummary).slice(0, 12);
+  // need rate-limit headroom for theme outlooks (12 more calls). Limiting
+  // article summaries to the 5 newest leaves plenty of budget.
+  const todo = state.articles.filter((a) => !a.aiSummary).slice(0, 5);
   if (!todo.length) return;
 
   const results = await Promise.allSettled(todo.map((a) => groqSummarize(a, cfg.key)));
@@ -1573,22 +1574,29 @@ async function generateThemeOutlooks(force = false) {
   updateThemesHeader();
   renderThemes();   // clear stale "failed" badges
 
-  // Sequential — one Groq call at a time. Burst-parallel runs into Groq's
-  // 30 requests/minute free-tier cap (most calls 429 and return null), which
-  // is what caused all themes except one to stay unfilled. Going one-by-one
-  // is naturally throttled by the call's own latency (~500-1500ms each).
-  for (const [theme, tickers] of targets) {
-    const outlook = await groqThemeOutlook(theme, tickers);
-    if (outlook) {
-      cache[theme] = { ...outlook, day: today };
-      saveThemesCache(cache);
-    } else {
-      themesFailed.add(theme);
+  // Worker-queue concurrency: 3 calls in flight at a time. Fast enough to
+  // feel snappy (~4s total vs 12s sequential) but never bursts past Groq's
+  // free-tier rate limit (30 RPM = peak ~3 simultaneous is safe).
+  const queue = [...targets];
+  const CONCURRENCY = 3;
+  async function worker() {
+    while (queue.length) {
+      const item = queue.shift();
+      if (!item) return;
+      const [theme, tickers] = item;
+      const outlook = await groqThemeOutlook(theme, tickers);
+      if (outlook) {
+        cache[theme] = { ...outlook, day: today };
+        saveThemesCache(cache);
+      } else {
+        themesFailed.add(theme);
+      }
+      themesProgress.done++;
+      renderThemes();
+      updateThemesHeader();
     }
-    themesProgress.done++;
-    renderThemes();
-    updateThemesHeader();
   }
+  await Promise.all(Array.from({ length: CONCURRENCY }, worker));
 
   themesGenerating = false;
   themesProgress = { done: 0, total: 0 };
