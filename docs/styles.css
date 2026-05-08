@@ -751,6 +751,55 @@ html, body {
 .pricecard { cursor: pointer; }
 .pricecard:active { background: var(--panel-2); }
 
+/* manage-tickers sheet — opens from the "+" in the main nav */
+.manage-view {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
+}
+.manage-view.open { transform: translateX(0); }
+.manage-list { padding: 0 16px 24px; }
+.manage-row {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(35, 42, 49, 0.5);
+}
+.manage-row:last-child { border-bottom: none; }
+.manage-row .star {
+  width: 32px; height: 32px;
+  background: rgba(120, 134, 150, 0.10);
+  border: none; border-radius: 50%;
+  color: var(--gold);
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s cubic-bezier(0.32, 0.72, 0, 1), background 0.15s;
+}
+.manage-row .star.off { color: var(--dim); }
+.manage-row .star:active { transform: scale(0.85); background: rgba(120, 134, 150, 0.22); }
+.manage-row .meta-block { overflow: hidden; }
+.manage-row .ticker { font-weight: 700; font-size: 15px; letter-spacing: 0.01em; }
+.manage-row .name {
+  font-size: 11.5px; color: var(--muted);
+  margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.manage-row .px {
+  font-variant-numeric: tabular-nums;
+  font-size: 13px; color: var(--text); font-weight: 500;
+}
+
 /* settings sheet — push-from-right (iOS settings-style navigation) */
 .settings {
   position: fixed;

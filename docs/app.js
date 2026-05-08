@@ -1111,6 +1111,37 @@ function openSettings()    { renderSettings(); showOverlay(document.getElementBy
 function closeSettings()   { hideOverlay(document.getElementById("settings")); }
 function dismissSettings() { dismissOverlay(document.getElementById("settings")); }
 
+// --- Manage Tickers sheet (opened by the "+" in the main nav) ---
+function openManageSheet()    { renderManageList(); showOverlay(document.getElementById("manageView")); }
+function closeManageSheet()   { hideOverlay(document.getElementById("manageView")); }
+function dismissManageSheet() { dismissOverlay(document.getElementById("manageView")); }
+function renderManageList() {
+  const el = document.getElementById("manageList");
+  if (!el) return;
+  el.innerHTML = TICKERS.map((sym) => {
+    const t = state.prices?.tickers?.find((x) => x.symbol === sym);
+    const isFav = state.favs.has(sym);
+    const px = t ? fmtPrice(t.last) : "—";
+    const name = TICKER_NAMES[sym] || sym;
+    return `
+      <div class="manage-row">
+        <button class="star ${isFav ? "" : "off"}" data-fav="${sym}"
+                aria-label="${isFav ? "Unfavourite" : "Favourite"} ${sym}">${isFav ? "★" : "☆"}</button>
+        <div class="meta-block">
+          <div class="ticker">${sym}</div>
+          <div class="name">${escapeHtml(name)}</div>
+        </div>
+        <div class="px">${px}</div>
+      </div>`;
+  }).join("");
+  el.querySelectorAll(".star").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      toggleFav(btn.dataset.fav);   // also re-renders main watchlist
+      renderManageList();           // re-renders manage list to update star
+    })
+  );
+}
+
 // --- in-app article reader ---
 async function openArticleView(article) {
   document.getElementById("avSource").textContent = article.source;
@@ -1555,8 +1586,9 @@ document.getElementById("chartClose").addEventListener("click", closeChart);
 document.getElementById("settingsBtn").addEventListener("click", openSettings);
 document.getElementById("settingsClose").addEventListener("click", closeSettings);
 document.getElementById("articleClose").addEventListener("click", closeArticleView);
-// "+" in the large nav — opens settings for now (will become a manage-tickers sheet)
-document.getElementById("manageBtn").addEventListener("click", openSettings);
+// "+" in the large nav opens the Manage Tickers sheet
+document.getElementById("manageBtn").addEventListener("click", openManageSheet);
+document.getElementById("manageClose").addEventListener("click", closeManageSheet);
 // detail view back + fav buttons
 document.getElementById("detailBack").addEventListener("click", closeDetail);
 document.getElementById("detailFav").addEventListener("click", () => {
@@ -1570,6 +1602,7 @@ document.addEventListener("keydown", (e) => {
   closeChart();
   closeArticleView();
   closeDetail();
+  closeManageSheet();
 });
 
 // --- iOS-style edge-swipe-back ---
@@ -1645,6 +1678,7 @@ setupSwipeBack(document.getElementById("chart"),       dismissChart);
 setupSwipeBack(document.getElementById("articleView"), dismissArticleView);
 setupSwipeBack(document.getElementById("sheet"),       dismissSheet);
 setupSwipeBack(document.getElementById("detailView"),  dismissDetail);
+setupSwipeBack(document.getElementById("manageView"),  dismissManageSheet);
 document.getElementById("settings").addEventListener("click", (e) => {
   // tap directly on the gray bar background (outside any control) → dismiss
   if (e.target.id === "settings") closeSettings();
@@ -1693,6 +1727,7 @@ function openFinnhubWs() {
 
     let dirty = false;
     let detailDirty = false;
+    const nowIso = new Date().toISOString();
     for (const [sym, price] of Object.entries(lastBySym)) {
       const ticker = state.prices?.tickers?.find((t) => t.symbol === sym);
       if (!ticker || typeof price !== "number") continue;
@@ -1701,6 +1736,11 @@ function openFinnhubWs() {
         ticker.change = price - ticker.open;
         ticker.change_pct = (price - ticker.open) / ticker.open;
       }
+      // Extend the sparkline trendline with this live tick — capped at 240
+      // points so the array doesn't grow unbounded on a long session.
+      if (!Array.isArray(ticker.spark)) ticker.spark = [];
+      ticker.spark.push({ t: nowIso, c: price });
+      if (ticker.spark.length > 240) ticker.spark = ticker.spark.slice(-240);
       liveRowMark.add(sym);
       dirty = true;
       if (state.detailSym === sym) detailDirty = true;
