@@ -365,6 +365,118 @@ html, body {
   color: var(--text);
 }
 
+/* ─── Themes section (overlapping multi-tag groupings) ─── */
+.themes-section-h {
+  padding: 18px 18px 6px;
+  color: var(--text);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.themes-refresh {
+  width: 30px; height: 30px;
+  background: rgba(120,134,150,0.14);
+  border: none;
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.18s cubic-bezier(0.32, 0.72, 0, 1), background 0.15s;
+}
+.themes-refresh:active { transform: scale(0.85); background: rgba(120,134,150,0.28); }
+.themes-refresh.loading {
+  animation: themespin 1.2s linear infinite;
+  pointer-events: none;
+}
+@keyframes themespin { to { transform: rotate(360deg); } }
+.themes { padding: 4px 16px 0; }
+.theme-card {
+  background: var(--panel);
+  border: 1px solid rgba(35,42,49,0.6);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 8px 0;
+}
+.theme-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.theme-name {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.theme-heat {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.theme-heat.hot     { background: rgba(255,85,102,0.18); color: var(--bad); }
+.theme-heat.strong  { background: rgba(61,220,151,0.18); color: var(--good); }
+.theme-heat.mixed   { background: rgba(255,180,84,0.18); color: var(--warn); }
+.theme-heat.weak    { background: rgba(78,161,255,0.16); color: var(--accent); }
+.theme-heat.cold    { background: rgba(120,134,150,0.16); color: var(--muted); }
+.theme-outlook {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 4px 0 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.theme-outlook.placeholder {
+  color: var(--dim);
+  font-style: italic;
+  font-size: 11.5px;
+}
+.theme-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.theme-pill {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(78,161,255,0.12);
+  transition: transform 0.15s cubic-bezier(0.32, 0.72, 0, 1), background 0.15s;
+  white-space: nowrap;
+}
+.theme-pill:active { transform: scale(0.92); }
+.theme-pill.in-watchlist {
+  background: rgba(78,161,255,0.18);
+  border-color: rgba(78,161,255,0.4);
+  color: var(--text);
+}
+.theme-pill .dot {
+  display: inline-block;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 4px;
+  vertical-align: 2px;
+}
+
 /* ─── News section title (replaces "section-h" for the news section) ─── */
 .news-section-h {
   padding: 18px 18px 6px;

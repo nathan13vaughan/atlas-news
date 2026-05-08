@@ -265,6 +265,10 @@ async function refresh() {
   render();
   // Lazy-fetch quotes for any watchlist tickers not in the cron data
   ensureWatchlistData();
+  // Generate AI theme outlooks if we have articles to analyse and a Groq key
+  if (state.articles?.length && state.keys.groq?.key) {
+    generateThemeOutlooks();
+  }
 }
 
 // --- client-side providers ---
@@ -1050,6 +1054,7 @@ function render() {
   renderBlackout();
   renderWatchlist();
   renderEventsRibbon();
+  renderThemes();
   renderArticles();
   renderUpdatedLabel();
   if (state.detailSym) renderDetail(state.detailSym);
@@ -1426,6 +1431,157 @@ function renderAnalysis(a, symbol) {
 function closeArticleView()   { hideOverlay(document.getElementById("articleView")); }
 function dismissArticleView() { dismissOverlay(document.getElementById("articleView")); }
 
+// --- Themes (overlapping multi-tag groupings) ---
+// A ticker can appear in multiple themes — that's the whole point. NVDA shows
+// in both AI and Semiconductors; AMZN in AI, Big Tech, and Cloud; etc.
+const THEMES = {
+  "AI":               ["NVDA","MSFT","GOOGL","META","AMZN","AAPL","PLTR","CRWD","AMD","AVGO","MRVL","SMCI","ARM","TSLA"],
+  "Semiconductors":   ["NVDA","AMD","AVGO","MU","AMAT","KLAC","LRCX","ASML","ADI","MRVL","ARM","SMCI","TXN","INTC","QCOM","NXPI"],
+  "Big Tech":         ["AAPL","MSFT","GOOGL","AMZN","META"],
+  "Cloud / SaaS":     ["MSFT","AMZN","GOOGL","ADBE","INTU","WDAY","DDOG","CRWD","PANW","FTNT","ADP"],
+  "Cybersecurity":    ["PANW","CRWD","FTNT"],
+  "Streaming / Media":["NFLX","CMCSA","EA"],
+  "Healthcare / Bio": ["AMGN","GILD","VRTX","REGN","ISRG"],
+  "Consumer":         ["COST","SBUX","MDLZ","MNST","ORLY","BKNG","ABNB","MAR","MELI","PEP","TMUS"],
+  "Auto / EV":        ["TSLA"],
+  "Crypto":           ["BTC","COIN","MSTR"],
+  "Indices":          ["SPY","QQQ","IWM"],
+  "Commodities":      ["XAUUSD"],
+};
+const THEMES_KEY = "atlas-news.themes-cache";
+let themesGenerating = false;
+
+function loadThemesCache() {
+  try {
+    const v = JSON.parse(localStorage.getItem(THEMES_KEY) || "{}");
+    return (v && typeof v === "object" && !Array.isArray(v)) ? v : {};
+  } catch { return {}; }
+}
+function saveThemesCache(map) { localStorage.setItem(THEMES_KEY, JSON.stringify(map)); }
+function todayKey() {
+  const d = new Date();
+  return `${d.getUTCFullYear()}-${d.getUTCMonth()+1}-${d.getUTCDate()}`;
+}
+
+async function groqThemeOutlook(theme, tickers) {
+  const key = state.keys.groq?.key;
+  if (!key) return null;
+
+  // Pull recent headlines for this theme's tickers from what we already have.
+  const recent = (state.articles || [])
+    .filter((a) => tickers.includes(a.symbol))
+    .slice(0, 12)
+    .map((a) => `[${a.symbol}] ${a.headline}`)
+    .join("\n");
+
+  if (!recent) return { heat: "weak", outlook: "Limited recent news flow for this theme." };
+
+  const sys  = "You are a financial-markets analyst. Reply with ONLY valid JSON, no prose, no markdown.";
+  const user =
+    `Theme: ${theme}\n` +
+    `Related tickers: ${tickers.join(", ")}\n\n` +
+    `Recent news headlines:\n${recent}\n\n` +
+    `Reply as: {"heat": "hot"|"strong"|"mixed"|"weak"|"cold", "outlook": "one sentence ≤25 words on the current sentiment"}\n` +
+    `Use "hot" only for strongly bullish AND high news flow; "cold" if there's barely anything happening.`;
+
+  try {
+    const resp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        messages: [{ role: "system", content: sys }, { role: "user", content: user }],
+        max_tokens: 180,
+        temperature: 0.3,
+        response_format: { type: "json_object" },
+      }),
+    });
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    const text = data.choices?.[0]?.message?.content?.trim() || "{}";
+    const p = JSON.parse(text);
+    const validHeat = ["hot","strong","mixed","weak","cold"];
+    return {
+      heat: validHeat.includes(p.heat) ? p.heat : "mixed",
+      outlook: (p.outlook || "").trim(),
+    };
+  } catch (e) {
+    console.warn(`Theme outlook (${theme}) failed:`, e);
+    return null;
+  }
+}
+
+async function generateThemeOutlooks(force = false) {
+  if (themesGenerating) return;
+  themesGenerating = true;
+  const btn = document.getElementById("themesRefresh");
+  if (btn) btn.classList.add("loading");
+
+  const cache = loadThemesCache();
+  const today = todayKey();
+  // Run in parallel (Groq free tier handles ~30/min easily — 12 themes is fine).
+  const targets = Object.entries(THEMES).filter(([t]) => force || cache[t]?.day !== today);
+  const results = await Promise.allSettled(
+    targets.map(([theme, tickers]) => groqThemeOutlook(theme, tickers))
+  );
+  results.forEach((r, i) => {
+    if (r.status === "fulfilled" && r.value) {
+      const [theme] = targets[i];
+      cache[theme] = { ...r.value, day: today };
+    }
+  });
+  saveThemesCache(cache);
+  renderThemes();
+
+  themesGenerating = false;
+  if (btn) btn.classList.remove("loading");
+}
+
+function renderThemes() {
+  const el = document.getElementById("themes");
+  if (!el) return;
+  const cache = loadThemesCache();
+  const groqOn = state.keys.groq?.enabled && state.keys.groq?.key;
+
+  const heatLabel = {
+    hot:    "🔥 HOT",
+    strong: "STRONG",
+    mixed:  "MIXED",
+    weak:   "WEAK",
+    cold:   "COLD",
+  };
+
+  el.innerHTML = Object.entries(THEMES).map(([theme, tickers]) => {
+    const o = cache[theme];
+    const heat = o?.heat || "mixed";
+    const outlook = o?.outlook
+      ? escapeHtml(o.outlook)
+      : (groqOn ? "Generating outlook…" : "Add a Groq key in Settings for AI theme outlooks.");
+    const outlookCls = o?.outlook ? "" : "placeholder";
+
+    const pills = tickers.map((sym) => {
+      const isWatched = state.favs.has(sym);
+      const cls = `theme-pill ${isWatched ? "in-watchlist" : ""}`;
+      const dot = isWatched ? `<span class="dot"></span>` : "";
+      return `<span class="${cls}" data-sym="${sym}">${dot}${sym}</span>`;
+    }).join("");
+
+    return `
+      <div class="theme-card" data-theme="${escapeHtml(theme)}">
+        <div class="theme-head">
+          <div class="theme-name">${escapeHtml(theme)}</div>
+          <span class="theme-heat ${heat}">${heatLabel[heat] || heat}</span>
+        </div>
+        <div class="theme-outlook ${outlookCls}">${outlook}</div>
+        <div class="theme-pills">${pills}</div>
+      </div>`;
+  }).join("");
+
+  el.querySelectorAll(".theme-pill").forEach((pill) =>
+    pill.addEventListener("click", () => openDetail(pill.dataset.sym))
+  );
+}
+
 // --- Detail view (Apple-Stocks-style drill-down per ticker) ---
 let detailChart = null;        // Lightweight Charts instance
 let detailSeries = null;       // Area series
@@ -1794,6 +1950,8 @@ document.getElementById("articleClose").addEventListener("click", closeArticleVi
 // "+" in the large nav opens the Manage Tickers sheet
 document.getElementById("manageBtn").addEventListener("click", openManageSheet);
 document.getElementById("manageClose").addEventListener("click", closeManageSheet);
+// Themes refresh button — force-regenerate all theme outlooks
+document.getElementById("themesRefresh").addEventListener("click", () => generateThemeOutlooks(true));
 // detail view back + fav buttons
 document.getElementById("detailBack").addEventListener("click", closeDetail);
 document.getElementById("detailFav").addEventListener("click", () => {
