@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-11T18:03:50+00:00",
+  "generated_at": "2026-05-11T22:38:20+00:00",
   "next_event": {
     "title": "Core CPI m/m",
     "kind": "macro",
@@ -88,7 +88,7 @@
       "scheduled_at": "2026-05-14T06:00:00+00:00",
       "blackout_start": "2026-05-14T05:55:00+00:00",
       "blackout_end": "2026-05-14T06:15:00+00:00",
-      "forecast": "-0.2%",
+      "forecast": "-0.1%",
       "previous": "0.5%"
     },
     {
@@ -110,7 +110,7 @@
       "scheduled_at": "2026-05-14T12:30:00+00:00",
       "blackout_start": "2026-05-14T12:25:00+00:00",
       "blackout_end": "2026-05-14T12:45:00+00:00",
-      "forecast": "0.6%",
+      "forecast": "0.7%",
       "previous": "1.9%"
     },
     {
@@ -121,7 +121,7 @@
       "scheduled_at": "2026-05-14T12:30:00+00:00",
       "blackout_start": "2026-05-14T12:25:00+00:00",
       "blackout_end": "2026-05-14T12:45:00+00:00",
-      "forecast": "0.6%",
+      "forecast": "0.5%",
       "previous": "1.7%"
     },
     {
@@ -132,7 +132,7 @@
       "scheduled_at": "2026-05-14T12:30:00+00:00",
       "blackout_start": "2026-05-14T12:25:00+00:00",
       "blackout_end": "2026-05-14T12:45:00+00:00",
-      "forecast": "206K",
+      "forecast": "205K",
       "previous": "200K"
     },
     {
