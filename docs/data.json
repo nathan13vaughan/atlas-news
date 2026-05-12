@@ -1,63 +1,19 @@
 {
-  "generated_at": "2026-05-12T08:14:55+00:00",
+  "generated_at": "2026-05-12T17:21:03+00:00",
   "next_event": {
-    "title": "Core CPI m/m",
+    "title": "Core PPI m/m",
     "kind": "macro",
     "symbol": "SPY",
     "impact": "high",
-    "scheduled_at": "2026-05-12T12:30:00+00:00",
-    "blackout_start": "2026-05-12T12:25:00+00:00",
-    "blackout_end": "2026-05-12T12:45:00+00:00",
+    "scheduled_at": "2026-05-13T12:30:00+00:00",
+    "blackout_start": "2026-05-13T12:25:00+00:00",
+    "blackout_end": "2026-05-13T12:45:00+00:00",
     "forecast": "0.3%",
-    "previous": "0.2%"
+    "previous": "0.1%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-12T12:30:00+00:00",
-      "blackout_start": "2026-05-12T12:25:00+00:00",
-      "blackout_end": "2026-05-12T12:45:00+00:00",
-      "forecast": "0.3%",
-      "previous": "0.2%"
-    },
-    {
-      "title": "CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-12T12:30:00+00:00",
-      "blackout_start": "2026-05-12T12:25:00+00:00",
-      "blackout_end": "2026-05-12T12:45:00+00:00",
-      "forecast": "0.6%",
-      "previous": "0.9%"
-    },
-    {
-      "title": "CPI y/y",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-12T12:30:00+00:00",
-      "blackout_start": "2026-05-12T12:25:00+00:00",
-      "blackout_end": "2026-05-12T12:45:00+00:00",
-      "forecast": "3.7%",
-      "previous": "3.3%"
-    },
-    {
-      "title": "Fed Chair Nomination Vote",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-12T16:00:00+00:00",
-      "blackout_start": "2026-05-12T15:55:00+00:00",
-      "blackout_end": "2026-05-12T16:15:00+00:00",
-      "forecast": "Pass",
-      "previous": null
-    },
     {
       "title": "Core PPI m/m",
       "kind": "macro",
@@ -79,6 +35,17 @@
       "blackout_end": "2026-05-13T12:45:00+00:00",
       "forecast": "0.5%",
       "previous": "0.5%"
+    },
+    {
+      "title": "Fed Chair Nomination Vote",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-05-13T16:29:00+00:00",
+      "blackout_start": "2026-05-13T16:24:00+00:00",
+      "blackout_end": "2026-05-13T16:44:00+00:00",
+      "forecast": "Pass",
+      "previous": null
     },
     {
       "title": "GDP m/m",
