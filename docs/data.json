@@ -1,52 +1,19 @@
 {
-  "generated_at": "2026-05-14T09:18:16+00:00",
+  "generated_at": "2026-05-14T17:14:42+00:00",
   "next_event": {
-    "title": "Core Retail Sales m/m",
-    "kind": "macro",
-    "symbol": "SPY",
+    "title": "NVDA Earnings",
+    "kind": "earnings",
+    "symbol": "NVDA",
     "impact": "high",
-    "scheduled_at": "2026-05-14T12:30:00+00:00",
-    "blackout_start": "2026-05-14T12:25:00+00:00",
-    "blackout_end": "2026-05-14T12:45:00+00:00",
-    "forecast": "0.7%",
-    "previous": "1.9%"
+    "scheduled_at": "2026-05-20T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-14T12:30:00+00:00",
-      "blackout_start": "2026-05-14T12:25:00+00:00",
-      "blackout_end": "2026-05-14T12:45:00+00:00",
-      "forecast": "0.7%",
-      "previous": "1.9%"
-    },
-    {
-      "title": "Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-14T12:30:00+00:00",
-      "blackout_start": "2026-05-14T12:25:00+00:00",
-      "blackout_end": "2026-05-14T12:45:00+00:00",
-      "forecast": "0.5%",
-      "previous": "1.7%"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-14T12:30:00+00:00",
-      "blackout_start": "2026-05-14T12:25:00+00:00",
-      "blackout_end": "2026-05-14T12:45:00+00:00",
-      "forecast": "205K",
-      "previous": "200K"
-    },
     {
       "title": "NVDA Earnings",
       "kind": "earnings",
