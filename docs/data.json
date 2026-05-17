@@ -1,19 +1,74 @@
 {
-  "generated_at": "2026-05-16T23:37:06+00:00",
+  "generated_at": "2026-05-17T08:34:51+00:00",
   "next_event": {
-    "title": "NVDA Earnings",
-    "kind": "earnings",
-    "symbol": "NVDA",
+    "title": "Claimant Count Change",
+    "kind": "macro",
+    "symbol": "XAUUSD",
     "impact": "high",
-    "scheduled_at": "2026-05-20T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-05-19T06:00:00+00:00",
+    "blackout_start": "2026-05-19T05:55:00+00:00",
+    "blackout_end": "2026-05-19T06:15:00+00:00",
+    "forecast": "25.9K",
+    "previous": "26.8K"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
+    {
+      "title": "Claimant Count Change",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-05-19T06:00:00+00:00",
+      "blackout_start": "2026-05-19T05:55:00+00:00",
+      "blackout_end": "2026-05-19T06:15:00+00:00",
+      "forecast": "25.9K",
+      "previous": "26.8K"
+    },
+    {
+      "title": "Average Earnings Index 3m/y",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-05-19T06:00:00+00:00",
+      "blackout_start": "2026-05-19T05:55:00+00:00",
+      "blackout_end": "2026-05-19T06:15:00+00:00",
+      "forecast": "3.8%",
+      "previous": "3.8%"
+    },
+    {
+      "title": "Pending Home Sales m/m",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-19T14:00:00+00:00",
+      "blackout_start": "2026-05-19T13:55:00+00:00",
+      "blackout_end": "2026-05-19T14:15:00+00:00",
+      "forecast": "1.2%",
+      "previous": "1.5%"
+    },
+    {
+      "title": "CPI y/y",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-05-20T06:00:00+00:00",
+      "blackout_start": "2026-05-20T05:55:00+00:00",
+      "blackout_end": "2026-05-20T06:15:00+00:00",
+      "forecast": "3.0%",
+      "previous": "3.3%"
+    },
+    {
+      "title": "FOMC Meeting Minutes",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-05-20T18:00:00+00:00",
+      "blackout_start": "2026-05-20T17:55:00+00:00",
+      "blackout_end": "2026-05-20T18:15:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
     {
       "title": "NVDA Earnings",
       "kind": "earnings",
@@ -24,6 +79,138 @@
       "blackout_end": null,
       "forecast": null,
       "previous": null
+    },
+    {
+      "title": "French Flash Manufacturing PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-05-21T07:15:00+00:00",
+      "blackout_start": "2026-05-21T07:10:00+00:00",
+      "blackout_end": "2026-05-21T07:30:00+00:00",
+      "forecast": "52.3",
+      "previous": "52.8"
+    },
+    {
+      "title": "French Flash Services PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-05-21T07:15:00+00:00",
+      "blackout_start": "2026-05-21T07:10:00+00:00",
+      "blackout_end": "2026-05-21T07:30:00+00:00",
+      "forecast": "46.6",
+      "previous": "46.5"
+    },
+    {
+      "title": "German Flash Manufacturing PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-05-21T07:30:00+00:00",
+      "blackout_start": "2026-05-21T07:25:00+00:00",
+      "blackout_end": "2026-05-21T07:45:00+00:00",
+      "forecast": "51.0",
+      "previous": "51.2"
+    },
+    {
+      "title": "German Flash Services PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-05-21T07:30:00+00:00",
+      "blackout_start": "2026-05-21T07:25:00+00:00",
+      "blackout_end": "2026-05-21T07:45:00+00:00",
+      "forecast": "47.1",
+      "previous": "46.9"
+    },
+    {
+      "title": "Flash Manufacturing PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-05-21T08:30:00+00:00",
+      "blackout_start": "2026-05-21T08:25:00+00:00",
+      "blackout_end": "2026-05-21T08:45:00+00:00",
+      "forecast": "53.0",
+      "previous": "53.6"
+    },
+    {
+      "title": "Flash Services PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-05-21T08:30:00+00:00",
+      "blackout_start": "2026-05-21T08:25:00+00:00",
+      "blackout_end": "2026-05-21T08:45:00+00:00",
+      "forecast": "51.7",
+      "previous": "52.0"
+    },
+    {
+      "title": "Philly Fed Manufacturing Index",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-21T12:30:00+00:00",
+      "blackout_start": "2026-05-21T12:25:00+00:00",
+      "blackout_end": "2026-05-21T12:45:00+00:00",
+      "forecast": "17.9",
+      "previous": "26.7"
+    },
+    {
+      "title": "Unemployment Claims",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-21T12:30:00+00:00",
+      "blackout_start": "2026-05-21T12:25:00+00:00",
+      "blackout_end": "2026-05-21T12:45:00+00:00",
+      "forecast": "210K",
+      "previous": "211K"
+    },
+    {
+      "title": "Flash Manufacturing PMI",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-21T13:45:00+00:00",
+      "blackout_start": "2026-05-21T13:40:00+00:00",
+      "blackout_end": "2026-05-21T14:00:00+00:00",
+      "forecast": "53.6",
+      "previous": "54.0"
+    },
+    {
+      "title": "Flash Services PMI",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-21T13:45:00+00:00",
+      "blackout_start": "2026-05-21T13:40:00+00:00",
+      "blackout_end": "2026-05-21T14:00:00+00:00",
+      "forecast": "51.1",
+      "previous": "51.3"
+    },
+    {
+      "title": "Retail Sales m/m",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-05-22T06:00:00+00:00",
+      "blackout_start": "2026-05-22T05:55:00+00:00",
+      "blackout_end": "2026-05-22T06:15:00+00:00",
+      "forecast": "-0.6%",
+      "previous": "0.7%"
+    },
+    {
+      "title": "Revised UoM Consumer Sentiment",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-05-22T14:00:00+00:00",
+      "blackout_start": "2026-05-22T13:55:00+00:00",
+      "blackout_end": "2026-05-22T14:15:00+00:00",
+      "forecast": "48.2",
+      "previous": "48.2"
     },
     {
       "title": "NFLX Earnings",
