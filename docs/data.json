@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-18T12:57:23+00:00",
+  "generated_at": "2026-05-18T19:14:19+00:00",
   "next_event": {
     "title": "Claimant Count Change",
     "kind": "macro",
@@ -57,6 +57,17 @@
       "blackout_end": "2026-05-20T06:15:00+00:00",
       "forecast": "3.0%",
       "previous": "3.3%"
+    },
+    {
+      "title": "Monetary Policy Report Hearings",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-05-20T13:15:00+00:00",
+      "blackout_start": "2026-05-20T13:10:00+00:00",
+      "blackout_end": "2026-05-20T13:30:00+00:00",
+      "forecast": null,
+      "previous": null
     },
     {
       "title": "FOMC Meeting Minutes",
@@ -189,6 +200,17 @@
       "blackout_end": "2026-05-21T14:00:00+00:00",
       "forecast": "51.1",
       "previous": "51.3"
+    },
+    {
+      "title": "BOE Gov Bailey Speaks",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-05-21T15:00:00+00:00",
+      "blackout_start": "2026-05-21T14:55:00+00:00",
+      "blackout_end": "2026-05-21T15:15:00+00:00",
+      "forecast": null,
+      "previous": null
     },
     {
       "title": "Retail Sales m/m",
