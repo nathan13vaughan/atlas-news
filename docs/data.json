@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-05-19T11:43:00+00:00",
+  "generated_at": "2026-05-19T18:27:25+00:00",
   "next_event": {
-    "title": "Pending Home Sales m/m",
+    "title": "CPI y/y",
     "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-05-19T14:00:00+00:00",
-    "blackout_start": "2026-05-19T13:55:00+00:00",
-    "blackout_end": "2026-05-19T14:15:00+00:00",
-    "forecast": "1.0%",
-    "previous": "1.5%"
+    "symbol": "XAUUSD",
+    "impact": "high",
+    "scheduled_at": "2026-05-20T06:00:00+00:00",
+    "blackout_start": "2026-05-20T05:55:00+00:00",
+    "blackout_end": "2026-05-20T06:15:00+00:00",
+    "forecast": "3.0%",
+    "previous": "3.3%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Pending Home Sales m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-19T14:00:00+00:00",
-      "blackout_start": "2026-05-19T13:55:00+00:00",
-      "blackout_end": "2026-05-19T14:15:00+00:00",
-      "forecast": "1.0%",
-      "previous": "1.5%"
-    },
     {
       "title": "CPI y/y",
       "kind": "macro",
