@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-05-18T23:45:21+00:00",
+  "generated_at": "2026-05-19T11:43:00+00:00",
   "next_event": {
-    "title": "Claimant Count Change",
+    "title": "Pending Home Sales m/m",
     "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-05-19T06:00:00+00:00",
-    "blackout_start": "2026-05-19T05:55:00+00:00",
-    "blackout_end": "2026-05-19T06:15:00+00:00",
-    "forecast": "23.1K",
-    "previous": "26.8K"
+    "symbol": "SPY",
+    "impact": "medium",
+    "scheduled_at": "2026-05-19T14:00:00+00:00",
+    "blackout_start": "2026-05-19T13:55:00+00:00",
+    "blackout_end": "2026-05-19T14:15:00+00:00",
+    "forecast": "1.0%",
+    "previous": "1.5%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Claimant Count Change",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-05-19T06:00:00+00:00",
-      "blackout_start": "2026-05-19T05:55:00+00:00",
-      "blackout_end": "2026-05-19T06:15:00+00:00",
-      "forecast": "23.1K",
-      "previous": "26.8K"
-    },
-    {
-      "title": "Average Earnings Index 3m/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-19T06:00:00+00:00",
-      "blackout_start": "2026-05-19T05:55:00+00:00",
-      "blackout_end": "2026-05-19T06:15:00+00:00",
-      "forecast": "3.8%",
-      "previous": "3.8%"
-    },
     {
       "title": "Pending Home Sales m/m",
       "kind": "macro",
