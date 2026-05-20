@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-05-20T10:36:03+00:00",
+  "generated_at": "2026-05-20T19:35:01+00:00",
   "next_event": {
-    "title": "Monetary Policy Report Hearings",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-05-20T13:15:00+00:00",
-    "blackout_start": "2026-05-20T13:10:00+00:00",
-    "blackout_end": "2026-05-20T13:30:00+00:00",
+    "title": "NVDA Earnings",
+    "kind": "earnings",
+    "symbol": "NVDA",
+    "impact": "high",
+    "scheduled_at": "2026-05-20T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
     "forecast": null,
     "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Monetary Policy Report Hearings",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-20T13:15:00+00:00",
-      "blackout_start": "2026-05-20T13:10:00+00:00",
-      "blackout_end": "2026-05-20T13:30:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "FOMC Meeting Minutes",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-20T18:00:00+00:00",
-      "blackout_start": "2026-05-20T17:55:00+00:00",
-      "blackout_end": "2026-05-20T18:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "NVDA Earnings",
       "kind": "earnings",
