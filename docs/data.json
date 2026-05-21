@@ -1,140 +1,19 @@
 {
-  "generated_at": "2026-05-20T23:58:16+00:00",
+  "generated_at": "2026-05-21T18:28:48+00:00",
   "next_event": {
-    "title": "French Flash Manufacturing PMI",
+    "title": "Retail Sales m/m",
     "kind": "macro",
     "symbol": "XAUUSD",
     "impact": "medium",
-    "scheduled_at": "2026-05-21T07:15:00+00:00",
-    "blackout_start": "2026-05-21T07:10:00+00:00",
-    "blackout_end": "2026-05-21T07:30:00+00:00",
-    "forecast": "52.1",
-    "previous": "52.8"
+    "scheduled_at": "2026-05-22T06:00:00+00:00",
+    "blackout_start": "2026-05-22T05:55:00+00:00",
+    "blackout_end": "2026-05-22T06:15:00+00:00",
+    "forecast": "-0.6%",
+    "previous": "0.7%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "French Flash Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T07:15:00+00:00",
-      "blackout_start": "2026-05-21T07:10:00+00:00",
-      "blackout_end": "2026-05-21T07:30:00+00:00",
-      "forecast": "52.1",
-      "previous": "52.8"
-    },
-    {
-      "title": "French Flash Services PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T07:15:00+00:00",
-      "blackout_start": "2026-05-21T07:10:00+00:00",
-      "blackout_end": "2026-05-21T07:30:00+00:00",
-      "forecast": "46.6",
-      "previous": "46.5"
-    },
-    {
-      "title": "German Flash Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T07:30:00+00:00",
-      "blackout_start": "2026-05-21T07:25:00+00:00",
-      "blackout_end": "2026-05-21T07:45:00+00:00",
-      "forecast": "51.0",
-      "previous": "51.2"
-    },
-    {
-      "title": "German Flash Services PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T07:30:00+00:00",
-      "blackout_start": "2026-05-21T07:25:00+00:00",
-      "blackout_end": "2026-05-21T07:45:00+00:00",
-      "forecast": "47.1",
-      "previous": "46.9"
-    },
-    {
-      "title": "Flash Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T08:30:00+00:00",
-      "blackout_start": "2026-05-21T08:25:00+00:00",
-      "blackout_end": "2026-05-21T08:45:00+00:00",
-      "forecast": "52.9",
-      "previous": "53.6"
-    },
-    {
-      "title": "Flash Services PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T08:30:00+00:00",
-      "blackout_start": "2026-05-21T08:25:00+00:00",
-      "blackout_end": "2026-05-21T08:45:00+00:00",
-      "forecast": "51.7",
-      "previous": "52.0"
-    },
-    {
-      "title": "Philly Fed Manufacturing Index",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T12:30:00+00:00",
-      "blackout_start": "2026-05-21T12:25:00+00:00",
-      "blackout_end": "2026-05-21T12:45:00+00:00",
-      "forecast": "17.6",
-      "previous": "26.7"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T12:30:00+00:00",
-      "blackout_start": "2026-05-21T12:25:00+00:00",
-      "blackout_end": "2026-05-21T12:45:00+00:00",
-      "forecast": "210K",
-      "previous": "211K"
-    },
-    {
-      "title": "Flash Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T13:45:00+00:00",
-      "blackout_start": "2026-05-21T13:40:00+00:00",
-      "blackout_end": "2026-05-21T14:00:00+00:00",
-      "forecast": "53.8",
-      "previous": "54.0"
-    },
-    {
-      "title": "Flash Services PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-21T13:45:00+00:00",
-      "blackout_start": "2026-05-21T13:40:00+00:00",
-      "blackout_end": "2026-05-21T14:00:00+00:00",
-      "forecast": "51.1",
-      "previous": "51.3"
-    },
-    {
-      "title": "BOE Gov Bailey Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-05-21T15:00:00+00:00",
-      "blackout_start": "2026-05-21T14:55:00+00:00",
-      "blackout_end": "2026-05-21T15:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Retail Sales m/m",
       "kind": "macro",
