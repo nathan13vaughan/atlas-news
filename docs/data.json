@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-05-22T10:34:56+00:00",
+  "generated_at": "2026-05-22T17:28:41+00:00",
   "next_event": {
-    "title": "Revised UoM Consumer Sentiment",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-05-22T14:00:00+00:00",
-    "blackout_start": "2026-05-22T13:55:00+00:00",
-    "blackout_end": "2026-05-22T14:15:00+00:00",
-    "forecast": "48.2",
-    "previous": "48.2"
+    "title": "NFLX Earnings",
+    "kind": "earnings",
+    "symbol": "NFLX",
+    "impact": "high",
+    "scheduled_at": "2026-07-16T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Revised UoM Consumer Sentiment",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-22T14:00:00+00:00",
-      "blackout_start": "2026-05-22T13:55:00+00:00",
-      "blackout_end": "2026-05-22T14:15:00+00:00",
-      "forecast": "48.2",
-      "previous": "48.2"
-    },
     {
       "title": "NFLX Earnings",
       "kind": "earnings",
