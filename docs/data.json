@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-05-21T22:55:23+00:00",
+  "generated_at": "2026-05-22T10:34:56+00:00",
   "next_event": {
-    "title": "Retail Sales m/m",
+    "title": "Revised UoM Consumer Sentiment",
     "kind": "macro",
-    "symbol": "XAUUSD",
+    "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-05-22T06:00:00+00:00",
-    "blackout_start": "2026-05-22T05:55:00+00:00",
-    "blackout_end": "2026-05-22T06:15:00+00:00",
-    "forecast": "-0.6%",
-    "previous": "0.7%"
+    "scheduled_at": "2026-05-22T14:00:00+00:00",
+    "blackout_start": "2026-05-22T13:55:00+00:00",
+    "blackout_end": "2026-05-22T14:15:00+00:00",
+    "forecast": "48.2",
+    "previous": "48.2"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-05-22T06:00:00+00:00",
-      "blackout_start": "2026-05-22T05:55:00+00:00",
-      "blackout_end": "2026-05-22T06:15:00+00:00",
-      "forecast": "-0.6%",
-      "previous": "0.7%"
-    },
     {
       "title": "Revised UoM Consumer Sentiment",
       "kind": "macro",
