@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-05-25T22:38:25+00:00",
+  "generated_at": "2026-05-26T19:34:05+00:00",
   "next_event": {
-    "title": "CB Consumer Confidence",
+    "title": "ECB Financial Stability Review",
     "kind": "macro",
-    "symbol": "SPY",
+    "symbol": "XAUUSD",
     "impact": "medium",
-    "scheduled_at": "2026-05-26T14:00:00+00:00",
-    "blackout_start": "2026-05-26T13:55:00+00:00",
-    "blackout_end": "2026-05-26T14:15:00+00:00",
-    "forecast": "91.9",
-    "previous": "92.8"
+    "scheduled_at": "2026-05-27T08:00:00+00:00",
+    "blackout_start": "2026-05-27T07:55:00+00:00",
+    "blackout_end": "2026-05-27T08:15:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "CB Consumer Confidence",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-26T14:00:00+00:00",
-      "blackout_start": "2026-05-26T13:55:00+00:00",
-      "blackout_end": "2026-05-26T14:15:00+00:00",
-      "forecast": "91.9",
-      "previous": "92.8"
-    },
     {
       "title": "ECB Financial Stability Review",
       "kind": "macro",
