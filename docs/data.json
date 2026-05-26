@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-26T19:34:05+00:00",
+  "generated_at": "2026-05-26T23:49:53+00:00",
   "next_event": {
     "title": "ECB Financial Stability Review",
     "kind": "macro",
@@ -30,9 +30,9 @@
       "kind": "macro",
       "symbol": "XAUUSD",
       "impact": "medium",
-      "scheduled_at": "2026-05-28T07:20:00+00:00",
-      "blackout_start": "2026-05-28T07:15:00+00:00",
-      "blackout_end": "2026-05-28T07:35:00+00:00",
+      "scheduled_at": "2026-05-28T06:10:00+00:00",
+      "blackout_start": "2026-05-28T06:05:00+00:00",
+      "blackout_end": "2026-05-28T06:25:00+00:00",
       "forecast": null,
       "previous": null
     },
