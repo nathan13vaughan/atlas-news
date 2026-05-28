@@ -1,74 +1,19 @@
 {
-  "generated_at": "2026-05-28T11:05:05+00:00",
+  "generated_at": "2026-05-28T19:58:38+00:00",
   "next_event": {
-    "title": "Core PCE Price Index m/m",
+    "title": "German Prelim CPI m/m",
     "kind": "macro",
-    "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-05-28T12:30:00+00:00",
-    "blackout_start": "2026-05-28T12:25:00+00:00",
-    "blackout_end": "2026-05-28T12:45:00+00:00",
-    "forecast": "0.3%",
-    "previous": "0.3%"
+    "symbol": "XAUUSD",
+    "impact": "medium",
+    "scheduled_at": "2026-05-29T06:29:00+00:00",
+    "blackout_start": "2026-05-29T06:24:00+00:00",
+    "blackout_end": "2026-05-29T06:44:00+00:00",
+    "forecast": "0.1%",
+    "previous": "0.6%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core PCE Price Index m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-28T12:30:00+00:00",
-      "blackout_start": "2026-05-28T12:25:00+00:00",
-      "blackout_end": "2026-05-28T12:45:00+00:00",
-      "forecast": "0.3%",
-      "previous": "0.3%"
-    },
-    {
-      "title": "Prelim GDP q/q",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-05-28T12:30:00+00:00",
-      "blackout_start": "2026-05-28T12:25:00+00:00",
-      "blackout_end": "2026-05-28T12:45:00+00:00",
-      "forecast": "2.0%",
-      "previous": "0.7%"
-    },
-    {
-      "title": "Prelim GDP Price Index q/q",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-28T12:30:00+00:00",
-      "blackout_start": "2026-05-28T12:25:00+00:00",
-      "blackout_end": "2026-05-28T12:45:00+00:00",
-      "forecast": "3.6%",
-      "previous": "3.8%"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-28T12:30:00+00:00",
-      "blackout_start": "2026-05-28T12:25:00+00:00",
-      "blackout_end": "2026-05-28T12:45:00+00:00",
-      "forecast": "211K",
-      "previous": "209K"
-    },
-    {
-      "title": "New Home Sales",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-05-28T14:00:00+00:00",
-      "blackout_start": "2026-05-28T13:55:00+00:00",
-      "blackout_end": "2026-05-28T14:15:00+00:00",
-      "forecast": "661K",
-      "previous": "682K"
-    },
     {
       "title": "German Prelim CPI m/m",
       "kind": "macro",
