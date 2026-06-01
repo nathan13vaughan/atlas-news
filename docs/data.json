@@ -1,52 +1,19 @@
 {
-  "generated_at": "2026-05-31T22:37:30+00:00",
+  "generated_at": "2026-06-01T19:24:31+00:00",
   "next_event": {
-    "title": "FOMC Member Powell Speaks",
+    "title": "Core CPI Flash Estimate y/y",
     "kind": "macro",
-    "symbol": "SPY",
+    "symbol": "XAUUSD",
     "impact": "medium",
-    "scheduled_at": "2026-06-01T00:30:00+00:00",
-    "blackout_start": "2026-06-01T00:25:00+00:00",
-    "blackout_end": "2026-06-01T00:45:00+00:00",
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-06-02T09:00:00+00:00",
+    "blackout_start": "2026-06-02T08:55:00+00:00",
+    "blackout_end": "2026-06-02T09:15:00+00:00",
+    "forecast": "2.4%",
+    "previous": "2.2%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "FOMC Member Powell Speaks",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-01T00:30:00+00:00",
-      "blackout_start": "2026-06-01T00:25:00+00:00",
-      "blackout_end": "2026-06-01T00:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "ISM Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-06-01T14:00:00+00:00",
-      "blackout_start": "2026-06-01T13:55:00+00:00",
-      "blackout_end": "2026-06-01T14:15:00+00:00",
-      "forecast": "53.3",
-      "previous": "52.7"
-    },
-    {
-      "title": "ISM Manufacturing Prices",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-01T14:00:00+00:00",
-      "blackout_start": "2026-06-01T13:55:00+00:00",
-      "blackout_end": "2026-06-01T14:15:00+00:00",
-      "forecast": "85.3",
-      "previous": "84.6"
-    },
     {
       "title": "Core CPI Flash Estimate y/y",
       "kind": "macro",
@@ -66,7 +33,7 @@
       "scheduled_at": "2026-06-02T09:00:00+00:00",
       "blackout_start": "2026-06-02T08:55:00+00:00",
       "blackout_end": "2026-06-02T09:15:00+00:00",
-      "forecast": "3.3%",
+      "forecast": "3.2%",
       "previous": "3.0%"
     },
     {
@@ -88,7 +55,7 @@
       "scheduled_at": "2026-06-02T14:00:00+00:00",
       "blackout_start": "2026-06-02T13:55:00+00:00",
       "blackout_end": "2026-06-02T14:15:00+00:00",
-      "forecast": "6.87M",
+      "forecast": "6.86M",
       "previous": "6.87M"
     },
     {
