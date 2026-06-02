@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-06-01T19:24:31+00:00",
+  "generated_at": "2026-06-02T11:52:47+00:00",
   "next_event": {
-    "title": "Core CPI Flash Estimate y/y",
+    "title": "BOE Gov Bailey Speaks",
     "kind": "macro",
     "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-06-02T09:00:00+00:00",
-    "blackout_start": "2026-06-02T08:55:00+00:00",
-    "blackout_end": "2026-06-02T09:15:00+00:00",
-    "forecast": "2.4%",
-    "previous": "2.2%"
+    "impact": "high",
+    "scheduled_at": "2026-06-02T14:00:00+00:00",
+    "blackout_start": "2026-06-02T13:55:00+00:00",
+    "blackout_end": "2026-06-02T14:15:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-06-02T09:00:00+00:00",
-      "blackout_start": "2026-06-02T08:55:00+00:00",
-      "blackout_end": "2026-06-02T09:15:00+00:00",
-      "forecast": "2.4%",
-      "previous": "2.2%"
-    },
-    {
-      "title": "CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-06-02T09:00:00+00:00",
-      "blackout_start": "2026-06-02T08:55:00+00:00",
-      "blackout_end": "2026-06-02T09:15:00+00:00",
-      "forecast": "3.2%",
-      "previous": "3.0%"
-    },
     {
       "title": "BOE Gov Bailey Speaks",
       "kind": "macro",
@@ -55,7 +33,7 @@
       "scheduled_at": "2026-06-02T14:00:00+00:00",
       "blackout_start": "2026-06-02T13:55:00+00:00",
       "blackout_end": "2026-06-02T14:15:00+00:00",
-      "forecast": "6.86M",
+      "forecast": "6.87M",
       "previous": "6.87M"
     },
     {
@@ -77,7 +55,7 @@
       "scheduled_at": "2026-06-03T14:00:00+00:00",
       "blackout_start": "2026-06-03T13:55:00+00:00",
       "blackout_end": "2026-06-03T14:15:00+00:00",
-      "forecast": "53.8",
+      "forecast": "53.7",
       "previous": "53.6"
     },
     {
@@ -110,7 +88,7 @@
       "scheduled_at": "2026-06-04T12:30:00+00:00",
       "blackout_start": "2026-06-04T12:25:00+00:00",
       "blackout_end": "2026-06-04T12:45:00+00:00",
-      "forecast": "211K",
+      "forecast": "214K",
       "previous": "215K"
     },
     {
@@ -143,7 +121,7 @@
       "scheduled_at": "2026-06-05T12:30:00+00:00",
       "blackout_start": "2026-06-05T12:25:00+00:00",
       "blackout_end": "2026-06-05T12:45:00+00:00",
-      "forecast": "95K",
+      "forecast": "85K",
       "previous": "115K"
     },
     {
