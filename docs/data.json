@@ -1,6 +1,18 @@
 {
-  "generated_at": "2026-06-05T09:44:34+00:00",
+  "generated_at": "2026-06-05T12:35:57+00:00",
   "next_event": {
+    "title": "BOE Gov Bailey Speaks",
+    "kind": "macro",
+    "symbol": "XAUUSD",
+    "impact": "medium",
+    "scheduled_at": "2026-06-05T18:00:00+00:00",
+    "blackout_start": "2026-06-05T17:55:00+00:00",
+    "blackout_end": "2026-06-05T18:15:00+00:00",
+    "forecast": null,
+    "previous": null
+  },
+  "in_blackout": true,
+  "active_blackout": {
     "title": "Average Hourly Earnings m/m",
     "kind": "macro",
     "symbol": "SPY",
@@ -11,42 +23,7 @@
     "forecast": "0.3%",
     "previous": "0.2%"
   },
-  "in_blackout": false,
-  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Average Hourly Earnings m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-06-05T12:30:00+00:00",
-      "blackout_start": "2026-06-05T12:25:00+00:00",
-      "blackout_end": "2026-06-05T12:45:00+00:00",
-      "forecast": "0.3%",
-      "previous": "0.2%"
-    },
-    {
-      "title": "Non-Farm Employment Change",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-06-05T12:30:00+00:00",
-      "blackout_start": "2026-06-05T12:25:00+00:00",
-      "blackout_end": "2026-06-05T12:45:00+00:00",
-      "forecast": "85K",
-      "previous": "115K"
-    },
-    {
-      "title": "Unemployment Rate",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-06-05T12:30:00+00:00",
-      "blackout_start": "2026-06-05T12:25:00+00:00",
-      "blackout_end": "2026-06-05T12:45:00+00:00",
-      "forecast": "4.3%",
-      "previous": "4.3%"
-    },
     {
       "title": "BOE Gov Bailey Speaks",
       "kind": "macro",
