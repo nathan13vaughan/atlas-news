@@ -1,85 +1,19 @@
 {
-  "generated_at": "2026-06-11T10:21:09+00:00",
+  "generated_at": "2026-06-11T14:35:22+00:00",
   "next_event": {
-    "title": "Main Refinancing Rate",
+    "title": "GDP m/m",
     "kind": "macro",
     "symbol": "XAUUSD",
     "impact": "high",
-    "scheduled_at": "2026-06-11T12:15:00+00:00",
-    "blackout_start": "2026-06-11T12:10:00+00:00",
-    "blackout_end": "2026-06-11T12:30:00+00:00",
-    "forecast": "2.40%",
-    "previous": "2.15%"
+    "scheduled_at": "2026-06-12T06:00:00+00:00",
+    "blackout_start": "2026-06-12T05:55:00+00:00",
+    "blackout_end": "2026-06-12T06:15:00+00:00",
+    "forecast": "-0.1%",
+    "previous": "0.3%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Main Refinancing Rate",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-06-11T12:15:00+00:00",
-      "blackout_start": "2026-06-11T12:10:00+00:00",
-      "blackout_end": "2026-06-11T12:30:00+00:00",
-      "forecast": "2.40%",
-      "previous": "2.15%"
-    },
-    {
-      "title": "Monetary Policy Statement",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-06-11T12:15:00+00:00",
-      "blackout_start": "2026-06-11T12:10:00+00:00",
-      "blackout_end": "2026-06-11T12:30:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "Core PPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-06-11T12:30:00+00:00",
-      "blackout_start": "2026-06-11T12:25:00+00:00",
-      "blackout_end": "2026-06-11T12:45:00+00:00",
-      "forecast": "0.5%",
-      "previous": "1.0%"
-    },
-    {
-      "title": "PPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-06-11T12:30:00+00:00",
-      "blackout_start": "2026-06-11T12:25:00+00:00",
-      "blackout_end": "2026-06-11T12:45:00+00:00",
-      "forecast": "0.7%",
-      "previous": "1.4%"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-11T12:30:00+00:00",
-      "blackout_start": "2026-06-11T12:25:00+00:00",
-      "blackout_end": "2026-06-11T12:45:00+00:00",
-      "forecast": "220K",
-      "previous": "225K"
-    },
-    {
-      "title": "ECB Press Conference",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-06-11T12:45:00+00:00",
-      "blackout_start": "2026-06-11T12:40:00+00:00",
-      "blackout_end": "2026-06-11T13:00:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "GDP m/m",
       "kind": "macro",
