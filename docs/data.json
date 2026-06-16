@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T09:31:16+00:00",
+  "generated_at": "2026-06-16T15:08:28+00:00",
   "next_event": {
     "title": "CPI y/y",
     "kind": "macro",
@@ -187,7 +187,7 @@
       "scheduled_at": "2026-06-18T12:30:00+00:00",
       "blackout_start": "2026-06-18T12:25:00+00:00",
       "blackout_end": "2026-06-18T12:45:00+00:00",
-      "forecast": "225K",
+      "forecast": "226K",
       "previous": "229K"
     },
     {
