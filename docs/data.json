@@ -1,52 +1,19 @@
 {
-  "generated_at": "2026-06-17T11:46:25+00:00",
+  "generated_at": "2026-06-17T15:25:00+00:00",
   "next_event": {
-    "title": "Core Retail Sales m/m",
+    "title": "Federal Funds Rate",
     "kind": "macro",
     "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-06-17T12:30:00+00:00",
-    "blackout_start": "2026-06-17T12:25:00+00:00",
-    "blackout_end": "2026-06-17T12:45:00+00:00",
-    "forecast": "0.6%",
-    "previous": "0.7%"
+    "impact": "high",
+    "scheduled_at": "2026-06-17T18:00:00+00:00",
+    "blackout_start": "2026-06-17T17:55:00+00:00",
+    "blackout_end": "2026-06-17T18:15:00+00:00",
+    "forecast": "3.75%",
+    "previous": "3.75%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-17T12:30:00+00:00",
-      "blackout_start": "2026-06-17T12:25:00+00:00",
-      "blackout_end": "2026-06-17T12:45:00+00:00",
-      "forecast": "0.6%",
-      "previous": "0.7%"
-    },
-    {
-      "title": "Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-17T12:30:00+00:00",
-      "blackout_start": "2026-06-17T12:25:00+00:00",
-      "blackout_end": "2026-06-17T12:45:00+00:00",
-      "forecast": "0.5%",
-      "previous": "0.5%"
-    },
-    {
-      "title": "President Trump Speaks",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-17T13:30:00+00:00",
-      "blackout_start": "2026-06-17T13:25:00+00:00",
-      "blackout_end": "2026-06-17T13:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Federal Funds Rate",
       "kind": "macro",
