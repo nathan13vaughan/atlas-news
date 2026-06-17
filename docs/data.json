@@ -1,40 +1,19 @@
 {
-  "generated_at": "2026-06-17T18:14:13+00:00",
+  "generated_at": "2026-06-17T21:04:27+00:00",
   "next_event": {
-    "title": "FOMC Press Conference",
+    "title": "Claimant Count Change",
     "kind": "macro",
-    "symbol": "SPY",
+    "symbol": "XAUUSD",
     "impact": "high",
-    "scheduled_at": "2026-06-17T18:30:00+00:00",
-    "blackout_start": "2026-06-17T18:25:00+00:00",
-    "blackout_end": "2026-06-17T18:45:00+00:00",
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-06-18T06:00:00+00:00",
+    "blackout_start": "2026-06-18T05:55:00+00:00",
+    "blackout_end": "2026-06-18T06:15:00+00:00",
+    "forecast": "25.8K",
+    "previous": "26.5K"
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "Federal Funds Rate",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-06-17T18:00:00+00:00",
-    "blackout_start": "2026-06-17T17:55:00+00:00",
-    "blackout_end": "2026-06-17T18:15:00+00:00",
-    "forecast": "3.75%",
-    "previous": "3.75%"
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "FOMC Press Conference",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-06-17T18:30:00+00:00",
-      "blackout_start": "2026-06-17T18:25:00+00:00",
-      "blackout_end": "2026-06-17T18:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Claimant Count Change",
       "kind": "macro",
@@ -140,6 +119,17 @@
       "symbol": "TSLA",
       "impact": "high",
       "scheduled_at": "2026-07-22T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "GOOGL Earnings",
+      "kind": "earnings",
+      "symbol": "GOOGL",
+      "impact": "high",
+      "scheduled_at": "2026-07-23T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
