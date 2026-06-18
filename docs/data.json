@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-06-18T12:24:53+00:00",
+  "generated_at": "2026-06-18T16:29:48+00:00",
   "next_event": {
-    "title": "Philly Fed Manufacturing Index",
+    "title": "Retail Sales m/m",
     "kind": "macro",
-    "symbol": "SPY",
+    "symbol": "XAUUSD",
     "impact": "medium",
-    "scheduled_at": "2026-06-18T12:30:00+00:00",
-    "blackout_start": "2026-06-18T12:25:00+00:00",
-    "blackout_end": "2026-06-18T12:45:00+00:00",
-    "forecast": "9.8",
-    "previous": "-0.4"
+    "scheduled_at": "2026-06-19T06:00:00+00:00",
+    "blackout_start": "2026-06-19T05:55:00+00:00",
+    "blackout_end": "2026-06-19T06:15:00+00:00",
+    "forecast": "0.5%",
+    "previous": "-1.3%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Philly Fed Manufacturing Index",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-18T12:30:00+00:00",
-      "blackout_start": "2026-06-18T12:25:00+00:00",
-      "blackout_end": "2026-06-18T12:45:00+00:00",
-      "forecast": "9.8",
-      "previous": "-0.4"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-18T12:30:00+00:00",
-      "blackout_start": "2026-06-18T12:25:00+00:00",
-      "blackout_end": "2026-06-18T12:45:00+00:00",
-      "forecast": "225K",
-      "previous": "229K"
-    },
     {
       "title": "Retail Sales m/m",
       "kind": "macro",
