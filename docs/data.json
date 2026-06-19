@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-06-19T00:25:28+00:00",
+  "generated_at": "2026-06-19T06:17:21+00:00",
   "next_event": {
-    "title": "Retail Sales m/m",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-06-19T06:00:00+00:00",
-    "blackout_start": "2026-06-19T05:55:00+00:00",
-    "blackout_end": "2026-06-19T06:15:00+00:00",
-    "forecast": "0.5%",
-    "previous": "-1.3%"
+    "title": "NFLX Earnings",
+    "kind": "earnings",
+    "symbol": "NFLX",
+    "impact": "high",
+    "scheduled_at": "2026-07-16T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-06-19T06:00:00+00:00",
-      "blackout_start": "2026-06-19T05:55:00+00:00",
-      "blackout_end": "2026-06-19T06:15:00+00:00",
-      "forecast": "0.5%",
-      "previous": "-1.3%"
-    },
     {
       "title": "NFLX Earnings",
       "kind": "earnings",
