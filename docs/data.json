@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T20:45:55+00:00",
+  "generated_at": "2026-06-22T22:46:28+00:00",
   "next_event": {
     "title": "French Flash Manufacturing PMI",
     "kind": "macro",
@@ -143,8 +143,8 @@
       "scheduled_at": "2026-06-25T12:30:00+00:00",
       "blackout_start": "2026-06-25T12:25:00+00:00",
       "blackout_end": "2026-06-25T12:45:00+00:00",
-      "forecast": "226K",
-      "previous": "229K"
+      "forecast": "225K",
+      "previous": "226K"
     },
     {
       "title": "Revised UoM Consumer Sentiment",
