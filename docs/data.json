@@ -1,40 +1,29 @@
 {
-  "generated_at": "2026-06-23T12:05:54+00:00",
+  "generated_at": "2026-06-23T15:46:34+00:00",
   "next_event": {
-    "title": "Flash Manufacturing PMI",
+    "title": "President Trump Speaks",
     "kind": "macro",
     "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-06-23T13:45:00+00:00",
-    "blackout_start": "2026-06-23T13:40:00+00:00",
-    "blackout_end": "2026-06-23T14:00:00+00:00",
-    "forecast": "54.6",
-    "previous": "55.3"
+    "scheduled_at": "2026-06-23T18:05:00+00:00",
+    "blackout_start": "2026-06-23T18:00:00+00:00",
+    "blackout_end": "2026-06-23T18:20:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
     {
-      "title": "Flash Manufacturing PMI",
+      "title": "President Trump Speaks",
       "kind": "macro",
       "symbol": "SPY",
       "impact": "medium",
-      "scheduled_at": "2026-06-23T13:45:00+00:00",
-      "blackout_start": "2026-06-23T13:40:00+00:00",
-      "blackout_end": "2026-06-23T14:00:00+00:00",
-      "forecast": "54.6",
-      "previous": "55.3"
-    },
-    {
-      "title": "Flash Services PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-23T13:45:00+00:00",
-      "blackout_start": "2026-06-23T13:40:00+00:00",
-      "blackout_end": "2026-06-23T14:00:00+00:00",
-      "forecast": "51.1",
-      "previous": "50.9"
+      "scheduled_at": "2026-06-23T18:05:00+00:00",
+      "blackout_start": "2026-06-23T18:00:00+00:00",
+      "blackout_end": "2026-06-23T18:20:00+00:00",
+      "forecast": null,
+      "previous": null
     },
     {
       "title": "Core PCE Price Index m/m",
