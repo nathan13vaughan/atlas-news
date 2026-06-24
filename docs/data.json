@@ -1,19 +1,30 @@
 {
-  "generated_at": "2026-06-24T13:21:17+00:00",
+  "generated_at": "2026-06-24T16:20:26+00:00",
   "next_event": {
-    "title": "Core PCE Price Index m/m",
+    "title": "President Trump Speaks",
     "kind": "macro",
     "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-06-25T12:30:00+00:00",
-    "blackout_start": "2026-06-25T12:25:00+00:00",
-    "blackout_end": "2026-06-25T12:45:00+00:00",
-    "forecast": "0.3%",
-    "previous": "0.2%"
+    "impact": "medium",
+    "scheduled_at": "2026-06-25T00:30:00+00:00",
+    "blackout_start": "2026-06-25T00:25:00+00:00",
+    "blackout_end": "2026-06-25T00:45:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
+    {
+      "title": "President Trump Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-06-25T00:30:00+00:00",
+      "blackout_start": "2026-06-25T00:25:00+00:00",
+      "blackout_end": "2026-06-25T00:45:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
     {
       "title": "Core PCE Price Index m/m",
       "kind": "macro",
