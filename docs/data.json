@@ -1,40 +1,29 @@
 {
-  "generated_at": "2026-06-26T12:09:58+00:00",
+  "generated_at": "2026-06-26T15:22:32+00:00",
   "next_event": {
-    "title": "Revised UoM Consumer Sentiment",
+    "title": "President Trump Speaks",
     "kind": "macro",
     "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-06-26T14:00:00+00:00",
-    "blackout_start": "2026-06-26T13:55:00+00:00",
-    "blackout_end": "2026-06-26T14:15:00+00:00",
-    "forecast": "50.0",
-    "previous": "48.9"
+    "scheduled_at": "2026-06-26T17:30:00+00:00",
+    "blackout_start": "2026-06-26T17:25:00+00:00",
+    "blackout_end": "2026-06-26T17:45:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
     {
-      "title": "Revised UoM Consumer Sentiment",
+      "title": "President Trump Speaks",
       "kind": "macro",
       "symbol": "SPY",
       "impact": "medium",
-      "scheduled_at": "2026-06-26T14:00:00+00:00",
-      "blackout_start": "2026-06-26T13:55:00+00:00",
-      "blackout_end": "2026-06-26T14:15:00+00:00",
-      "forecast": "50.0",
-      "previous": "48.9"
-    },
-    {
-      "title": "Revised UoM Inflation Expectations",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-26T14:00:00+00:00",
-      "blackout_start": "2026-06-26T13:55:00+00:00",
-      "blackout_end": "2026-06-26T14:15:00+00:00",
+      "scheduled_at": "2026-06-26T17:30:00+00:00",
+      "blackout_start": "2026-06-26T17:25:00+00:00",
+      "blackout_end": "2026-06-26T17:45:00+00:00",
       "forecast": null,
-      "previous": "4.6%"
+      "previous": null
     },
     {
       "title": "NFLX Earnings",
