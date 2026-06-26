@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-06-26T15:22:32+00:00",
+  "generated_at": "2026-06-26T17:46:02+00:00",
   "next_event": {
-    "title": "President Trump Speaks",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-06-26T17:30:00+00:00",
-    "blackout_start": "2026-06-26T17:25:00+00:00",
-    "blackout_end": "2026-06-26T17:45:00+00:00",
+    "title": "NFLX Earnings",
+    "kind": "earnings",
+    "symbol": "NFLX",
+    "impact": "high",
+    "scheduled_at": "2026-07-16T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
     "forecast": null,
     "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "President Trump Speaks",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-06-26T17:30:00+00:00",
-      "blackout_start": "2026-06-26T17:25:00+00:00",
-      "blackout_end": "2026-06-26T17:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "NFLX Earnings",
       "kind": "earnings",
