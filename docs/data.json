@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-29T21:25:35+00:00",
+  "generated_at": "2026-06-29T22:55:46+00:00",
   "next_event": {
     "title": "German Prelim CPI m/m",
     "kind": "macro",
@@ -165,7 +165,7 @@
       "scheduled_at": "2026-07-02T12:30:00+00:00",
       "blackout_start": "2026-07-02T12:25:00+00:00",
       "blackout_end": "2026-07-02T12:45:00+00:00",
-      "forecast": "114K",
+      "forecast": "110K",
       "previous": "172K"
     },
     {
@@ -187,7 +187,7 @@
       "scheduled_at": "2026-07-02T12:30:00+00:00",
       "blackout_start": "2026-07-02T12:25:00+00:00",
       "blackout_end": "2026-07-02T12:45:00+00:00",
-      "forecast": "220K",
+      "forecast": "219K",
       "previous": "215K"
     },
     {
