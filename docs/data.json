@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-29T00:07:52+00:00",
+  "generated_at": "2026-06-29T05:49:05+00:00",
   "next_event": {
     "title": "ECB President Lagarde Speaks",
     "kind": "macro",
@@ -125,6 +125,17 @@
       "previous": null
     },
     {
+      "title": "ECB President Lagarde Speaks",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-01T14:00:00+00:00",
+      "blackout_start": "2026-07-01T13:55:00+00:00",
+      "blackout_end": "2026-07-01T14:15:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
       "title": "ISM Manufacturing PMI",
       "kind": "macro",
       "symbol": "SPY",
@@ -145,17 +156,6 @@
       "blackout_end": "2026-07-01T14:15:00+00:00",
       "forecast": "79.0",
       "previous": "82.1"
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-01T14:30:00+00:00",
-      "blackout_start": "2026-07-01T14:25:00+00:00",
-      "blackout_end": "2026-07-01T14:45:00+00:00",
-      "forecast": null,
-      "previous": null
     },
     {
       "title": "Average Hourly Earnings m/m",
