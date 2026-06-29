@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-29T17:35:26+00:00",
+  "generated_at": "2026-06-29T19:55:20+00:00",
   "next_event": {
     "title": "German Prelim CPI m/m",
     "kind": "macro",
@@ -11,18 +11,8 @@
     "forecast": "0.1%",
     "previous": "-0.2%"
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "ECB President Lagarde Speaks",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-06-29T17:30:00+00:00",
-    "blackout_start": "2026-06-29T17:25:00+00:00",
-    "blackout_end": "2026-06-29T17:45:00+00:00",
-    "forecast": null,
-    "previous": null
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
     {
       "title": "German Prelim CPI m/m",
