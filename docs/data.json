@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T19:54:10+00:00",
+  "generated_at": "2026-06-30T21:27:00+00:00",
   "next_event": {
     "title": "Core CPI Flash Estimate y/y",
     "kind": "macro",
@@ -132,7 +132,7 @@
       "scheduled_at": "2026-07-02T12:30:00+00:00",
       "blackout_start": "2026-07-02T12:25:00+00:00",
       "blackout_end": "2026-07-02T12:45:00+00:00",
-      "forecast": "110K",
+      "forecast": "114K",
       "previous": "172K"
     },
     {
