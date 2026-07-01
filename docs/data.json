@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-07-01T08:11:28+00:00",
+  "generated_at": "2026-07-01T12:05:57+00:00",
   "next_event": {
-    "title": "Core CPI Flash Estimate y/y",
+    "title": "ADP Non-Farm Employment Change",
     "kind": "macro",
-    "symbol": "XAUUSD",
+    "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-07-01T09:00:00+00:00",
-    "blackout_start": "2026-07-01T08:55:00+00:00",
-    "blackout_end": "2026-07-01T09:15:00+00:00",
-    "forecast": "2.5%",
-    "previous": "2.5%"
+    "scheduled_at": "2026-07-01T12:15:00+00:00",
+    "blackout_start": "2026-07-01T12:10:00+00:00",
+    "blackout_end": "2026-07-01T12:30:00+00:00",
+    "forecast": "118K",
+    "previous": "122K"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-01T09:00:00+00:00",
-      "blackout_start": "2026-07-01T08:55:00+00:00",
-      "blackout_end": "2026-07-01T09:15:00+00:00",
-      "forecast": "2.5%",
-      "previous": "2.5%"
-    },
-    {
-      "title": "CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-01T09:00:00+00:00",
-      "blackout_start": "2026-07-01T08:55:00+00:00",
-      "blackout_end": "2026-07-01T09:15:00+00:00",
-      "forecast": "3.0%",
-      "previous": "3.2%"
-    },
     {
       "title": "ADP Non-Farm Employment Change",
       "kind": "macro",
