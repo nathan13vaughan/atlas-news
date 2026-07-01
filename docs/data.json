@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T03:40:56+00:00",
+  "generated_at": "2026-07-01T08:11:28+00:00",
   "next_event": {
     "title": "Core CPI Flash Estimate y/y",
     "kind": "macro",
@@ -112,6 +112,17 @@
       "blackout_end": "2026-07-01T14:15:00+00:00",
       "forecast": "77.7",
       "previous": "82.1"
+    },
+    {
+      "title": "President Trump Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-07-01T19:15:00+00:00",
+      "blackout_start": "2026-07-01T19:10:00+00:00",
+      "blackout_end": "2026-07-01T19:30:00+00:00",
+      "forecast": null,
+      "previous": null
     },
     {
       "title": "Average Hourly Earnings m/m",
