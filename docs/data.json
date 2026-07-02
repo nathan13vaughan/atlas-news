@@ -1,63 +1,19 @@
 {
-  "generated_at": "2026-07-02T10:37:26+00:00",
+  "generated_at": "2026-07-02T12:56:30+00:00",
   "next_event": {
-    "title": "Average Hourly Earnings m/m",
+    "title": "ECB President Lagarde Speaks",
     "kind": "macro",
-    "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-07-02T12:30:00+00:00",
-    "blackout_start": "2026-07-02T12:25:00+00:00",
-    "blackout_end": "2026-07-02T12:45:00+00:00",
-    "forecast": "0.3%",
-    "previous": "0.3%"
+    "symbol": "XAUUSD",
+    "impact": "medium",
+    "scheduled_at": "2026-07-03T08:00:00+00:00",
+    "blackout_start": "2026-07-03T07:55:00+00:00",
+    "blackout_end": "2026-07-03T08:15:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Average Hourly Earnings m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-02T12:30:00+00:00",
-      "blackout_start": "2026-07-02T12:25:00+00:00",
-      "blackout_end": "2026-07-02T12:45:00+00:00",
-      "forecast": "0.3%",
-      "previous": "0.3%"
-    },
-    {
-      "title": "Non-Farm Employment Change",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-02T12:30:00+00:00",
-      "blackout_start": "2026-07-02T12:25:00+00:00",
-      "blackout_end": "2026-07-02T12:45:00+00:00",
-      "forecast": "114K",
-      "previous": "172K"
-    },
-    {
-      "title": "Unemployment Rate",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-02T12:30:00+00:00",
-      "blackout_start": "2026-07-02T12:25:00+00:00",
-      "blackout_end": "2026-07-02T12:45:00+00:00",
-      "forecast": "4.3%",
-      "previous": "4.3%"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-07-02T12:30:00+00:00",
-      "blackout_start": "2026-07-02T12:25:00+00:00",
-      "blackout_end": "2026-07-02T12:45:00+00:00",
-      "forecast": "219K",
-      "previous": "215K"
-    },
     {
       "title": "ECB President Lagarde Speaks",
       "kind": "macro",
