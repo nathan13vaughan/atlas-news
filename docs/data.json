@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T15:09:48+00:00",
+  "generated_at": "2026-07-03T17:23:53+00:00",
   "next_event": {
     "title": "NFLX Earnings",
     "kind": "earnings",
@@ -11,18 +11,8 @@
     "forecast": null,
     "previous": null
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "BOE Gov Bailey Speaks",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-07-03T15:00:00+00:00",
-    "blackout_start": "2026-07-03T14:55:00+00:00",
-    "blackout_end": "2026-07-03T15:15:00+00:00",
-    "forecast": null,
-    "previous": null
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
     {
       "title": "NFLX Earnings",
