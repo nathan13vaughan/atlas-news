@@ -1,19 +1,63 @@
 {
-  "generated_at": "2026-07-05T02:56:10+00:00",
+  "generated_at": "2026-07-05T06:41:40+00:00",
   "next_event": {
-    "title": "NFLX Earnings",
-    "kind": "earnings",
-    "symbol": "NFLX",
+    "title": "ISM Services PMI",
+    "kind": "macro",
+    "symbol": "SPY",
     "impact": "high",
-    "scheduled_at": "2026-07-16T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-07-06T14:00:00+00:00",
+    "blackout_start": "2026-07-06T13:55:00+00:00",
+    "blackout_end": "2026-07-06T14:15:00+00:00",
+    "forecast": "54.2",
+    "previous": "54.5"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
+    {
+      "title": "ISM Services PMI",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-07-06T14:00:00+00:00",
+      "blackout_start": "2026-07-06T13:55:00+00:00",
+      "blackout_end": "2026-07-06T14:15:00+00:00",
+      "forecast": "54.2",
+      "previous": "54.5"
+    },
+    {
+      "title": "BOE Gov Bailey Speaks",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-07T10:30:00+00:00",
+      "blackout_start": "2026-07-07T10:25:00+00:00",
+      "blackout_end": "2026-07-07T10:45:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "FOMC Meeting Minutes",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-07-08T18:00:00+00:00",
+      "blackout_start": "2026-07-08T17:55:00+00:00",
+      "blackout_end": "2026-07-08T18:15:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "Unemployment Claims",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-07-09T12:30:00+00:00",
+      "blackout_start": "2026-07-09T12:25:00+00:00",
+      "blackout_end": "2026-07-09T12:45:00+00:00",
+      "forecast": "218K",
+      "previous": "215K"
+    },
     {
       "title": "NFLX Earnings",
       "kind": "earnings",
