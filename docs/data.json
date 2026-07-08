@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T10:15:17+00:00",
+  "generated_at": "2026-07-08T12:19:35+00:00",
   "next_event": {
     "title": "FOMC Meeting Minutes",
     "kind": "macro",
@@ -48,6 +48,17 @@
       "previous": null
     },
     {
+      "title": "TSLA Earnings",
+      "kind": "earnings",
+      "symbol": "TSLA",
+      "impact": "high",
+      "scheduled_at": "2026-07-22T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
       "title": "GOOGL Earnings",
       "kind": "earnings",
       "symbol": "GOOGL",
@@ -59,11 +70,33 @@
       "previous": null
     },
     {
+      "title": "MSFT Earnings",
+      "kind": "earnings",
+      "symbol": "MSFT",
+      "impact": "high",
+      "scheduled_at": "2026-07-29T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
       "title": "META Earnings",
       "kind": "earnings",
       "symbol": "META",
       "impact": "high",
       "scheduled_at": "2026-07-29T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "AAPL Earnings",
+      "kind": "earnings",
+      "symbol": "AAPL",
+      "impact": "high",
+      "scheduled_at": "2026-07-30T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
@@ -86,6 +119,17 @@
       "symbol": "AMD",
       "impact": "high",
       "scheduled_at": "2026-08-04T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "NVDA Earnings",
+      "kind": "earnings",
+      "symbol": "NVDA",
+      "impact": "high",
+      "scheduled_at": "2026-08-26T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
