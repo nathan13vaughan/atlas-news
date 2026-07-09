@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T23:05:07+00:00",
+  "generated_at": "2026-07-09T02:50:22+00:00",
   "next_event": {
     "title": "Unemployment Claims",
     "kind": "macro",
@@ -40,6 +40,17 @@
       "title": "TSLA Earnings",
       "kind": "earnings",
       "symbol": "TSLA",
+      "impact": "high",
+      "scheduled_at": "2026-07-22T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "GOOGL Earnings",
+      "kind": "earnings",
+      "symbol": "GOOGL",
       "impact": "high",
       "scheduled_at": "2026-07-22T20:00:00+00:00",
       "blackout_start": null,
