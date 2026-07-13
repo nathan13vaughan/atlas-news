@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-13T10:23:59+00:00",
+  "generated_at": "2026-07-13T13:21:57+00:00",
   "next_event": {
     "title": "BOE Gov Bailey Speaks",
     "kind": "macro",
     "symbol": "XAUUSD",
-    "impact": "high",
+    "impact": "medium",
     "scheduled_at": "2026-07-14T08:45:00+00:00",
     "blackout_start": "2026-07-14T08:40:00+00:00",
     "blackout_end": "2026-07-14T09:00:00+00:00",
@@ -18,7 +18,7 @@
       "title": "BOE Gov Bailey Speaks",
       "kind": "macro",
       "symbol": "XAUUSD",
-      "impact": "high",
+      "impact": "medium",
       "scheduled_at": "2026-07-14T08:45:00+00:00",
       "blackout_start": "2026-07-14T08:40:00+00:00",
       "blackout_end": "2026-07-14T09:00:00+00:00",
