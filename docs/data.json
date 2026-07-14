@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T16:12:42+00:00",
+  "generated_at": "2026-07-14T18:00:40+00:00",
   "next_event": {
     "title": "BOE Gov Bailey Speaks",
     "kind": "macro",
@@ -33,7 +33,7 @@
       "scheduled_at": "2026-07-15T12:30:00+00:00",
       "blackout_start": "2026-07-15T12:25:00+00:00",
       "blackout_end": "2026-07-15T12:45:00+00:00",
-      "forecast": "0.4%",
+      "forecast": "0.3%",
       "previous": "0.4%"
     },
     {
@@ -121,6 +121,17 @@
       "scheduled_at": "2026-07-16T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "President Trump Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-07-17T01:00:00+00:00",
+      "blackout_start": "2026-07-17T00:55:00+00:00",
+      "blackout_end": "2026-07-17T01:15:00+00:00",
       "forecast": null,
       "previous": null
     },
