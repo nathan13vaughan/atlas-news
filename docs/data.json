@@ -1,74 +1,19 @@
 {
-  "generated_at": "2026-07-14T12:10:00+00:00",
+  "generated_at": "2026-07-14T14:48:48+00:00",
   "next_event": {
-    "title": "Core CPI m/m",
+    "title": "BOE Gov Bailey Speaks",
     "kind": "macro",
-    "symbol": "SPY",
+    "symbol": "XAUUSD",
     "impact": "high",
-    "scheduled_at": "2026-07-14T12:30:00+00:00",
-    "blackout_start": "2026-07-14T12:25:00+00:00",
-    "blackout_end": "2026-07-14T12:45:00+00:00",
-    "forecast": "0.2%",
-    "previous": "0.2%"
+    "scheduled_at": "2026-07-14T20:00:00+00:00",
+    "blackout_start": "2026-07-14T19:55:00+00:00",
+    "blackout_end": "2026-07-14T20:15:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-14T12:30:00+00:00",
-      "blackout_start": "2026-07-14T12:25:00+00:00",
-      "blackout_end": "2026-07-14T12:45:00+00:00",
-      "forecast": "0.2%",
-      "previous": "0.2%"
-    },
-    {
-      "title": "Core CPI y/y",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-14T12:30:00+00:00",
-      "blackout_start": "2026-07-14T12:25:00+00:00",
-      "blackout_end": "2026-07-14T12:45:00+00:00",
-      "forecast": "2.8%",
-      "previous": "2.9%"
-    },
-    {
-      "title": "CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-14T12:30:00+00:00",
-      "blackout_start": "2026-07-14T12:25:00+00:00",
-      "blackout_end": "2026-07-14T12:45:00+00:00",
-      "forecast": "-0.1%",
-      "previous": "0.5%"
-    },
-    {
-      "title": "CPI y/y",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-14T12:30:00+00:00",
-      "blackout_start": "2026-07-14T12:25:00+00:00",
-      "blackout_end": "2026-07-14T12:45:00+00:00",
-      "forecast": "3.8%",
-      "previous": "4.2%"
-    },
-    {
-      "title": "Fed Chairman Warsh Testifies",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-14T14:00:00+00:00",
-      "blackout_start": "2026-07-14T13:55:00+00:00",
-      "blackout_end": "2026-07-14T14:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "BOE Gov Bailey Speaks",
       "kind": "macro",
