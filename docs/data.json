@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T20:09:28+00:00",
+  "generated_at": "2026-07-14T21:55:34+00:00",
   "next_event": {
     "title": "Core PPI m/m",
     "kind": "macro",
@@ -11,18 +11,8 @@
     "forecast": "0.3%",
     "previous": "0.4%"
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "BOE Gov Bailey Speaks",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-07-14T20:00:00+00:00",
-    "blackout_start": "2026-07-14T19:55:00+00:00",
-    "blackout_end": "2026-07-14T20:15:00+00:00",
-    "forecast": null,
-    "previous": null
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
     {
       "title": "Core PPI m/m",
