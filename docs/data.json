@@ -1,52 +1,19 @@
 {
-  "generated_at": "2026-07-15T12:13:29+00:00",
+  "generated_at": "2026-07-15T14:48:24+00:00",
   "next_event": {
-    "title": "Core PPI m/m",
+    "title": "GDP m/m",
     "kind": "macro",
-    "symbol": "SPY",
+    "symbol": "XAUUSD",
     "impact": "high",
-    "scheduled_at": "2026-07-15T12:30:00+00:00",
-    "blackout_start": "2026-07-15T12:25:00+00:00",
-    "blackout_end": "2026-07-15T12:45:00+00:00",
-    "forecast": "0.3%",
-    "previous": "0.4%"
+    "scheduled_at": "2026-07-16T06:00:00+00:00",
+    "blackout_start": "2026-07-16T05:55:00+00:00",
+    "blackout_end": "2026-07-16T06:15:00+00:00",
+    "forecast": "0.0%",
+    "previous": "-0.1%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core PPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-15T12:30:00+00:00",
-      "blackout_start": "2026-07-15T12:25:00+00:00",
-      "blackout_end": "2026-07-15T12:45:00+00:00",
-      "forecast": "0.3%",
-      "previous": "0.4%"
-    },
-    {
-      "title": "PPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-15T12:30:00+00:00",
-      "blackout_start": "2026-07-15T12:25:00+00:00",
-      "blackout_end": "2026-07-15T12:45:00+00:00",
-      "forecast": "0.0%",
-      "previous": "1.1%"
-    },
-    {
-      "title": "Fed Chairman Warsh Testifies",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-15T14:00:00+00:00",
-      "blackout_start": "2026-07-15T13:55:00+00:00",
-      "blackout_end": "2026-07-15T14:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "GDP m/m",
       "kind": "macro",
