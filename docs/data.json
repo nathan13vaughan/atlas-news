@@ -1,63 +1,19 @@
 {
-  "generated_at": "2026-07-16T12:23:30+00:00",
+  "generated_at": "2026-07-16T14:59:49+00:00",
   "next_event": {
-    "title": "Core Retail Sales m/m",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-07-16T12:30:00+00:00",
-    "blackout_start": "2026-07-16T12:25:00+00:00",
-    "blackout_end": "2026-07-16T12:45:00+00:00",
-    "forecast": "0.0%",
-    "previous": "0.8%"
+    "title": "NFLX Earnings",
+    "kind": "earnings",
+    "symbol": "NFLX",
+    "impact": "high",
+    "scheduled_at": "2026-07-16T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-07-16T12:30:00+00:00",
-      "blackout_start": "2026-07-16T12:25:00+00:00",
-      "blackout_end": "2026-07-16T12:45:00+00:00",
-      "forecast": "0.0%",
-      "previous": "0.8%"
-    },
-    {
-      "title": "Philly Fed Manufacturing Index",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-07-16T12:30:00+00:00",
-      "blackout_start": "2026-07-16T12:25:00+00:00",
-      "blackout_end": "2026-07-16T12:45:00+00:00",
-      "forecast": "12.7",
-      "previous": "10.3"
-    },
-    {
-      "title": "Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-07-16T12:30:00+00:00",
-      "blackout_start": "2026-07-16T12:25:00+00:00",
-      "blackout_end": "2026-07-16T12:45:00+00:00",
-      "forecast": "0.2%",
-      "previous": "0.9%"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-07-16T12:30:00+00:00",
-      "blackout_start": "2026-07-16T12:25:00+00:00",
-      "blackout_end": "2026-07-16T12:45:00+00:00",
-      "forecast": "216K",
-      "previous": "215K"
-    },
     {
       "title": "NFLX Earnings",
       "kind": "earnings",
