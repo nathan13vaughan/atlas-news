@@ -1,19 +1,52 @@
 {
-  "generated_at": "2026-07-19T02:33:14+00:00",
+  "generated_at": "2026-07-19T05:50:32+00:00",
   "next_event": {
-    "title": "TSLA Earnings",
-    "kind": "earnings",
-    "symbol": "TSLA",
+    "title": "Claimant Count Change",
+    "kind": "macro",
+    "symbol": "XAUUSD",
     "impact": "high",
-    "scheduled_at": "2026-07-22T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-07-21T06:00:00+00:00",
+    "blackout_start": "2026-07-21T05:55:00+00:00",
+    "blackout_end": "2026-07-21T06:15:00+00:00",
+    "forecast": "28.3K",
+    "previous": "31.2K"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
+    {
+      "title": "Claimant Count Change",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-07-21T06:00:00+00:00",
+      "blackout_start": "2026-07-21T05:55:00+00:00",
+      "blackout_end": "2026-07-21T06:15:00+00:00",
+      "forecast": "28.3K",
+      "previous": "31.2K"
+    },
+    {
+      "title": "Average Earnings Index 3m/y",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-21T06:00:00+00:00",
+      "blackout_start": "2026-07-21T05:55:00+00:00",
+      "blackout_end": "2026-07-21T06:15:00+00:00",
+      "forecast": "4.5%",
+      "previous": "4.4%"
+    },
+    {
+      "title": "CPI y/y",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-07-22T06:00:00+00:00",
+      "blackout_start": "2026-07-22T05:55:00+00:00",
+      "blackout_end": "2026-07-22T06:15:00+00:00",
+      "forecast": "2.7%",
+      "previous": "2.8%"
+    },
     {
       "title": "TSLA Earnings",
       "kind": "earnings",
@@ -35,6 +68,127 @@
       "blackout_end": null,
       "forecast": null,
       "previous": null
+    },
+    {
+      "title": "Main Refinancing Rate",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-07-23T12:15:00+00:00",
+      "blackout_start": "2026-07-23T12:10:00+00:00",
+      "blackout_end": "2026-07-23T12:30:00+00:00",
+      "forecast": "2.40%",
+      "previous": "2.40%"
+    },
+    {
+      "title": "Monetary Policy Statement",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-07-23T12:15:00+00:00",
+      "blackout_start": "2026-07-23T12:10:00+00:00",
+      "blackout_end": "2026-07-23T12:30:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "Unemployment Claims",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-07-23T12:30:00+00:00",
+      "blackout_start": "2026-07-23T12:25:00+00:00",
+      "blackout_end": "2026-07-23T12:45:00+00:00",
+      "forecast": "211K",
+      "previous": "208K"
+    },
+    {
+      "title": "ECB Press Conference",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-07-23T12:45:00+00:00",
+      "blackout_start": "2026-07-23T12:40:00+00:00",
+      "blackout_end": "2026-07-23T13:00:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "Retail Sales m/m",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-24T06:00:00+00:00",
+      "blackout_start": "2026-07-24T05:55:00+00:00",
+      "blackout_end": "2026-07-24T06:15:00+00:00",
+      "forecast": "-0.1%",
+      "previous": "1.2%"
+    },
+    {
+      "title": "French Flash Manufacturing PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-24T07:15:00+00:00",
+      "blackout_start": "2026-07-24T07:10:00+00:00",
+      "blackout_end": "2026-07-24T07:30:00+00:00",
+      "forecast": "51.2",
+      "previous": "50.7"
+    },
+    {
+      "title": "French Flash Services PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-24T07:15:00+00:00",
+      "blackout_start": "2026-07-24T07:10:00+00:00",
+      "blackout_end": "2026-07-24T07:30:00+00:00",
+      "forecast": "47.7",
+      "previous": "47.4"
+    },
+    {
+      "title": "German Flash Manufacturing PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-24T07:30:00+00:00",
+      "blackout_start": "2026-07-24T07:25:00+00:00",
+      "blackout_end": "2026-07-24T07:45:00+00:00",
+      "forecast": "50.5",
+      "previous": "50.0"
+    },
+    {
+      "title": "German Flash Services PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-24T07:30:00+00:00",
+      "blackout_start": "2026-07-24T07:25:00+00:00",
+      "blackout_end": "2026-07-24T07:45:00+00:00",
+      "forecast": "49.0",
+      "previous": "46.8"
+    },
+    {
+      "title": "Flash Manufacturing PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-24T08:30:00+00:00",
+      "blackout_start": "2026-07-24T08:25:00+00:00",
+      "blackout_end": "2026-07-24T08:45:00+00:00",
+      "forecast": "52.1",
+      "previous": "53.1"
+    },
+    {
+      "title": "Flash Services PMI",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-07-24T08:30:00+00:00",
+      "blackout_start": "2026-07-24T08:25:00+00:00",
+      "blackout_end": "2026-07-24T08:45:00+00:00",
+      "forecast": "49.4",
+      "previous": "48.7"
     },
     {
       "title": "MSFT Earnings",
