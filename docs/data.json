@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T17:59:57+00:00",
+  "generated_at": "2026-07-20T19:52:29+00:00",
   "next_event": {
     "title": "Claimant Count Change",
     "kind": "macro",
@@ -229,17 +229,6 @@
       "symbol": "AMZN",
       "impact": "high",
       "scheduled_at": "2026-07-30T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "AMD Earnings",
-      "kind": "earnings",
-      "symbol": "AMD",
-      "impact": "high",
-      "scheduled_at": "2026-08-04T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
