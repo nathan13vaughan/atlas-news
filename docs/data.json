@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T21:10:39+00:00",
+  "generated_at": "2026-07-20T22:59:19+00:00",
   "next_event": {
     "title": "Claimant Count Change",
     "kind": "macro",
@@ -207,17 +207,6 @@
       "symbol": "META",
       "impact": "high",
       "scheduled_at": "2026-07-29T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "AAPL Earnings",
-      "kind": "earnings",
-      "symbol": "AAPL",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
