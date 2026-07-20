@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T15:47:58+00:00",
+  "generated_at": "2026-07-20T17:59:57+00:00",
   "next_event": {
     "title": "Claimant Count Change",
     "kind": "macro",
@@ -8,7 +8,7 @@
     "scheduled_at": "2026-07-21T06:00:00+00:00",
     "blackout_start": "2026-07-21T05:55:00+00:00",
     "blackout_end": "2026-07-21T06:15:00+00:00",
-    "forecast": "28.3K",
+    "forecast": "29.4K",
     "previous": "31.2K"
   },
   "in_blackout": false,
@@ -22,7 +22,7 @@
       "scheduled_at": "2026-07-21T06:00:00+00:00",
       "blackout_start": "2026-07-21T05:55:00+00:00",
       "blackout_end": "2026-07-21T06:15:00+00:00",
-      "forecast": "28.3K",
+      "forecast": "29.4K",
       "previous": "31.2K"
     },
     {
@@ -121,7 +121,7 @@
       "scheduled_at": "2026-07-24T06:00:00+00:00",
       "blackout_start": "2026-07-24T05:55:00+00:00",
       "blackout_end": "2026-07-24T06:15:00+00:00",
-      "forecast": "-0.1%",
+      "forecast": "-0.3%",
       "previous": "1.2%"
     },
     {
@@ -132,7 +132,7 @@
       "scheduled_at": "2026-07-24T07:15:00+00:00",
       "blackout_start": "2026-07-24T07:10:00+00:00",
       "blackout_end": "2026-07-24T07:30:00+00:00",
-      "forecast": "51.2",
+      "forecast": "51.0",
       "previous": "50.7"
     },
     {
@@ -143,7 +143,7 @@
       "scheduled_at": "2026-07-24T07:15:00+00:00",
       "blackout_start": "2026-07-24T07:10:00+00:00",
       "blackout_end": "2026-07-24T07:30:00+00:00",
-      "forecast": "47.7",
+      "forecast": "47.5",
       "previous": "47.4"
     },
     {
@@ -154,7 +154,7 @@
       "scheduled_at": "2026-07-24T07:30:00+00:00",
       "blackout_start": "2026-07-24T07:25:00+00:00",
       "blackout_end": "2026-07-24T07:45:00+00:00",
-      "forecast": "50.5",
+      "forecast": "50.4",
       "previous": "50.0"
     },
     {
@@ -176,7 +176,7 @@
       "scheduled_at": "2026-07-24T08:30:00+00:00",
       "blackout_start": "2026-07-24T08:25:00+00:00",
       "blackout_end": "2026-07-24T08:45:00+00:00",
-      "forecast": "52.1",
+      "forecast": "52.0",
       "previous": "53.1"
     },
     {
