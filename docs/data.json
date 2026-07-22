@@ -1,51 +1,19 @@
 {
-  "generated_at": "2026-07-22T19:14:29+00:00",
+  "generated_at": "2026-07-22T21:04:30+00:00",
   "next_event": {
-    "title": "TSLA Earnings",
-    "kind": "earnings",
-    "symbol": "TSLA",
-    "impact": "high",
-    "scheduled_at": "2026-07-22T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
-  },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "President Trump Speaks",
+    "title": "Main Refinancing Rate",
     "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-07-22T19:00:00+00:00",
-    "blackout_start": "2026-07-22T18:55:00+00:00",
-    "blackout_end": "2026-07-22T19:15:00+00:00",
-    "forecast": null,
-    "previous": null
+    "symbol": "XAUUSD",
+    "impact": "high",
+    "scheduled_at": "2026-07-23T12:15:00+00:00",
+    "blackout_start": "2026-07-23T12:10:00+00:00",
+    "blackout_end": "2026-07-23T12:30:00+00:00",
+    "forecast": "2.40%",
+    "previous": "2.40%"
   },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "TSLA Earnings",
-      "kind": "earnings",
-      "symbol": "TSLA",
-      "impact": "high",
-      "scheduled_at": "2026-07-22T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "GOOGL Earnings",
-      "kind": "earnings",
-      "symbol": "GOOGL",
-      "impact": "high",
-      "scheduled_at": "2026-07-22T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Main Refinancing Rate",
       "kind": "macro",
@@ -228,6 +196,17 @@
       "symbol": "NVDA",
       "impact": "high",
       "scheduled_at": "2026-08-26T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "NFLX Earnings",
+      "kind": "earnings",
+      "symbol": "NFLX",
+      "impact": "high",
+      "scheduled_at": "2026-10-20T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
