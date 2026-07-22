@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T02:29:49+00:00",
+  "generated_at": "2026-07-22T05:48:24+00:00",
   "next_event": {
     "title": "CPI y/y",
     "kind": "macro",
@@ -24,6 +24,17 @@
       "blackout_end": "2026-07-22T06:15:00+00:00",
       "forecast": "2.7%",
       "previous": "2.8%"
+    },
+    {
+      "title": "President Trump Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-07-22T19:00:00+00:00",
+      "blackout_start": "2026-07-22T18:55:00+00:00",
+      "blackout_end": "2026-07-22T19:15:00+00:00",
+      "forecast": null,
+      "previous": null
     },
     {
       "title": "TSLA Earnings",
