@@ -1,85 +1,19 @@
 {
-  "generated_at": "2026-07-24T06:23:52+00:00",
+  "generated_at": "2026-07-24T09:20:08+00:00",
   "next_event": {
-    "title": "French Flash Manufacturing PMI",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-07-24T07:15:00+00:00",
-    "blackout_start": "2026-07-24T07:10:00+00:00",
-    "blackout_end": "2026-07-24T07:30:00+00:00",
-    "forecast": "51.0",
-    "previous": "50.7"
+    "title": "MSFT Earnings",
+    "kind": "earnings",
+    "symbol": "MSFT",
+    "impact": "high",
+    "scheduled_at": "2026-07-29T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "French Flash Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-24T07:15:00+00:00",
-      "blackout_start": "2026-07-24T07:10:00+00:00",
-      "blackout_end": "2026-07-24T07:30:00+00:00",
-      "forecast": "51.0",
-      "previous": "50.7"
-    },
-    {
-      "title": "French Flash Services PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-24T07:15:00+00:00",
-      "blackout_start": "2026-07-24T07:10:00+00:00",
-      "blackout_end": "2026-07-24T07:30:00+00:00",
-      "forecast": "47.5",
-      "previous": "47.4"
-    },
-    {
-      "title": "German Flash Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-24T07:30:00+00:00",
-      "blackout_start": "2026-07-24T07:25:00+00:00",
-      "blackout_end": "2026-07-24T07:45:00+00:00",
-      "forecast": "50.4",
-      "previous": "50.0"
-    },
-    {
-      "title": "German Flash Services PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-24T07:30:00+00:00",
-      "blackout_start": "2026-07-24T07:25:00+00:00",
-      "blackout_end": "2026-07-24T07:45:00+00:00",
-      "forecast": "49.0",
-      "previous": "46.8"
-    },
-    {
-      "title": "Flash Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-24T08:30:00+00:00",
-      "blackout_start": "2026-07-24T08:25:00+00:00",
-      "blackout_end": "2026-07-24T08:45:00+00:00",
-      "forecast": "52.0",
-      "previous": "53.1"
-    },
-    {
-      "title": "Flash Services PMI",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-24T08:30:00+00:00",
-      "blackout_start": "2026-07-24T08:25:00+00:00",
-      "blackout_end": "2026-07-24T08:45:00+00:00",
-      "forecast": "49.4",
-      "previous": "48.7"
-    },
     {
       "title": "MSFT Earnings",
       "kind": "earnings",
