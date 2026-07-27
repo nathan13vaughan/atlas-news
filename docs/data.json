@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T06:28:06+00:00",
+  "generated_at": "2026-07-27T10:40:33+00:00",
   "next_event": {
     "title": "CB Consumer Confidence",
     "kind": "macro",
@@ -55,6 +55,17 @@
       "scheduled_at": "2026-07-29T18:30:00+00:00",
       "blackout_start": "2026-07-29T18:25:00+00:00",
       "blackout_end": "2026-07-29T18:45:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "MSFT Earnings",
+      "kind": "earnings",
+      "symbol": "MSFT",
+      "impact": "high",
+      "scheduled_at": "2026-07-29T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
       "forecast": null,
       "previous": null
     },
