@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T20:20:34+00:00",
+  "generated_at": "2026-07-27T22:04:40+00:00",
   "next_event": {
     "title": "CB Consumer Confidence",
     "kind": "macro",
@@ -8,7 +8,7 @@
     "scheduled_at": "2026-07-28T14:00:00+00:00",
     "blackout_start": "2026-07-28T13:55:00+00:00",
     "blackout_end": "2026-07-28T14:15:00+00:00",
-    "forecast": "92.1",
+    "forecast": "92.4",
     "previous": "91.2"
   },
   "in_blackout": false,
@@ -22,7 +22,7 @@
       "scheduled_at": "2026-07-28T14:00:00+00:00",
       "blackout_start": "2026-07-28T13:55:00+00:00",
       "blackout_end": "2026-07-28T14:15:00+00:00",
-      "forecast": "92.1",
+      "forecast": "92.4",
       "previous": "91.2"
     },
     {
@@ -165,7 +165,7 @@
       "scheduled_at": "2026-07-30T12:30:00+00:00",
       "blackout_start": "2026-07-30T12:25:00+00:00",
       "blackout_end": "2026-07-30T12:45:00+00:00",
-      "forecast": "2.3%",
+      "forecast": "2.0%",
       "previous": "2.0%"
     },
     {
@@ -176,7 +176,7 @@
       "scheduled_at": "2026-07-30T12:30:00+00:00",
       "blackout_start": "2026-07-30T12:25:00+00:00",
       "blackout_end": "2026-07-30T12:45:00+00:00",
-      "forecast": "0.1%",
+      "forecast": "0.2%",
       "previous": "0.3%"
     },
     {
@@ -187,7 +187,7 @@
       "scheduled_at": "2026-07-30T12:30:00+00:00",
       "blackout_start": "2026-07-30T12:25:00+00:00",
       "blackout_end": "2026-07-30T12:45:00+00:00",
-      "forecast": "3.7%",
+      "forecast": "4.1%",
       "previous": "3.6%"
     },
     {
@@ -198,7 +198,7 @@
       "scheduled_at": "2026-07-30T12:30:00+00:00",
       "blackout_start": "2026-07-30T12:25:00+00:00",
       "blackout_end": "2026-07-30T12:45:00+00:00",
-      "forecast": "206K",
+      "forecast": "201K",
       "previous": "187K"
     },
     {
@@ -264,7 +264,7 @@
       "scheduled_at": "2026-07-31T14:00:00+00:00",
       "blackout_start": "2026-07-31T13:55:00+00:00",
       "blackout_end": "2026-07-31T14:15:00+00:00",
-      "forecast": "54.2",
+      "forecast": "53.9",
       "previous": "54.4"
     },
     {
