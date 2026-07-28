@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T17:24:40+00:00",
+  "generated_at": "2026-07-28T19:20:02+00:00",
   "next_event": {
     "title": "Federal Funds Rate",
     "kind": "macro",
@@ -154,7 +154,7 @@
       "scheduled_at": "2026-07-30T12:30:00+00:00",
       "blackout_start": "2026-07-30T12:25:00+00:00",
       "blackout_end": "2026-07-30T12:45:00+00:00",
-      "forecast": "2.0%",
+      "forecast": "2.1%",
       "previous": "2.0%"
     },
     {
