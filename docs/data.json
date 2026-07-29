@@ -1,62 +1,19 @@
 {
-  "generated_at": "2026-07-29T18:05:18+00:00",
+  "generated_at": "2026-07-29T20:11:22+00:00",
   "next_event": {
-    "title": "FOMC Press Conference",
+    "title": "German Prelim CPI m/m",
     "kind": "macro",
-    "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-07-29T18:30:00+00:00",
-    "blackout_start": "2026-07-29T18:25:00+00:00",
-    "blackout_end": "2026-07-29T18:45:00+00:00",
-    "forecast": null,
-    "previous": null
+    "symbol": "XAUUSD",
+    "impact": "medium",
+    "scheduled_at": "2026-07-30T06:29:00+00:00",
+    "blackout_start": "2026-07-30T06:24:00+00:00",
+    "blackout_end": "2026-07-30T06:44:00+00:00",
+    "forecast": "0.7%",
+    "previous": "-0.3%"
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "Federal Funds Rate",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-07-29T18:00:00+00:00",
-    "blackout_start": "2026-07-29T17:55:00+00:00",
-    "blackout_end": "2026-07-29T18:15:00+00:00",
-    "forecast": "3.75%",
-    "previous": "3.75%"
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "FOMC Press Conference",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-29T18:30:00+00:00",
-      "blackout_start": "2026-07-29T18:25:00+00:00",
-      "blackout_end": "2026-07-29T18:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "MSFT Earnings",
-      "kind": "earnings",
-      "symbol": "MSFT",
-      "impact": "high",
-      "scheduled_at": "2026-07-29T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "META Earnings",
-      "kind": "earnings",
-      "symbol": "META",
-      "impact": "high",
-      "scheduled_at": "2026-07-29T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "German Prelim CPI m/m",
       "kind": "macro",
