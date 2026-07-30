@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-07-30T05:39:07+00:00",
+  "generated_at": "2026-07-30T08:23:12+00:00",
   "next_event": {
-    "title": "German Prelim CPI m/m",
+    "title": "BOE Monetary Policy Report",
     "kind": "macro",
     "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-07-30T06:29:00+00:00",
-    "blackout_start": "2026-07-30T06:24:00+00:00",
-    "blackout_end": "2026-07-30T06:44:00+00:00",
-    "forecast": "0.7%",
-    "previous": "-0.3%"
+    "impact": "high",
+    "scheduled_at": "2026-07-30T11:00:00+00:00",
+    "blackout_start": "2026-07-30T10:55:00+00:00",
+    "blackout_end": "2026-07-30T11:15:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "German Prelim CPI m/m",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-30T06:29:00+00:00",
-      "blackout_start": "2026-07-30T06:24:00+00:00",
-      "blackout_end": "2026-07-30T06:44:00+00:00",
-      "forecast": "0.7%",
-      "previous": "-0.3%"
-    },
-    {
-      "title": "German Prelim GDP q/q",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-30T08:00:00+00:00",
-      "blackout_start": "2026-07-30T07:55:00+00:00",
-      "blackout_end": "2026-07-30T08:15:00+00:00",
-      "forecast": "0.1%",
-      "previous": "0.3%"
-    },
     {
       "title": "BOE Monetary Policy Report",
       "kind": "macro",
