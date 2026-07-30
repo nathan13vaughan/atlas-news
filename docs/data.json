@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-07-30T19:22:54+00:00",
+  "generated_at": "2026-07-30T21:07:01+00:00",
   "next_event": {
-    "title": "AAPL Earnings",
-    "kind": "earnings",
-    "symbol": "AAPL",
-    "impact": "high",
-    "scheduled_at": "2026-07-30T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
+    "title": "Core CPI Flash Estimate y/y",
+    "kind": "macro",
+    "symbol": "XAUUSD",
+    "impact": "medium",
+    "scheduled_at": "2026-07-31T09:00:00+00:00",
+    "blackout_start": "2026-07-31T08:55:00+00:00",
+    "blackout_end": "2026-07-31T09:15:00+00:00",
+    "forecast": "2.4%",
+    "previous": "2.4%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "AAPL Earnings",
-      "kind": "earnings",
-      "symbol": "AAPL",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "AMZN Earnings",
-      "kind": "earnings",
-      "symbol": "AMZN",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Core CPI Flash Estimate y/y",
       "kind": "macro",
@@ -130,6 +108,39 @@
       "symbol": "TSLA",
       "impact": "high",
       "scheduled_at": "2026-10-21T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "MSFT Earnings",
+      "kind": "earnings",
+      "symbol": "MSFT",
+      "impact": "high",
+      "scheduled_at": "2026-10-28T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "META Earnings",
+      "kind": "earnings",
+      "symbol": "META",
+      "impact": "high",
+      "scheduled_at": "2026-10-28T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "GOOGL Earnings",
+      "kind": "earnings",
+      "symbol": "GOOGL",
+      "impact": "high",
+      "scheduled_at": "2026-10-28T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
