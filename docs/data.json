@@ -1,84 +1,19 @@
 {
-  "generated_at": "2026-07-30T11:05:50+00:00",
+  "generated_at": "2026-07-30T13:55:23+00:00",
   "next_event": {
-    "title": "BOE Gov Bailey Speaks",
-    "kind": "macro",
-    "symbol": "XAUUSD",
+    "title": "AAPL Earnings",
+    "kind": "earnings",
+    "symbol": "AAPL",
     "impact": "high",
-    "scheduled_at": "2026-07-30T11:30:00+00:00",
-    "blackout_start": "2026-07-30T11:25:00+00:00",
-    "blackout_end": "2026-07-30T11:45:00+00:00",
+    "scheduled_at": "2026-07-30T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
     "forecast": null,
     "previous": null
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "BOE Monetary Policy Report",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-07-30T11:00:00+00:00",
-    "blackout_start": "2026-07-30T10:55:00+00:00",
-    "blackout_end": "2026-07-30T11:15:00+00:00",
-    "forecast": null,
-    "previous": null
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "BOE Gov Bailey Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T11:30:00+00:00",
-      "blackout_start": "2026-07-30T11:25:00+00:00",
-      "blackout_end": "2026-07-30T11:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "Advance GDP q/q",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T12:30:00+00:00",
-      "blackout_start": "2026-07-30T12:25:00+00:00",
-      "blackout_end": "2026-07-30T12:45:00+00:00",
-      "forecast": "2.1%",
-      "previous": "2.0%"
-    },
-    {
-      "title": "Core PCE Price Index m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T12:30:00+00:00",
-      "blackout_start": "2026-07-30T12:25:00+00:00",
-      "blackout_end": "2026-07-30T12:45:00+00:00",
-      "forecast": "0.2%",
-      "previous": "0.3%"
-    },
-    {
-      "title": "Advance GDP Price Index q/q",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-07-30T12:30:00+00:00",
-      "blackout_start": "2026-07-30T12:25:00+00:00",
-      "blackout_end": "2026-07-30T12:45:00+00:00",
-      "forecast": "4.1%",
-      "previous": "3.6%"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-07-30T12:30:00+00:00",
-      "blackout_start": "2026-07-30T12:25:00+00:00",
-      "blackout_end": "2026-07-30T12:45:00+00:00",
-      "forecast": "201K",
-      "previous": "187K"
-    },
     {
       "title": "AAPL Earnings",
       "kind": "earnings",
