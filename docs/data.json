@@ -1,6 +1,18 @@
 {
-  "generated_at": "2026-07-30T08:23:12+00:00",
+  "generated_at": "2026-07-30T11:05:50+00:00",
   "next_event": {
+    "title": "BOE Gov Bailey Speaks",
+    "kind": "macro",
+    "symbol": "XAUUSD",
+    "impact": "high",
+    "scheduled_at": "2026-07-30T11:30:00+00:00",
+    "blackout_start": "2026-07-30T11:25:00+00:00",
+    "blackout_end": "2026-07-30T11:45:00+00:00",
+    "forecast": null,
+    "previous": null
+  },
+  "in_blackout": true,
+  "active_blackout": {
     "title": "BOE Monetary Policy Report",
     "kind": "macro",
     "symbol": "XAUUSD",
@@ -11,53 +23,7 @@
     "forecast": null,
     "previous": null
   },
-  "in_blackout": false,
-  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "BOE Monetary Policy Report",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T11:00:00+00:00",
-      "blackout_start": "2026-07-30T10:55:00+00:00",
-      "blackout_end": "2026-07-30T11:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "Monetary Policy Summary",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T11:00:00+00:00",
-      "blackout_start": "2026-07-30T10:55:00+00:00",
-      "blackout_end": "2026-07-30T11:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "MPC Official Bank Rate Votes",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T11:00:00+00:00",
-      "blackout_start": "2026-07-30T10:55:00+00:00",
-      "blackout_end": "2026-07-30T11:15:00+00:00",
-      "forecast": "2-0-7",
-      "previous": "2-0-7"
-    },
-    {
-      "title": "Official Bank Rate",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-07-30T11:00:00+00:00",
-      "blackout_start": "2026-07-30T10:55:00+00:00",
-      "blackout_end": "2026-07-30T11:15:00+00:00",
-      "forecast": "3.75%",
-      "previous": "3.75%"
-    },
     {
       "title": "BOE Gov Bailey Speaks",
       "kind": "macro",
