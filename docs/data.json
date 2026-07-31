@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T18:18:56+00:00",
+  "generated_at": "2026-07-31T20:18:28+00:00",
   "next_event": {
     "title": "AMD Earnings",
     "kind": "earnings",
@@ -86,6 +86,28 @@
       "symbol": "GOOGL",
       "impact": "high",
       "scheduled_at": "2026-10-28T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "AAPL Earnings",
+      "kind": "earnings",
+      "symbol": "AAPL",
+      "impact": "high",
+      "scheduled_at": "2026-10-29T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "AMZN Earnings",
+      "kind": "earnings",
+      "symbol": "AMZN",
+      "impact": "high",
+      "scheduled_at": "2026-10-29T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
