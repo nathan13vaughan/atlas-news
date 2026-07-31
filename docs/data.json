@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-07-31T06:11:16+00:00",
+  "generated_at": "2026-07-31T09:42:59+00:00",
   "next_event": {
-    "title": "Core CPI Flash Estimate y/y",
+    "title": "Employment Cost Index q/q",
     "kind": "macro",
-    "symbol": "XAUUSD",
+    "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-07-31T09:00:00+00:00",
-    "blackout_start": "2026-07-31T08:55:00+00:00",
-    "blackout_end": "2026-07-31T09:15:00+00:00",
-    "forecast": "2.4%",
-    "previous": "2.4%"
+    "scheduled_at": "2026-07-31T12:30:00+00:00",
+    "blackout_start": "2026-07-31T12:25:00+00:00",
+    "blackout_end": "2026-07-31T12:45:00+00:00",
+    "forecast": "0.8%",
+    "previous": "0.9%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-31T09:00:00+00:00",
-      "blackout_start": "2026-07-31T08:55:00+00:00",
-      "blackout_end": "2026-07-31T09:15:00+00:00",
-      "forecast": "2.4%",
-      "previous": "2.4%"
-    },
-    {
-      "title": "CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-07-31T09:00:00+00:00",
-      "blackout_start": "2026-07-31T08:55:00+00:00",
-      "blackout_end": "2026-07-31T09:15:00+00:00",
-      "forecast": "2.9%",
-      "previous": "2.8%"
-    },
     {
       "title": "Employment Cost Index q/q",
       "kind": "macro",
