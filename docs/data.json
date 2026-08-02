@@ -1,19 +1,52 @@
 {
-  "generated_at": "2026-08-02T02:42:16+00:00",
+  "generated_at": "2026-08-02T05:55:48+00:00",
   "next_event": {
-    "title": "AMD Earnings",
-    "kind": "earnings",
-    "symbol": "AMD",
+    "title": "ISM Manufacturing PMI",
+    "kind": "macro",
+    "symbol": "SPY",
     "impact": "high",
-    "scheduled_at": "2026-08-04T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-08-03T14:00:00+00:00",
+    "blackout_start": "2026-08-03T13:55:00+00:00",
+    "blackout_end": "2026-08-03T14:15:00+00:00",
+    "forecast": "54.0",
+    "previous": "53.3"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
+    {
+      "title": "ISM Manufacturing PMI",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-08-03T14:00:00+00:00",
+      "blackout_start": "2026-08-03T13:55:00+00:00",
+      "blackout_end": "2026-08-03T14:15:00+00:00",
+      "forecast": "54.0",
+      "previous": "53.3"
+    },
+    {
+      "title": "ISM Manufacturing Prices",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-03T14:00:00+00:00",
+      "blackout_start": "2026-08-03T13:55:00+00:00",
+      "blackout_end": "2026-08-03T14:15:00+00:00",
+      "forecast": "70.0",
+      "previous": "73.0"
+    },
+    {
+      "title": "JOLTS Job Openings",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-04T14:00:00+00:00",
+      "blackout_start": "2026-08-04T13:55:00+00:00",
+      "blackout_end": "2026-08-04T14:15:00+00:00",
+      "forecast": "7.42M",
+      "previous": "7.59M"
+    },
     {
       "title": "AMD Earnings",
       "kind": "earnings",
@@ -24,6 +57,72 @@
       "blackout_end": null,
       "forecast": null,
       "previous": null
+    },
+    {
+      "title": "ADP Non-Farm Employment Change",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-05T12:15:00+00:00",
+      "blackout_start": "2026-08-05T12:10:00+00:00",
+      "blackout_end": "2026-08-05T12:30:00+00:00",
+      "forecast": "71K",
+      "previous": "98K"
+    },
+    {
+      "title": "ISM Services PMI",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-05T14:00:00+00:00",
+      "blackout_start": "2026-08-05T13:55:00+00:00",
+      "blackout_end": "2026-08-05T14:15:00+00:00",
+      "forecast": "54.5",
+      "previous": "54.0"
+    },
+    {
+      "title": "Unemployment Claims",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-06T12:30:00+00:00",
+      "blackout_start": "2026-08-06T12:25:00+00:00",
+      "blackout_end": "2026-08-06T12:45:00+00:00",
+      "forecast": "205K",
+      "previous": "197K"
+    },
+    {
+      "title": "Average Hourly Earnings m/m",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-08-07T12:30:00+00:00",
+      "blackout_start": "2026-08-07T12:25:00+00:00",
+      "blackout_end": "2026-08-07T12:45:00+00:00",
+      "forecast": "0.3%",
+      "previous": "0.3%"
+    },
+    {
+      "title": "Non-Farm Employment Change",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-08-07T12:30:00+00:00",
+      "blackout_start": "2026-08-07T12:25:00+00:00",
+      "blackout_end": "2026-08-07T12:45:00+00:00",
+      "forecast": "88K",
+      "previous": "57K"
+    },
+    {
+      "title": "Unemployment Rate",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-08-07T12:30:00+00:00",
+      "blackout_start": "2026-08-07T12:25:00+00:00",
+      "blackout_end": "2026-08-07T12:45:00+00:00",
+      "forecast": "4.2%",
+      "previous": "4.2%"
     },
     {
       "title": "NVDA Earnings",
