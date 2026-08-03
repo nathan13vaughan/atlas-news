@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T18:49:52+00:00",
+  "generated_at": "2026-08-03T20:25:43+00:00",
   "next_event": {
     "title": "JOLTS Job Openings",
     "kind": "macro",
@@ -88,7 +88,7 @@
       "scheduled_at": "2026-08-07T12:30:00+00:00",
       "blackout_start": "2026-08-07T12:25:00+00:00",
       "blackout_end": "2026-08-07T12:45:00+00:00",
-      "forecast": "88K",
+      "forecast": "85K",
       "previous": "57K"
     },
     {
