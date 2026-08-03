@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-08-03T13:39:22+00:00",
+  "generated_at": "2026-08-03T16:22:43+00:00",
   "next_event": {
-    "title": "ISM Manufacturing PMI",
+    "title": "JOLTS Job Openings",
     "kind": "macro",
     "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-08-03T14:00:00+00:00",
-    "blackout_start": "2026-08-03T13:55:00+00:00",
-    "blackout_end": "2026-08-03T14:15:00+00:00",
-    "forecast": "54.0",
-    "previous": "53.3"
+    "impact": "medium",
+    "scheduled_at": "2026-08-04T14:00:00+00:00",
+    "blackout_start": "2026-08-04T13:55:00+00:00",
+    "blackout_end": "2026-08-04T14:15:00+00:00",
+    "forecast": "7.42M",
+    "previous": "7.59M"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "ISM Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-08-03T14:00:00+00:00",
-      "blackout_start": "2026-08-03T13:55:00+00:00",
-      "blackout_end": "2026-08-03T14:15:00+00:00",
-      "forecast": "54.0",
-      "previous": "53.3"
-    },
-    {
-      "title": "ISM Manufacturing Prices",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-08-03T14:00:00+00:00",
-      "blackout_start": "2026-08-03T13:55:00+00:00",
-      "blackout_end": "2026-08-03T14:15:00+00:00",
-      "forecast": "70.0",
-      "previous": "73.0"
-    },
     {
       "title": "JOLTS Job Openings",
       "kind": "macro",
