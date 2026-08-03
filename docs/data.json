@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T16:22:43+00:00",
+  "generated_at": "2026-08-03T18:49:52+00:00",
   "next_event": {
     "title": "JOLTS Job Openings",
     "kind": "macro",
@@ -8,7 +8,7 @@
     "scheduled_at": "2026-08-04T14:00:00+00:00",
     "blackout_start": "2026-08-04T13:55:00+00:00",
     "blackout_end": "2026-08-04T14:15:00+00:00",
-    "forecast": "7.42M",
+    "forecast": "7.44M",
     "previous": "7.59M"
   },
   "in_blackout": false,
@@ -22,7 +22,7 @@
       "scheduled_at": "2026-08-04T14:00:00+00:00",
       "blackout_start": "2026-08-04T13:55:00+00:00",
       "blackout_end": "2026-08-04T14:15:00+00:00",
-      "forecast": "7.42M",
+      "forecast": "7.44M",
       "previous": "7.59M"
     },
     {
@@ -44,7 +44,7 @@
       "scheduled_at": "2026-08-05T12:15:00+00:00",
       "blackout_start": "2026-08-05T12:10:00+00:00",
       "blackout_end": "2026-08-05T12:30:00+00:00",
-      "forecast": "71K",
+      "forecast": "68K",
       "previous": "98K"
     },
     {
@@ -66,7 +66,7 @@
       "scheduled_at": "2026-08-06T12:30:00+00:00",
       "blackout_start": "2026-08-06T12:25:00+00:00",
       "blackout_end": "2026-08-06T12:45:00+00:00",
-      "forecast": "205K",
+      "forecast": "203K",
       "previous": "197K"
     },
     {
