@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-08-05T11:58:05+00:00",
+  "generated_at": "2026-08-05T14:22:54+00:00",
   "next_event": {
-    "title": "ADP Non-Farm Employment Change",
+    "title": "President Trump Speaks",
     "kind": "macro",
     "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-08-05T12:15:00+00:00",
-    "blackout_start": "2026-08-05T12:10:00+00:00",
-    "blackout_end": "2026-08-05T12:30:00+00:00",
-    "forecast": "68K",
-    "previous": "98K"
+    "scheduled_at": "2026-08-05T20:30:00+00:00",
+    "blackout_start": "2026-08-05T20:25:00+00:00",
+    "blackout_end": "2026-08-05T20:45:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "ADP Non-Farm Employment Change",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-08-05T12:15:00+00:00",
-      "blackout_start": "2026-08-05T12:10:00+00:00",
-      "blackout_end": "2026-08-05T12:30:00+00:00",
-      "forecast": "68K",
-      "previous": "98K"
-    },
-    {
-      "title": "ISM Services PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-08-05T14:00:00+00:00",
-      "blackout_start": "2026-08-05T13:55:00+00:00",
-      "blackout_end": "2026-08-05T14:15:00+00:00",
-      "forecast": "54.5",
-      "previous": "54.0"
-    },
     {
       "title": "President Trump Speaks",
       "kind": "macro",
