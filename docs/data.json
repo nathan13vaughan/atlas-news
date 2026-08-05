@@ -1,40 +1,19 @@
 {
-  "generated_at": "2026-08-05T20:25:09+00:00",
+  "generated_at": "2026-08-05T22:11:06+00:00",
   "next_event": {
-    "title": "President Trump Speaks",
+    "title": "Unemployment Claims",
     "kind": "macro",
     "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-08-05T20:30:00+00:00",
-    "blackout_start": "2026-08-05T20:25:00+00:00",
-    "blackout_end": "2026-08-05T20:45:00+00:00",
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-08-06T12:30:00+00:00",
+    "blackout_start": "2026-08-06T12:25:00+00:00",
+    "blackout_end": "2026-08-06T12:45:00+00:00",
+    "forecast": "203K",
+    "previous": "197K"
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "President Trump Speaks",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-08-05T20:30:00+00:00",
-    "blackout_start": "2026-08-05T20:25:00+00:00",
-    "blackout_end": "2026-08-05T20:45:00+00:00",
-    "forecast": null,
-    "previous": null
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "President Trump Speaks",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-08-05T20:30:00+00:00",
-      "blackout_start": "2026-08-05T20:25:00+00:00",
-      "blackout_end": "2026-08-05T20:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Unemployment Claims",
       "kind": "macro",
