@@ -1,63 +1,19 @@
 {
-  "generated_at": "2026-08-12T11:43:08+00:00",
+  "generated_at": "2026-08-12T13:03:52+00:00",
   "next_event": {
-    "title": "Core CPI m/m",
+    "title": "GDP m/m",
     "kind": "macro",
-    "symbol": "SPY",
+    "symbol": "XAUUSD",
     "impact": "high",
-    "scheduled_at": "2026-08-12T12:30:00+00:00",
-    "blackout_start": "2026-08-12T12:25:00+00:00",
-    "blackout_end": "2026-08-12T12:45:00+00:00",
-    "forecast": "0.2%",
-    "previous": "0.0%"
+    "scheduled_at": "2026-08-13T06:00:00+00:00",
+    "blackout_start": "2026-08-13T05:55:00+00:00",
+    "blackout_end": "2026-08-13T06:15:00+00:00",
+    "forecast": "0.0%",
+    "previous": "0.1%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-08-12T12:30:00+00:00",
-      "blackout_start": "2026-08-12T12:25:00+00:00",
-      "blackout_end": "2026-08-12T12:45:00+00:00",
-      "forecast": "0.2%",
-      "previous": "0.0%"
-    },
-    {
-      "title": "Core CPI y/y",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-08-12T12:30:00+00:00",
-      "blackout_start": "2026-08-12T12:25:00+00:00",
-      "blackout_end": "2026-08-12T12:45:00+00:00",
-      "forecast": "2.5%",
-      "previous": "2.6%"
-    },
-    {
-      "title": "CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-08-12T12:30:00+00:00",
-      "blackout_start": "2026-08-12T12:25:00+00:00",
-      "blackout_end": "2026-08-12T12:45:00+00:00",
-      "forecast": "0.1%",
-      "previous": "-0.4%"
-    },
-    {
-      "title": "CPI y/y",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-08-12T12:30:00+00:00",
-      "blackout_start": "2026-08-12T12:25:00+00:00",
-      "blackout_end": "2026-08-12T12:45:00+00:00",
-      "forecast": "3.4%",
-      "previous": "3.5%"
-    },
     {
       "title": "GDP m/m",
       "kind": "macro",
