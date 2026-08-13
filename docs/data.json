@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T20:39:20+00:00",
+  "generated_at": "2026-08-13T21:41:56+00:00",
   "next_event": {
     "title": "Core Retail Sales m/m",
     "kind": "macro",
@@ -141,17 +141,6 @@
       "symbol": "AMZN",
       "impact": "high",
       "scheduled_at": "2026-10-29T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "AMD Earnings",
-      "kind": "earnings",
-      "symbol": "AMD",
-      "impact": "high",
-      "scheduled_at": "2026-11-03T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
