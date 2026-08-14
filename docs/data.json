@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-08-14T11:02:18+00:00",
+  "generated_at": "2026-08-14T13:01:38+00:00",
   "next_event": {
-    "title": "Core Retail Sales m/m",
+    "title": "Prelim UoM Consumer Sentiment",
     "kind": "macro",
     "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-08-14T12:30:00+00:00",
-    "blackout_start": "2026-08-14T12:25:00+00:00",
-    "blackout_end": "2026-08-14T12:45:00+00:00",
-    "forecast": "0.2%",
-    "previous": "-0.2%"
+    "scheduled_at": "2026-08-14T14:00:00+00:00",
+    "blackout_start": "2026-08-14T13:55:00+00:00",
+    "blackout_end": "2026-08-14T14:15:00+00:00",
+    "forecast": "54.7",
+    "previous": "54.4"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-08-14T12:30:00+00:00",
-      "blackout_start": "2026-08-14T12:25:00+00:00",
-      "blackout_end": "2026-08-14T12:45:00+00:00",
-      "forecast": "0.2%",
-      "previous": "-0.2%"
-    },
-    {
-      "title": "Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-08-14T12:30:00+00:00",
-      "blackout_start": "2026-08-14T12:25:00+00:00",
-      "blackout_end": "2026-08-14T12:45:00+00:00",
-      "forecast": "0.1%",
-      "previous": "0.2%"
-    },
     {
       "title": "Prelim UoM Consumer Sentiment",
       "kind": "macro",
@@ -57,6 +35,17 @@
       "blackout_end": "2026-08-14T14:15:00+00:00",
       "forecast": null,
       "previous": "4.2%"
+    },
+    {
+      "title": "President Trump Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-14T19:00:00+00:00",
+      "blackout_start": "2026-08-14T18:55:00+00:00",
+      "blackout_end": "2026-08-14T19:15:00+00:00",
+      "forecast": null,
+      "previous": null
     },
     {
       "title": "NVDA Earnings",
