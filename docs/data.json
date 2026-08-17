@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T19:25:32+00:00",
+  "generated_at": "2026-08-17T20:23:26+00:00",
   "next_event": {
     "title": "Claimant Count Change",
     "kind": "macro",
@@ -8,7 +8,7 @@
     "scheduled_at": "2026-08-18T06:00:00+00:00",
     "blackout_start": "2026-08-18T05:55:00+00:00",
     "blackout_end": "2026-08-18T06:15:00+00:00",
-    "forecast": "11.2K",
+    "forecast": "16.5K",
     "previous": "6.7K"
   },
   "in_blackout": false,
@@ -22,7 +22,7 @@
       "scheduled_at": "2026-08-18T06:00:00+00:00",
       "blackout_start": "2026-08-18T05:55:00+00:00",
       "blackout_end": "2026-08-18T06:15:00+00:00",
-      "forecast": "11.2K",
+      "forecast": "16.5K",
       "previous": "6.7K"
     },
     {
@@ -77,7 +77,7 @@
       "scheduled_at": "2026-08-20T12:30:00+00:00",
       "blackout_start": "2026-08-20T12:25:00+00:00",
       "blackout_end": "2026-08-20T12:45:00+00:00",
-      "forecast": "24.3",
+      "forecast": "24.1",
       "previous": "41.4"
     },
     {
@@ -99,7 +99,7 @@
       "scheduled_at": "2026-08-21T06:00:00+00:00",
       "blackout_start": "2026-08-21T05:55:00+00:00",
       "blackout_end": "2026-08-21T06:15:00+00:00",
-      "forecast": "-0.4%",
+      "forecast": "-0.5%",
       "previous": "1.0%"
     },
     {
