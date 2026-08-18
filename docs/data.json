@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T17:24:04+00:00",
+  "generated_at": "2026-08-18T18:34:52+00:00",
   "next_event": {
     "title": "CPI y/y",
     "kind": "macro",
@@ -33,6 +33,17 @@
       "scheduled_at": "2026-08-19T07:10:00+00:00",
       "blackout_start": "2026-08-19T07:05:00+00:00",
       "blackout_end": "2026-08-19T07:25:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-08-19T10:15:00+00:00",
+      "blackout_start": "2026-08-19T10:10:00+00:00",
+      "blackout_end": "2026-08-19T10:30:00+00:00",
       "forecast": null,
       "previous": null
     },
