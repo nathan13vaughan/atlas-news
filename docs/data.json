@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-08-18T05:26:25+00:00",
+  "generated_at": "2026-08-18T06:39:02+00:00",
   "next_event": {
-    "title": "Claimant Count Change",
+    "title": "CPI y/y",
     "kind": "macro",
     "symbol": "XAUUSD",
     "impact": "high",
-    "scheduled_at": "2026-08-18T06:00:00+00:00",
-    "blackout_start": "2026-08-18T05:55:00+00:00",
-    "blackout_end": "2026-08-18T06:15:00+00:00",
-    "forecast": "16.5K",
-    "previous": "6.7K"
+    "scheduled_at": "2026-08-19T06:00:00+00:00",
+    "blackout_start": "2026-08-19T05:55:00+00:00",
+    "blackout_end": "2026-08-19T06:15:00+00:00",
+    "forecast": "2.9%",
+    "previous": "2.6%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Claimant Count Change",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-08-18T06:00:00+00:00",
-      "blackout_start": "2026-08-18T05:55:00+00:00",
-      "blackout_end": "2026-08-18T06:15:00+00:00",
-      "forecast": "16.5K",
-      "previous": "6.7K"
-    },
-    {
-      "title": "Average Earnings Index 3m/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-08-18T06:00:00+00:00",
-      "blackout_start": "2026-08-18T05:55:00+00:00",
-      "blackout_end": "2026-08-18T06:15:00+00:00",
-      "forecast": "4.0%",
-      "previous": "4.3%"
-    },
     {
       "title": "CPI y/y",
       "kind": "macro",
