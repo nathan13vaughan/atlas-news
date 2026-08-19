@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T10:25:54+00:00",
+  "generated_at": "2026-08-19T11:22:38+00:00",
   "next_event": {
     "title": "FOMC Meeting Minutes",
     "kind": "macro",
@@ -11,18 +11,8 @@
     "forecast": null,
     "previous": null
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "ECB President Lagarde Speaks",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-08-19T10:15:00+00:00",
-    "blackout_start": "2026-08-19T10:10:00+00:00",
-    "blackout_end": "2026-08-19T10:30:00+00:00",
-    "forecast": null,
-    "previous": null
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
     {
       "title": "FOMC Meeting Minutes",
