@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T12:43:43+00:00",
+  "generated_at": "2026-08-20T13:43:23+00:00",
   "next_event": {
     "title": "Retail Sales m/m",
     "kind": "macro",
@@ -11,18 +11,8 @@
     "forecast": "-0.5%",
     "previous": "1.0%"
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "Philly Fed Manufacturing Index",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-08-20T12:30:00+00:00",
-    "blackout_start": "2026-08-20T12:25:00+00:00",
-    "blackout_end": "2026-08-20T12:45:00+00:00",
-    "forecast": "24.1",
-    "previous": "41.4"
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
     {
       "title": "Retail Sales m/m",
