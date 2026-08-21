@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T01:10:13+00:00",
+  "generated_at": "2026-08-21T03:00:06+00:00",
   "next_event": {
     "title": "Retail Sales m/m",
     "kind": "macro",
@@ -90,6 +90,17 @@
       "blackout_end": "2026-08-21T08:45:00+00:00",
       "forecast": "51.8",
       "previous": "51.8"
+    },
+    {
+      "title": "President Trump Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-21T23:00:00+00:00",
+      "blackout_start": "2026-08-21T22:55:00+00:00",
+      "blackout_end": "2026-08-21T23:15:00+00:00",
+      "forecast": null,
+      "previous": null
     },
     {
       "title": "NVDA Earnings",
