@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T08:37:30+00:00",
+  "generated_at": "2026-08-21T09:33:53+00:00",
   "next_event": {
     "title": "President Trump Speaks",
     "kind": "macro",
@@ -11,18 +11,8 @@
     "forecast": null,
     "previous": null
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "Flash Manufacturing PMI",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-08-21T08:30:00+00:00",
-    "blackout_start": "2026-08-21T08:25:00+00:00",
-    "blackout_end": "2026-08-21T08:45:00+00:00",
-    "forecast": "51.6",
-    "previous": "52.8"
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
     {
       "title": "President Trump Speaks",
