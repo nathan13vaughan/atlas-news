@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-08-21T05:29:47+00:00",
+  "generated_at": "2026-08-21T06:41:43+00:00",
   "next_event": {
-    "title": "Retail Sales m/m",
+    "title": "French Flash Manufacturing PMI",
     "kind": "macro",
     "symbol": "XAUUSD",
     "impact": "medium",
-    "scheduled_at": "2026-08-21T06:00:00+00:00",
-    "blackout_start": "2026-08-21T05:55:00+00:00",
-    "blackout_end": "2026-08-21T06:15:00+00:00",
-    "forecast": "-0.5%",
-    "previous": "1.0%"
+    "scheduled_at": "2026-08-21T07:15:00+00:00",
+    "blackout_start": "2026-08-21T07:10:00+00:00",
+    "blackout_end": "2026-08-21T07:30:00+00:00",
+    "forecast": "50.1",
+    "previous": "50.0"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-08-21T06:00:00+00:00",
-      "blackout_start": "2026-08-21T05:55:00+00:00",
-      "blackout_end": "2026-08-21T06:15:00+00:00",
-      "forecast": "-0.5%",
-      "previous": "1.0%"
-    },
     {
       "title": "French Flash Manufacturing PMI",
       "kind": "macro",
