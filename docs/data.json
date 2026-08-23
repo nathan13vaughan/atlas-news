@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T14:20:33+00:00",
+  "generated_at": "2026-08-23T15:20:07+00:00",
   "next_event": {
     "title": "Treasury Sec Bessent Speaks",
     "kind": "macro",
@@ -172,6 +172,17 @@
       "title": "META Earnings",
       "kind": "earnings",
       "symbol": "META",
+      "impact": "high",
+      "scheduled_at": "2026-10-28T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "GOOGL Earnings",
+      "kind": "earnings",
+      "symbol": "GOOGL",
       "impact": "high",
       "scheduled_at": "2026-10-28T20:00:00+00:00",
       "blackout_start": null,
