@@ -1,19 +1,74 @@
 {
-  "generated_at": "2026-08-23T04:37:28+00:00",
+  "generated_at": "2026-08-23T05:26:51+00:00",
   "next_event": {
-    "title": "NVDA Earnings",
-    "kind": "earnings",
-    "symbol": "NVDA",
-    "impact": "high",
-    "scheduled_at": "2026-08-26T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
+    "title": "Treasury Sec Bessent Speaks",
+    "kind": "macro",
+    "symbol": "SPY",
+    "impact": "medium",
+    "scheduled_at": "2026-08-24T18:00:00+00:00",
+    "blackout_start": "2026-08-24T17:55:00+00:00",
+    "blackout_end": "2026-08-24T18:15:00+00:00",
     "forecast": null,
     "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
+    {
+      "title": "Treasury Sec Bessent Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-24T18:00:00+00:00",
+      "blackout_start": "2026-08-24T17:55:00+00:00",
+      "blackout_end": "2026-08-24T18:15:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "CB Consumer Confidence",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-25T14:00:00+00:00",
+      "blackout_start": "2026-08-25T13:55:00+00:00",
+      "blackout_end": "2026-08-25T14:15:00+00:00",
+      "forecast": "90.3",
+      "previous": "90.8"
+    },
+    {
+      "title": "Core PCE Price Index m/m",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-08-26T12:30:00+00:00",
+      "blackout_start": "2026-08-26T12:25:00+00:00",
+      "blackout_end": "2026-08-26T12:45:00+00:00",
+      "forecast": "0.2%",
+      "previous": "0.1%"
+    },
+    {
+      "title": "Prelim GDP q/q",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-08-26T12:30:00+00:00",
+      "blackout_start": "2026-08-26T12:25:00+00:00",
+      "blackout_end": "2026-08-26T12:45:00+00:00",
+      "forecast": "1.5%",
+      "previous": "1.5%"
+    },
+    {
+      "title": "Prelim GDP Price Index q/q",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-26T12:30:00+00:00",
+      "blackout_start": "2026-08-26T12:25:00+00:00",
+      "blackout_end": "2026-08-26T12:45:00+00:00",
+      "forecast": "6.2%",
+      "previous": "6.2%"
+    },
     {
       "title": "NVDA Earnings",
       "kind": "earnings",
@@ -24,6 +79,61 @@
       "blackout_end": null,
       "forecast": null,
       "previous": null
+    },
+    {
+      "title": "Unemployment Claims",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-27T12:30:00+00:00",
+      "blackout_start": "2026-08-27T12:25:00+00:00",
+      "blackout_end": "2026-08-27T12:45:00+00:00",
+      "forecast": "208K",
+      "previous": "206K"
+    },
+    {
+      "title": "Fed Chairman Warsh Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-08-28T14:00:00+00:00",
+      "blackout_start": "2026-08-28T13:55:00+00:00",
+      "blackout_end": "2026-08-28T14:15:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "Prelim Benchmark Payrolls Revision",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-08-28T14:00:00+00:00",
+      "blackout_start": "2026-08-28T13:55:00+00:00",
+      "blackout_end": "2026-08-28T14:15:00+00:00",
+      "forecast": null,
+      "previous": "-911K"
+    },
+    {
+      "title": "Revised UoM Consumer Sentiment",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-28T14:00:00+00:00",
+      "blackout_start": "2026-08-28T13:55:00+00:00",
+      "blackout_end": "2026-08-28T14:15:00+00:00",
+      "forecast": "51.0",
+      "previous": "51.0"
+    },
+    {
+      "title": "Revised UoM Inflation Expectations",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-08-28T14:00:00+00:00",
+      "blackout_start": "2026-08-28T13:55:00+00:00",
+      "blackout_end": "2026-08-28T14:15:00+00:00",
+      "forecast": null,
+      "previous": "4.3%"
     },
     {
       "title": "NFLX Earnings",
