@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-24T15:36:44+00:00",
+  "generated_at": "2026-08-24T16:34:24+00:00",
   "next_event": {
     "title": "Treasury Sec Bessent Speaks",
     "kind": "macro",
     "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-08-24T18:00:00+00:00",
-    "blackout_start": "2026-08-24T17:55:00+00:00",
-    "blackout_end": "2026-08-24T18:15:00+00:00",
+    "scheduled_at": "2026-08-24T17:00:00+00:00",
+    "blackout_start": "2026-08-24T16:55:00+00:00",
+    "blackout_end": "2026-08-24T17:15:00+00:00",
     "forecast": null,
     "previous": null
   },
@@ -19,9 +19,9 @@
       "kind": "macro",
       "symbol": "SPY",
       "impact": "medium",
-      "scheduled_at": "2026-08-24T18:00:00+00:00",
-      "blackout_start": "2026-08-24T17:55:00+00:00",
-      "blackout_end": "2026-08-24T18:15:00+00:00",
+      "scheduled_at": "2026-08-24T17:00:00+00:00",
+      "blackout_start": "2026-08-24T16:55:00+00:00",
+      "blackout_end": "2026-08-24T17:15:00+00:00",
       "forecast": null,
       "previous": null
     },
