@@ -1,63 +1,19 @@
 {
-  "generated_at": "2026-08-28T09:36:07+00:00",
+  "generated_at": "2026-08-28T21:05:06+00:00",
   "next_event": {
-    "title": "Fed Chairman Warsh Speaks",
-    "kind": "macro",
-    "symbol": "SPY",
+    "title": "NFLX Earnings",
+    "kind": "earnings",
+    "symbol": "NFLX",
     "impact": "high",
-    "scheduled_at": "2026-08-28T14:00:00+00:00",
-    "blackout_start": "2026-08-28T13:55:00+00:00",
-    "blackout_end": "2026-08-28T14:15:00+00:00",
+    "scheduled_at": "2026-10-20T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
     "forecast": null,
     "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Fed Chairman Warsh Speaks",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-08-28T14:00:00+00:00",
-      "blackout_start": "2026-08-28T13:55:00+00:00",
-      "blackout_end": "2026-08-28T14:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "Prelim Benchmark Payrolls Revision",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-08-28T14:00:00+00:00",
-      "blackout_start": "2026-08-28T13:55:00+00:00",
-      "blackout_end": "2026-08-28T14:15:00+00:00",
-      "forecast": null,
-      "previous": "-911K"
-    },
-    {
-      "title": "Revised UoM Consumer Sentiment",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-08-28T14:00:00+00:00",
-      "blackout_start": "2026-08-28T13:55:00+00:00",
-      "blackout_end": "2026-08-28T14:15:00+00:00",
-      "forecast": "51.0",
-      "previous": "51.0"
-    },
-    {
-      "title": "Revised UoM Inflation Expectations",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-08-28T14:00:00+00:00",
-      "blackout_start": "2026-08-28T13:55:00+00:00",
-      "blackout_end": "2026-08-28T14:15:00+00:00",
-      "forecast": null,
-      "previous": "4.3%"
-    },
     {
       "title": "NFLX Earnings",
       "kind": "earnings",
