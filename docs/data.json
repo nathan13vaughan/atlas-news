@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T21:33:43+00:00",
+  "generated_at": "2026-09-08T23:49:51+00:00",
   "next_event": {
     "title": "Main Refinancing Rate",
     "kind": "macro",
@@ -173,9 +173,9 @@
       "kind": "macro",
       "symbol": "XAUUSD",
       "impact": "medium",
-      "scheduled_at": "2026-09-12T07:30:00+00:00",
-      "blackout_start": "2026-09-12T07:25:00+00:00",
-      "blackout_end": "2026-09-12T07:45:00+00:00",
+      "scheduled_at": "2026-09-12T08:00:00+00:00",
+      "blackout_start": "2026-09-12T07:55:00+00:00",
+      "blackout_end": "2026-09-12T08:15:00+00:00",
       "forecast": null,
       "previous": null
     },
