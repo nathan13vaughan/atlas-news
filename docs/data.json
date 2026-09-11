@@ -1,52 +1,19 @@
 {
-  "generated_at": "2026-09-11T13:14:11+00:00",
+  "generated_at": "2026-09-11T17:30:42+00:00",
   "next_event": {
     "title": "ECB President Lagarde Speaks",
     "kind": "macro",
     "symbol": "XAUUSD",
     "impact": "medium",
-    "scheduled_at": "2026-09-11T14:00:00+00:00",
-    "blackout_start": "2026-09-11T13:55:00+00:00",
-    "blackout_end": "2026-09-11T14:15:00+00:00",
+    "scheduled_at": "2026-09-12T08:00:00+00:00",
+    "blackout_start": "2026-09-12T07:55:00+00:00",
+    "blackout_end": "2026-09-12T08:15:00+00:00",
     "forecast": null,
     "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-09-11T14:00:00+00:00",
-      "blackout_start": "2026-09-11T13:55:00+00:00",
-      "blackout_end": "2026-09-11T14:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "Prelim UoM Consumer Sentiment",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-09-11T14:00:00+00:00",
-      "blackout_start": "2026-09-11T13:55:00+00:00",
-      "blackout_end": "2026-09-11T14:15:00+00:00",
-      "forecast": "51.0",
-      "previous": "51.0"
-    },
-    {
-      "title": "Prelim UoM Inflation Expectations",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-09-11T14:00:00+00:00",
-      "blackout_start": "2026-09-11T13:55:00+00:00",
-      "blackout_end": "2026-09-11T14:15:00+00:00",
-      "forecast": null,
-      "previous": "4.3%"
-    },
     {
       "title": "ECB President Lagarde Speaks",
       "kind": "macro",
