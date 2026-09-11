@@ -1,63 +1,19 @@
 {
-  "generated_at": "2026-09-11T08:33:58+00:00",
+  "generated_at": "2026-09-11T13:14:11+00:00",
   "next_event": {
-    "title": "Core CPI m/m",
+    "title": "ECB President Lagarde Speaks",
     "kind": "macro",
-    "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-09-11T12:30:00+00:00",
-    "blackout_start": "2026-09-11T12:25:00+00:00",
-    "blackout_end": "2026-09-11T12:45:00+00:00",
-    "forecast": "0.2%",
-    "previous": "0.2%"
+    "symbol": "XAUUSD",
+    "impact": "medium",
+    "scheduled_at": "2026-09-11T14:00:00+00:00",
+    "blackout_start": "2026-09-11T13:55:00+00:00",
+    "blackout_end": "2026-09-11T14:15:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-09-11T12:30:00+00:00",
-      "blackout_start": "2026-09-11T12:25:00+00:00",
-      "blackout_end": "2026-09-11T12:45:00+00:00",
-      "forecast": "0.2%",
-      "previous": "0.2%"
-    },
-    {
-      "title": "Core CPI y/y",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-09-11T12:30:00+00:00",
-      "blackout_start": "2026-09-11T12:25:00+00:00",
-      "blackout_end": "2026-09-11T12:45:00+00:00",
-      "forecast": "2.4%",
-      "previous": "2.5%"
-    },
-    {
-      "title": "CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-09-11T12:30:00+00:00",
-      "blackout_start": "2026-09-11T12:25:00+00:00",
-      "blackout_end": "2026-09-11T12:45:00+00:00",
-      "forecast": "0.4%",
-      "previous": "0.1%"
-    },
-    {
-      "title": "CPI y/y",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-09-11T12:30:00+00:00",
-      "blackout_start": "2026-09-11T12:25:00+00:00",
-      "blackout_end": "2026-09-11T12:45:00+00:00",
-      "forecast": "3.4%",
-      "previous": "3.4%"
-    },
     {
       "title": "ECB President Lagarde Speaks",
       "kind": "macro",
