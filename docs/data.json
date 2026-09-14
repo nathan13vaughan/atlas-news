@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-09-14T11:49:51+00:00",
+  "generated_at": "2026-09-14T17:43:07+00:00",
   "next_event": {
-    "title": "ECB President Lagarde Speaks",
+    "title": "Claimant Count Change",
     "kind": "macro",
     "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-09-14T15:15:00+00:00",
-    "blackout_start": "2026-09-14T15:10:00+00:00",
-    "blackout_end": "2026-09-14T15:30:00+00:00",
-    "forecast": null,
-    "previous": null
+    "impact": "high",
+    "scheduled_at": "2026-09-15T06:00:00+00:00",
+    "blackout_start": "2026-09-15T05:55:00+00:00",
+    "blackout_end": "2026-09-15T06:15:00+00:00",
+    "forecast": "8.3K",
+    "previous": "-11.0K"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-09-14T15:15:00+00:00",
-      "blackout_start": "2026-09-14T15:10:00+00:00",
-      "blackout_end": "2026-09-14T15:30:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Claimant Count Change",
       "kind": "macro",
