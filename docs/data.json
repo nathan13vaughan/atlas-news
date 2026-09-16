@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T13:08:21+00:00",
+  "generated_at": "2026-09-16T17:58:00+00:00",
   "next_event": {
     "title": "Federal Funds Rate",
     "kind": "macro",
@@ -11,8 +11,18 @@
     "forecast": "4.00%",
     "previous": "3.75%"
   },
-  "in_blackout": false,
-  "active_blackout": null,
+  "in_blackout": true,
+  "active_blackout": {
+    "title": "Federal Funds Rate",
+    "kind": "macro",
+    "symbol": "SPY",
+    "impact": "high",
+    "scheduled_at": "2026-09-16T18:00:00+00:00",
+    "blackout_start": "2026-09-16T17:55:00+00:00",
+    "blackout_end": "2026-09-16T18:15:00+00:00",
+    "forecast": "4.00%",
+    "previous": "3.75%"
+  },
   "upcoming": [
     {
       "title": "Federal Funds Rate",
