@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T22:50:45+00:00",
+  "generated_at": "2026-09-16T01:05:41+00:00",
   "next_event": {
     "title": "CPI y/y",
     "kind": "macro",
@@ -33,7 +33,7 @@
       "scheduled_at": "2026-09-16T12:30:00+00:00",
       "blackout_start": "2026-09-16T12:25:00+00:00",
       "blackout_end": "2026-09-16T12:45:00+00:00",
-      "forecast": "0.5%",
+      "forecast": "0.6%",
       "previous": "-0.3%"
     },
     {
@@ -143,7 +143,7 @@
       "scheduled_at": "2026-09-17T12:30:00+00:00",
       "blackout_start": "2026-09-17T12:25:00+00:00",
       "blackout_end": "2026-09-17T12:45:00+00:00",
-      "forecast": "208K",
+      "forecast": "207K",
       "previous": "206K"
     },
     {
