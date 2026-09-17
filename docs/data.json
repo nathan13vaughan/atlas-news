@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T05:44:28+00:00",
+  "generated_at": "2026-09-17T10:58:41+00:00",
   "next_event": {
     "title": "Monetary Policy Summary",
     "kind": "macro",
@@ -11,8 +11,18 @@
     "forecast": null,
     "previous": null
   },
-  "in_blackout": false,
-  "active_blackout": null,
+  "in_blackout": true,
+  "active_blackout": {
+    "title": "Monetary Policy Summary",
+    "kind": "macro",
+    "symbol": "XAUUSD",
+    "impact": "high",
+    "scheduled_at": "2026-09-17T11:00:00+00:00",
+    "blackout_start": "2026-09-17T10:55:00+00:00",
+    "blackout_end": "2026-09-17T11:15:00+00:00",
+    "forecast": null,
+    "previous": null
+  },
   "upcoming": [
     {
       "title": "Monetary Policy Summary",
