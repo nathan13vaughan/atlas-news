@@ -1,84 +1,19 @@
 {
-  "generated_at": "2026-09-17T10:58:41+00:00",
+  "generated_at": "2026-09-17T15:29:51+00:00",
   "next_event": {
-    "title": "Monetary Policy Summary",
+    "title": "Retail Sales m/m",
     "kind": "macro",
     "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-09-17T11:00:00+00:00",
-    "blackout_start": "2026-09-17T10:55:00+00:00",
-    "blackout_end": "2026-09-17T11:15:00+00:00",
-    "forecast": null,
-    "previous": null
+    "impact": "medium",
+    "scheduled_at": "2026-09-18T06:00:00+00:00",
+    "blackout_start": "2026-09-18T05:55:00+00:00",
+    "blackout_end": "2026-09-18T06:15:00+00:00",
+    "forecast": "-0.2%",
+    "previous": "-0.5%"
   },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "Monetary Policy Summary",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-09-17T11:00:00+00:00",
-    "blackout_start": "2026-09-17T10:55:00+00:00",
-    "blackout_end": "2026-09-17T11:15:00+00:00",
-    "forecast": null,
-    "previous": null
-  },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Monetary Policy Summary",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-09-17T11:00:00+00:00",
-      "blackout_start": "2026-09-17T10:55:00+00:00",
-      "blackout_end": "2026-09-17T11:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "MPC Official Bank Rate Votes",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-09-17T11:00:00+00:00",
-      "blackout_start": "2026-09-17T10:55:00+00:00",
-      "blackout_end": "2026-09-17T11:15:00+00:00",
-      "forecast": "3-0-6",
-      "previous": "3-0-6"
-    },
-    {
-      "title": "Official Bank Rate",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-09-17T11:00:00+00:00",
-      "blackout_start": "2026-09-17T10:55:00+00:00",
-      "blackout_end": "2026-09-17T11:15:00+00:00",
-      "forecast": "3.75%",
-      "previous": "3.75%"
-    },
-    {
-      "title": "Philly Fed Manufacturing Index",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-09-17T12:30:00+00:00",
-      "blackout_start": "2026-09-17T12:25:00+00:00",
-      "blackout_end": "2026-09-17T12:45:00+00:00",
-      "forecast": "31.3",
-      "previous": "47.4"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-09-17T12:30:00+00:00",
-      "blackout_start": "2026-09-17T12:25:00+00:00",
-      "blackout_end": "2026-09-17T12:45:00+00:00",
-      "forecast": "207K",
-      "previous": "206K"
-    },
     {
       "title": "Retail Sales m/m",
       "kind": "macro",
