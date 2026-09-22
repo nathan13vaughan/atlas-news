@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-09-22T13:06:05+00:00",
+  "generated_at": "2026-09-22T17:56:34+00:00",
   "next_event": {
-    "title": "President Trump Speaks",
+    "title": "French Flash Manufacturing PMI",
     "kind": "macro",
-    "symbol": "SPY",
+    "symbol": "XAUUSD",
     "impact": "medium",
-    "scheduled_at": "2026-09-22T13:55:00+00:00",
-    "blackout_start": "2026-09-22T13:50:00+00:00",
-    "blackout_end": "2026-09-22T14:10:00+00:00",
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-09-23T07:15:00+00:00",
+    "blackout_start": "2026-09-23T07:10:00+00:00",
+    "blackout_end": "2026-09-23T07:30:00+00:00",
+    "forecast": "50.9",
+    "previous": "51.5"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "President Trump Speaks",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-09-22T13:55:00+00:00",
-      "blackout_start": "2026-09-22T13:50:00+00:00",
-      "blackout_end": "2026-09-22T14:10:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "French Flash Manufacturing PMI",
       "kind": "macro",
