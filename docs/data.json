@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-09-25T05:49:11+00:00",
+  "generated_at": "2026-09-25T11:10:40+00:00",
   "next_event": {
-    "title": "BOE Gov Bailey Speaks",
+    "title": "Revised UoM Consumer Sentiment",
     "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-09-25T09:15:00+00:00",
-    "blackout_start": "2026-09-25T09:10:00+00:00",
-    "blackout_end": "2026-09-25T09:30:00+00:00",
-    "forecast": null,
-    "previous": null
+    "symbol": "SPY",
+    "impact": "medium",
+    "scheduled_at": "2026-09-25T14:00:00+00:00",
+    "blackout_start": "2026-09-25T13:55:00+00:00",
+    "blackout_end": "2026-09-25T14:15:00+00:00",
+    "forecast": "47.4",
+    "previous": "47.8"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "BOE Gov Bailey Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-09-25T09:15:00+00:00",
-      "blackout_start": "2026-09-25T09:10:00+00:00",
-      "blackout_end": "2026-09-25T09:30:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Revised UoM Consumer Sentiment",
       "kind": "macro",
