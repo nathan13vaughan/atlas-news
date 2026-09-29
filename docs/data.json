@@ -1,51 +1,19 @@
 {
-  "generated_at": "2026-09-29T11:05:57+00:00",
+  "generated_at": "2026-09-29T17:39:08+00:00",
   "next_event": {
-    "title": "CB Consumer Confidence",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-09-29T14:00:00+00:00",
-    "blackout_start": "2026-09-29T13:55:00+00:00",
-    "blackout_end": "2026-09-29T14:15:00+00:00",
-    "forecast": "89.2",
-    "previous": "89.4"
-  },
-  "in_blackout": true,
-  "active_blackout": {
-    "title": "ECB President Lagarde Speaks",
+    "title": "German Prelim CPI m/m",
     "kind": "macro",
     "symbol": "XAUUSD",
     "impact": "medium",
-    "scheduled_at": "2026-09-29T11:00:00+00:00",
-    "blackout_start": "2026-09-29T10:55:00+00:00",
-    "blackout_end": "2026-09-29T11:15:00+00:00",
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-09-30T06:29:00+00:00",
+    "blackout_start": "2026-09-30T06:24:00+00:00",
+    "blackout_end": "2026-09-30T06:44:00+00:00",
+    "forecast": "0.5%",
+    "previous": "0.2%"
   },
+  "in_blackout": false,
+  "active_blackout": null,
   "upcoming": [
-    {
-      "title": "CB Consumer Confidence",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-09-29T14:00:00+00:00",
-      "blackout_start": "2026-09-29T13:55:00+00:00",
-      "blackout_end": "2026-09-29T14:15:00+00:00",
-      "forecast": "89.2",
-      "previous": "89.4"
-    },
-    {
-      "title": "JOLTS Job Openings",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-09-29T14:00:00+00:00",
-      "blackout_start": "2026-09-29T13:55:00+00:00",
-      "blackout_end": "2026-09-29T14:15:00+00:00",
-      "forecast": "7.23M",
-      "previous": "7.27M"
-    },
     {
       "title": "German Prelim CPI m/m",
       "kind": "macro",
