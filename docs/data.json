@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T23:28:35+00:00",
+  "generated_at": "2026-10-01T04:13:51+00:00",
   "next_event": {
     "title": "BOE Gov Bailey Speaks",
     "kind": "macro",
@@ -110,7 +110,7 @@
       "scheduled_at": "2026-10-02T12:30:00+00:00",
       "blackout_start": "2026-10-02T12:25:00+00:00",
       "blackout_end": "2026-10-02T12:45:00+00:00",
-      "forecast": "90K",
+      "forecast": "89K",
       "previous": "162K"
     },
     {
