@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-10-02T02:07:29+00:00",
+  "generated_at": "2026-10-02T09:21:53+00:00",
   "next_event": {
-    "title": "Core CPI Flash Estimate y/y",
+    "title": "Average Hourly Earnings m/m",
     "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-10-02T09:00:00+00:00",
-    "blackout_start": "2026-10-02T08:55:00+00:00",
-    "blackout_end": "2026-10-02T09:15:00+00:00",
-    "forecast": "2.5%",
-    "previous": "2.4%"
+    "symbol": "SPY",
+    "impact": "high",
+    "scheduled_at": "2026-10-02T12:30:00+00:00",
+    "blackout_start": "2026-10-02T12:25:00+00:00",
+    "blackout_end": "2026-10-02T12:45:00+00:00",
+    "forecast": "0.3%",
+    "previous": "0.3%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-10-02T09:00:00+00:00",
-      "blackout_start": "2026-10-02T08:55:00+00:00",
-      "blackout_end": "2026-10-02T09:15:00+00:00",
-      "forecast": "2.5%",
-      "previous": "2.4%"
-    },
-    {
-      "title": "CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-10-02T09:00:00+00:00",
-      "blackout_start": "2026-10-02T08:55:00+00:00",
-      "blackout_end": "2026-10-02T09:15:00+00:00",
-      "forecast": "3.7%",
-      "previous": "3.3%"
-    },
     {
       "title": "Average Hourly Earnings m/m",
       "kind": "macro",
