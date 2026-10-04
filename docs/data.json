@@ -1,19 +1,74 @@
 {
-  "generated_at": "2026-10-04T02:23:59+00:00",
+  "generated_at": "2026-10-04T09:21:07+00:00",
   "next_event": {
-    "title": "NFLX Earnings",
-    "kind": "earnings",
-    "symbol": "NFLX",
-    "impact": "high",
-    "scheduled_at": "2026-10-20T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
+    "title": "ISM Services PMI",
+    "kind": "macro",
+    "symbol": "SPY",
+    "impact": "medium",
+    "scheduled_at": "2026-10-05T14:00:00+00:00",
+    "blackout_start": "2026-10-05T13:55:00+00:00",
+    "blackout_end": "2026-10-05T14:15:00+00:00",
+    "forecast": "55.1",
+    "previous": "55.4"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
+    {
+      "title": "ISM Services PMI",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-05T14:00:00+00:00",
+      "blackout_start": "2026-10-05T13:55:00+00:00",
+      "blackout_end": "2026-10-05T14:15:00+00:00",
+      "forecast": "55.1",
+      "previous": "55.4"
+    },
+    {
+      "title": "FOMC Meeting Minutes",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-10-07T18:00:00+00:00",
+      "blackout_start": "2026-10-07T17:55:00+00:00",
+      "blackout_end": "2026-10-07T18:15:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "Unemployment Claims",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-08T12:30:00+00:00",
+      "blackout_start": "2026-10-08T12:25:00+00:00",
+      "blackout_end": "2026-10-08T12:45:00+00:00",
+      "forecast": "200K",
+      "previous": "197K"
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-09T14:00:00+00:00",
+      "blackout_start": "2026-10-09T13:55:00+00:00",
+      "blackout_end": "2026-10-09T14:15:00+00:00",
+      "forecast": "47.6",
+      "previous": "47.8"
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-09T14:00:00+00:00",
+      "blackout_start": "2026-10-09T13:55:00+00:00",
+      "blackout_end": "2026-10-09T14:15:00+00:00",
+      "forecast": null,
+      "previous": "4.6%"
+    },
     {
       "title": "NFLX Earnings",
       "kind": "earnings",
