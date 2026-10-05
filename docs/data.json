@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-10-05T08:21:05+00:00",
+  "generated_at": "2026-10-05T17:53:34+00:00",
   "next_event": {
-    "title": "ISM Services PMI",
+    "title": "FOMC Meeting Minutes",
     "kind": "macro",
     "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-10-05T14:00:00+00:00",
-    "blackout_start": "2026-10-05T13:55:00+00:00",
-    "blackout_end": "2026-10-05T14:15:00+00:00",
-    "forecast": "55.1",
-    "previous": "55.4"
+    "impact": "high",
+    "scheduled_at": "2026-10-07T18:00:00+00:00",
+    "blackout_start": "2026-10-07T17:55:00+00:00",
+    "blackout_end": "2026-10-07T18:15:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "ISM Services PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-10-05T14:00:00+00:00",
-      "blackout_start": "2026-10-05T13:55:00+00:00",
-      "blackout_end": "2026-10-05T14:15:00+00:00",
-      "forecast": "55.1",
-      "previous": "55.4"
-    },
     {
       "title": "FOMC Meeting Minutes",
       "kind": "macro",
@@ -33,6 +22,28 @@
       "scheduled_at": "2026-10-07T18:00:00+00:00",
       "blackout_start": "2026-10-07T17:55:00+00:00",
       "blackout_end": "2026-10-07T18:15:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "FOMC Member Waller Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-08T08:30:00+00:00",
+      "blackout_start": "2026-10-08T08:25:00+00:00",
+      "blackout_end": "2026-10-08T08:45:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "BOE Gov Bailey Speaks",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-10-08T12:15:00+00:00",
+      "blackout_start": "2026-10-08T12:10:00+00:00",
+      "blackout_end": "2026-10-08T12:30:00+00:00",
       "forecast": null,
       "previous": null
     },
