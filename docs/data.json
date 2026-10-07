@@ -1,19 +1,30 @@
 {
-  "generated_at": "2026-10-07T02:05:20+00:00",
+  "generated_at": "2026-10-07T09:49:11+00:00",
   "next_event": {
-    "title": "FOMC Meeting Minutes",
+    "title": "President Trump Speaks",
     "kind": "macro",
     "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-10-07T18:00:00+00:00",
-    "blackout_start": "2026-10-07T17:55:00+00:00",
-    "blackout_end": "2026-10-07T18:15:00+00:00",
+    "impact": "medium",
+    "scheduled_at": "2026-10-07T17:00:00+00:00",
+    "blackout_start": "2026-10-07T16:55:00+00:00",
+    "blackout_end": "2026-10-07T17:15:00+00:00",
     "forecast": null,
     "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
+    {
+      "title": "President Trump Speaks",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-07T17:00:00+00:00",
+      "blackout_start": "2026-10-07T16:55:00+00:00",
+      "blackout_end": "2026-10-07T17:15:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
     {
       "title": "FOMC Meeting Minutes",
       "kind": "macro",
@@ -136,9 +147,9 @@
       "previous": null
     },
     {
-      "title": "AAPL Earnings",
+      "title": "AMZN Earnings",
       "kind": "earnings",
-      "symbol": "AAPL",
+      "symbol": "AMZN",
       "impact": "high",
       "scheduled_at": "2026-10-29T20:00:00+00:00",
       "blackout_start": null,
@@ -147,11 +158,11 @@
       "previous": null
     },
     {
-      "title": "AMZN Earnings",
+      "title": "AAPL Earnings",
       "kind": "earnings",
-      "symbol": "AMZN",
+      "symbol": "AAPL",
       "impact": "high",
-      "scheduled_at": "2026-10-29T20:00:00+00:00",
+      "scheduled_at": "2026-11-02T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
