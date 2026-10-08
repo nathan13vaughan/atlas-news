@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-10-08T10:00:07+00:00",
+  "generated_at": "2026-10-08T17:20:47+00:00",
   "next_event": {
-    "title": "BOE Gov Bailey Speaks",
+    "title": "Prelim UoM Consumer Sentiment",
     "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-10-08T12:15:00+00:00",
-    "blackout_start": "2026-10-08T12:10:00+00:00",
-    "blackout_end": "2026-10-08T12:30:00+00:00",
-    "forecast": null,
-    "previous": null
+    "symbol": "SPY",
+    "impact": "medium",
+    "scheduled_at": "2026-10-09T14:00:00+00:00",
+    "blackout_start": "2026-10-09T13:55:00+00:00",
+    "blackout_end": "2026-10-09T14:15:00+00:00",
+    "forecast": "47.5",
+    "previous": "47.8"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "BOE Gov Bailey Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-10-08T12:15:00+00:00",
-      "blackout_start": "2026-10-08T12:10:00+00:00",
-      "blackout_end": "2026-10-08T12:30:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-10-08T12:30:00+00:00",
-      "blackout_start": "2026-10-08T12:25:00+00:00",
-      "blackout_end": "2026-10-08T12:45:00+00:00",
-      "forecast": "200K",
-      "previous": "197K"
-    },
     {
       "title": "Prelim UoM Consumer Sentiment",
       "kind": "macro",
