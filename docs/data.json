@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T17:22:09+00:00",
+  "generated_at": "2026-10-13T00:09:07+00:00",
   "next_event": {
     "title": "ECB President Lagarde Speaks",
     "kind": "macro",
@@ -132,7 +132,7 @@
       "scheduled_at": "2026-10-15T12:30:00+00:00",
       "blackout_start": "2026-10-15T12:25:00+00:00",
       "blackout_end": "2026-10-15T12:45:00+00:00",
-      "forecast": "0.5%",
+      "forecast": "0.6%",
       "previous": "1.4%"
     },
     {
@@ -143,7 +143,7 @@
       "scheduled_at": "2026-10-15T12:30:00+00:00",
       "blackout_start": "2026-10-15T12:25:00+00:00",
       "blackout_end": "2026-10-15T12:45:00+00:00",
-      "forecast": "0.5%",
+      "forecast": "0.6%",
       "previous": "0.4%"
     },
     {
@@ -165,7 +165,7 @@
       "scheduled_at": "2026-10-15T12:30:00+00:00",
       "blackout_start": "2026-10-15T12:25:00+00:00",
       "blackout_end": "2026-10-15T12:45:00+00:00",
-      "forecast": "26.5",
+      "forecast": "28.2",
       "previous": "37.8"
     },
     {
@@ -176,7 +176,7 @@
       "scheduled_at": "2026-10-15T12:30:00+00:00",
       "blackout_start": "2026-10-15T12:25:00+00:00",
       "blackout_end": "2026-10-15T12:45:00+00:00",
-      "forecast": "195K",
+      "forecast": "199K",
       "previous": "197K"
     },
     {
@@ -235,20 +235,20 @@
       "previous": null
     },
     {
-      "title": "MSFT Earnings",
+      "title": "META Earnings",
       "kind": "earnings",
-      "symbol": "MSFT",
+      "symbol": "META",
       "impact": "high",
-      "scheduled_at": "2026-10-28T20:00:00+00:00",
+      "scheduled_at": "2026-10-21T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
       "previous": null
     },
     {
-      "title": "META Earnings",
+      "title": "MSFT Earnings",
       "kind": "earnings",
-      "symbol": "META",
+      "symbol": "MSFT",
       "impact": "high",
       "scheduled_at": "2026-10-28T20:00:00+00:00",
       "blackout_start": null,
