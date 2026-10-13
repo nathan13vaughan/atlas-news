@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T07:21:28+00:00",
+  "generated_at": "2026-10-13T15:34:26+00:00",
   "next_event": {
     "title": "ECB President Lagarde Speaks",
     "kind": "macro",
@@ -44,6 +44,17 @@
       "scheduled_at": "2026-10-14T08:30:00+00:00",
       "blackout_start": "2026-10-14T08:25:00+00:00",
       "blackout_end": "2026-10-14T08:45:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "EU Economic Summit",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-10-14T10:15:00+00:00",
+      "blackout_start": "2026-10-14T10:10:00+00:00",
+      "blackout_end": "2026-10-14T10:30:00+00:00",
       "forecast": null,
       "previous": null
     },
@@ -110,6 +121,17 @@
       "scheduled_at": "2026-10-15T07:30:00+00:00",
       "blackout_start": "2026-10-15T07:25:00+00:00",
       "blackout_end": "2026-10-15T07:45:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "EU Economic Summit",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-10-15T10:15:00+00:00",
+      "blackout_start": "2026-10-15T10:10:00+00:00",
+      "blackout_end": "2026-10-15T10:30:00+00:00",
       "forecast": null,
       "previous": null
     },
