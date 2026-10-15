@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-10-15T03:15:08+00:00",
+  "generated_at": "2026-10-15T08:51:30+00:00",
   "next_event": {
-    "title": "GDP m/m",
+    "title": "EU Economic Summit",
     "kind": "macro",
     "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-10-15T06:00:00+00:00",
-    "blackout_start": "2026-10-15T05:55:00+00:00",
-    "blackout_end": "2026-10-15T06:15:00+00:00",
-    "forecast": "-0.1%",
-    "previous": "0.4%"
+    "impact": "medium",
+    "scheduled_at": "2026-10-15T10:15:00+00:00",
+    "blackout_start": "2026-10-15T10:10:00+00:00",
+    "blackout_end": "2026-10-15T10:30:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "GDP m/m",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-10-15T06:00:00+00:00",
-      "blackout_start": "2026-10-15T05:55:00+00:00",
-      "blackout_end": "2026-10-15T06:15:00+00:00",
-      "forecast": "-0.1%",
-      "previous": "0.4%"
-    },
-    {
-      "title": "BOE Gov Bailey Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-10-15T07:30:00+00:00",
-      "blackout_start": "2026-10-15T07:25:00+00:00",
-      "blackout_end": "2026-10-15T07:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "EU Economic Summit",
       "kind": "macro",
