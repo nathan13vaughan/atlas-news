@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-10-20T03:27:24+00:00",
+  "generated_at": "2026-10-20T09:07:03+00:00",
   "next_event": {
-    "title": "Average Earnings Index 3m/y",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-10-20T06:00:00+00:00",
-    "blackout_start": "2026-10-20T05:55:00+00:00",
-    "blackout_end": "2026-10-20T06:15:00+00:00",
-    "forecast": "3.8%",
-    "previous": "3.9%"
+    "title": "NFLX Earnings",
+    "kind": "earnings",
+    "symbol": "NFLX",
+    "impact": "high",
+    "scheduled_at": "2026-10-20T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Average Earnings Index 3m/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-10-20T06:00:00+00:00",
-      "blackout_start": "2026-10-20T05:55:00+00:00",
-      "blackout_end": "2026-10-20T06:15:00+00:00",
-      "forecast": "3.8%",
-      "previous": "3.9%"
-    },
     {
       "title": "NFLX Earnings",
       "kind": "earnings",
@@ -99,7 +88,7 @@
       "scheduled_at": "2026-10-23T06:00:00+00:00",
       "blackout_start": "2026-10-23T05:55:00+00:00",
       "blackout_end": "2026-10-23T06:15:00+00:00",
-      "forecast": "-0.2%",
+      "forecast": "-0.1%",
       "previous": "0.5%"
     },
     {
@@ -110,7 +99,7 @@
       "scheduled_at": "2026-10-23T07:15:00+00:00",
       "blackout_start": "2026-10-23T07:10:00+00:00",
       "blackout_end": "2026-10-23T07:30:00+00:00",
-      "forecast": "50.6",
+      "forecast": "50.5",
       "previous": "50.3"
     },
     {
@@ -121,7 +110,7 @@
       "scheduled_at": "2026-10-23T07:15:00+00:00",
       "blackout_start": "2026-10-23T07:10:00+00:00",
       "blackout_end": "2026-10-23T07:30:00+00:00",
-      "forecast": "50.8",
+      "forecast": "50.7",
       "previous": "51.4"
     },
     {
@@ -143,7 +132,7 @@
       "scheduled_at": "2026-10-23T07:30:00+00:00",
       "blackout_start": "2026-10-23T07:25:00+00:00",
       "blackout_end": "2026-10-23T07:45:00+00:00",
-      "forecast": "52.6",
+      "forecast": "52.5",
       "previous": "52.9"
     },
     {
@@ -176,7 +165,7 @@
       "scheduled_at": "2026-10-23T13:45:00+00:00",
       "blackout_start": "2026-10-23T13:40:00+00:00",
       "blackout_end": "2026-10-23T14:00:00+00:00",
-      "forecast": "55.5",
+      "forecast": "55.4",
       "previous": "57.0"
     },
     {
@@ -187,7 +176,7 @@
       "scheduled_at": "2026-10-23T13:45:00+00:00",
       "blackout_start": "2026-10-23T13:40:00+00:00",
       "blackout_end": "2026-10-23T14:00:00+00:00",
-      "forecast": "58.0",
+      "forecast": "57.8",
       "previous": "58.7"
     },
     {
