@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T13:26:01+00:00",
+  "generated_at": "2026-10-21T18:22:32+00:00",
   "next_event": {
     "title": "TSLA Earnings",
     "kind": "earnings",
@@ -143,7 +143,7 @@
       "scheduled_at": "2026-10-23T13:45:00+00:00",
       "blackout_start": "2026-10-23T13:40:00+00:00",
       "blackout_end": "2026-10-23T14:00:00+00:00",
-      "forecast": "57.8",
+      "forecast": "57.9",
       "previous": "58.7"
     },
     {
