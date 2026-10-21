@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-10-21T18:22:32+00:00",
+  "generated_at": "2026-10-21T22:06:07+00:00",
   "next_event": {
-    "title": "TSLA Earnings",
-    "kind": "earnings",
-    "symbol": "TSLA",
-    "impact": "high",
-    "scheduled_at": "2026-10-21T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
+    "title": "Unemployment Claims",
+    "kind": "macro",
+    "symbol": "SPY",
+    "impact": "medium",
+    "scheduled_at": "2026-10-22T12:30:00+00:00",
+    "blackout_start": "2026-10-22T12:25:00+00:00",
+    "blackout_end": "2026-10-22T12:45:00+00:00",
+    "forecast": "200K",
+    "previous": "199K"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "TSLA Earnings",
-      "kind": "earnings",
-      "symbol": "TSLA",
-      "impact": "high",
-      "scheduled_at": "2026-10-21T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "META Earnings",
-      "kind": "earnings",
-      "symbol": "META",
-      "impact": "high",
-      "scheduled_at": "2026-10-21T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Unemployment Claims",
       "kind": "macro",
@@ -229,6 +207,17 @@
       "symbol": "NVDA",
       "impact": "high",
       "scheduled_at": "2026-11-17T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "NFLX Earnings",
+      "kind": "earnings",
+      "symbol": "NFLX",
+      "impact": "high",
+      "scheduled_at": "2027-01-19T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
