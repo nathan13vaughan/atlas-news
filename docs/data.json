@@ -1,63 +1,19 @@
 {
-  "generated_at": "2026-10-23T12:31:03+00:00",
+  "generated_at": "2026-10-23T17:42:21+00:00",
   "next_event": {
-    "title": "Flash Manufacturing PMI",
-    "kind": "macro",
-    "symbol": "SPY",
-    "impact": "medium",
-    "scheduled_at": "2026-10-23T13:45:00+00:00",
-    "blackout_start": "2026-10-23T13:40:00+00:00",
-    "blackout_end": "2026-10-23T14:00:00+00:00",
-    "forecast": "55.4",
-    "previous": "57.0"
+    "title": "MSFT Earnings",
+    "kind": "earnings",
+    "symbol": "MSFT",
+    "impact": "high",
+    "scheduled_at": "2026-10-28T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Flash Manufacturing PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-10-23T13:45:00+00:00",
-      "blackout_start": "2026-10-23T13:40:00+00:00",
-      "blackout_end": "2026-10-23T14:00:00+00:00",
-      "forecast": "55.4",
-      "previous": "57.0"
-    },
-    {
-      "title": "Flash Services PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-10-23T13:45:00+00:00",
-      "blackout_start": "2026-10-23T13:40:00+00:00",
-      "blackout_end": "2026-10-23T14:00:00+00:00",
-      "forecast": "57.9",
-      "previous": "58.7"
-    },
-    {
-      "title": "Revised UoM Consumer Sentiment",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-10-23T14:00:00+00:00",
-      "blackout_start": "2026-10-23T13:55:00+00:00",
-      "blackout_end": "2026-10-23T14:15:00+00:00",
-      "forecast": "46.3",
-      "previous": "46.3"
-    },
-    {
-      "title": "Revised UoM Inflation Expectations",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-10-23T14:00:00+00:00",
-      "blackout_start": "2026-10-23T13:55:00+00:00",
-      "blackout_end": "2026-10-23T14:15:00+00:00",
-      "forecast": null,
-      "previous": "4.7%"
-    },
     {
       "title": "MSFT Earnings",
       "kind": "earnings",
