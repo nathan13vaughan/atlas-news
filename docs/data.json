@@ -1,19 +1,85 @@
 {
-  "generated_at": "2026-10-25T00:49:29+00:00",
+  "generated_at": "2026-10-25T05:41:16+00:00",
   "next_event": {
-    "title": "MSFT Earnings",
-    "kind": "earnings",
-    "symbol": "MSFT",
-    "impact": "high",
-    "scheduled_at": "2026-10-28T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
+    "title": "CB Consumer Confidence",
+    "kind": "macro",
+    "symbol": "SPY",
+    "impact": "medium",
+    "scheduled_at": "2026-10-27T14:00:00+00:00",
+    "blackout_start": "2026-10-27T13:55:00+00:00",
+    "blackout_end": "2026-10-27T14:15:00+00:00",
+    "forecast": "80.5",
+    "previous": "81.9"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
+    {
+      "title": "CB Consumer Confidence",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-27T14:00:00+00:00",
+      "blackout_start": "2026-10-27T13:55:00+00:00",
+      "blackout_end": "2026-10-27T14:15:00+00:00",
+      "forecast": "80.5",
+      "previous": "81.9"
+    },
+    {
+      "title": "Annual Budget Release",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-10-28T12:30:00+00:00",
+      "blackout_start": "2026-10-28T12:25:00+00:00",
+      "blackout_end": "2026-10-28T12:45:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "Autumn Forecast Statement",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-10-28T12:30:00+00:00",
+      "blackout_start": "2026-10-28T12:25:00+00:00",
+      "blackout_end": "2026-10-28T12:45:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "Federal Funds Rate",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-10-28T18:00:00+00:00",
+      "blackout_start": "2026-10-28T17:55:00+00:00",
+      "blackout_end": "2026-10-28T18:15:00+00:00",
+      "forecast": "4.00%",
+      "previous": "4.00%"
+    },
+    {
+      "title": "FOMC Statement",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-10-28T18:00:00+00:00",
+      "blackout_start": "2026-10-28T17:55:00+00:00",
+      "blackout_end": "2026-10-28T18:15:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "FOMC Press Conference",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-10-28T18:30:00+00:00",
+      "blackout_start": "2026-10-28T18:25:00+00:00",
+      "blackout_end": "2026-10-28T18:45:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
     {
       "title": "MSFT Earnings",
       "kind": "earnings",
@@ -37,6 +103,83 @@
       "previous": null
     },
     {
+      "title": "Advance GDP q/q",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-10-29T12:30:00+00:00",
+      "blackout_start": "2026-10-29T12:25:00+00:00",
+      "blackout_end": "2026-10-29T12:45:00+00:00",
+      "forecast": "3.2%",
+      "previous": "1.5%"
+    },
+    {
+      "title": "Core PCE Price Index m/m",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "high",
+      "scheduled_at": "2026-10-29T12:30:00+00:00",
+      "blackout_start": "2026-10-29T12:25:00+00:00",
+      "blackout_end": "2026-10-29T12:45:00+00:00",
+      "forecast": "0.3%",
+      "previous": "0.2%"
+    },
+    {
+      "title": "Advance GDP Price Index q/q",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-29T12:30:00+00:00",
+      "blackout_start": "2026-10-29T12:25:00+00:00",
+      "blackout_end": "2026-10-29T12:45:00+00:00",
+      "forecast": "3.5%",
+      "previous": "6.2%"
+    },
+    {
+      "title": "Unemployment Claims",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-29T12:30:00+00:00",
+      "blackout_start": "2026-10-29T12:25:00+00:00",
+      "blackout_end": "2026-10-29T12:45:00+00:00",
+      "forecast": "198K",
+      "previous": "194K"
+    },
+    {
+      "title": "Main Refinancing Rate",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-10-29T13:15:00+00:00",
+      "blackout_start": "2026-10-29T13:10:00+00:00",
+      "blackout_end": "2026-10-29T13:30:00+00:00",
+      "forecast": "2.65%",
+      "previous": "2.65%"
+    },
+    {
+      "title": "Monetary Policy Statement",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-10-29T13:15:00+00:00",
+      "blackout_start": "2026-10-29T13:10:00+00:00",
+      "blackout_end": "2026-10-29T13:30:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "ECB Press Conference",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "high",
+      "scheduled_at": "2026-10-29T13:45:00+00:00",
+      "blackout_start": "2026-10-29T13:40:00+00:00",
+      "blackout_end": "2026-10-29T14:00:00+00:00",
+      "forecast": null,
+      "previous": null
+    },
+    {
       "title": "AMZN Earnings",
       "kind": "earnings",
       "symbol": "AMZN",
@@ -46,6 +189,39 @@
       "blackout_end": null,
       "forecast": null,
       "previous": null
+    },
+    {
+      "title": "German Prelim CPI m/m",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-10-30T06:29:00+00:00",
+      "blackout_start": "2026-10-30T06:24:00+00:00",
+      "blackout_end": "2026-10-30T06:44:00+00:00",
+      "forecast": "0.1%",
+      "previous": "0.6%"
+    },
+    {
+      "title": "German Prelim GDP q/q",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-10-30T09:00:00+00:00",
+      "blackout_start": "2026-10-30T08:55:00+00:00",
+      "blackout_end": "2026-10-30T09:15:00+00:00",
+      "forecast": "0.1%",
+      "previous": "0.2%"
+    },
+    {
+      "title": "Employment Cost Index q/q",
+      "kind": "macro",
+      "symbol": "SPY",
+      "impact": "medium",
+      "scheduled_at": "2026-10-30T12:30:00+00:00",
+      "blackout_start": "2026-10-30T12:25:00+00:00",
+      "blackout_end": "2026-10-30T12:45:00+00:00",
+      "forecast": "0.8%",
+      "previous": "0.9%"
     },
     {
       "title": "AAPL Earnings",
