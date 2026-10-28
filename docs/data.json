@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-10-28T10:57:54+00:00",
+  "generated_at": "2026-10-28T17:03:18+00:00",
   "next_event": {
-    "title": "Annual Budget Release",
+    "title": "Federal Funds Rate",
     "kind": "macro",
-    "symbol": "XAUUSD",
+    "symbol": "SPY",
     "impact": "high",
-    "scheduled_at": "2026-10-28T12:30:00+00:00",
-    "blackout_start": "2026-10-28T12:25:00+00:00",
-    "blackout_end": "2026-10-28T12:45:00+00:00",
-    "forecast": null,
-    "previous": null
+    "scheduled_at": "2026-10-28T18:00:00+00:00",
+    "blackout_start": "2026-10-28T17:55:00+00:00",
+    "blackout_end": "2026-10-28T18:15:00+00:00",
+    "forecast": "4.00%",
+    "previous": "4.00%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Annual Budget Release",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-10-28T12:30:00+00:00",
-      "blackout_start": "2026-10-28T12:25:00+00:00",
-      "blackout_end": "2026-10-28T12:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "Autumn Forecast Statement",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-10-28T12:30:00+00:00",
-      "blackout_start": "2026-10-28T12:25:00+00:00",
-      "blackout_end": "2026-10-28T12:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Federal Funds Rate",
       "kind": "macro",
