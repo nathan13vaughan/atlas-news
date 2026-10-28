@@ -1,74 +1,19 @@
 {
-  "generated_at": "2026-10-28T17:03:18+00:00",
+  "generated_at": "2026-10-28T22:10:59+00:00",
   "next_event": {
-    "title": "Federal Funds Rate",
+    "title": "Advance GDP q/q",
     "kind": "macro",
     "symbol": "SPY",
     "impact": "high",
-    "scheduled_at": "2026-10-28T18:00:00+00:00",
-    "blackout_start": "2026-10-28T17:55:00+00:00",
-    "blackout_end": "2026-10-28T18:15:00+00:00",
-    "forecast": "4.00%",
-    "previous": "4.00%"
+    "scheduled_at": "2026-10-29T12:30:00+00:00",
+    "blackout_start": "2026-10-29T12:25:00+00:00",
+    "blackout_end": "2026-10-29T12:45:00+00:00",
+    "forecast": "3.2%",
+    "previous": "1.5%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Federal Funds Rate",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-10-28T18:00:00+00:00",
-      "blackout_start": "2026-10-28T17:55:00+00:00",
-      "blackout_end": "2026-10-28T18:15:00+00:00",
-      "forecast": "4.00%",
-      "previous": "4.00%"
-    },
-    {
-      "title": "FOMC Statement",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-10-28T18:00:00+00:00",
-      "blackout_start": "2026-10-28T17:55:00+00:00",
-      "blackout_end": "2026-10-28T18:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "FOMC Press Conference",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-10-28T18:30:00+00:00",
-      "blackout_start": "2026-10-28T18:25:00+00:00",
-      "blackout_end": "2026-10-28T18:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "MSFT Earnings",
-      "kind": "earnings",
-      "symbol": "MSFT",
-      "impact": "high",
-      "scheduled_at": "2026-10-28T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "GOOGL Earnings",
-      "kind": "earnings",
-      "symbol": "GOOGL",
-      "impact": "high",
-      "scheduled_at": "2026-10-28T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Advance GDP q/q",
       "kind": "macro",
