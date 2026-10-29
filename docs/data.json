@@ -1,96 +1,19 @@
 {
-  "generated_at": "2026-10-29T09:20:26+00:00",
+  "generated_at": "2026-10-29T16:35:07+00:00",
   "next_event": {
-    "title": "Advance GDP q/q",
-    "kind": "macro",
-    "symbol": "SPY",
+    "title": "AMZN Earnings",
+    "kind": "earnings",
+    "symbol": "AMZN",
     "impact": "high",
-    "scheduled_at": "2026-10-29T12:30:00+00:00",
-    "blackout_start": "2026-10-29T12:25:00+00:00",
-    "blackout_end": "2026-10-29T12:45:00+00:00",
-    "forecast": "3.2%",
-    "previous": "1.5%"
+    "scheduled_at": "2026-10-29T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Advance GDP q/q",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-10-29T12:30:00+00:00",
-      "blackout_start": "2026-10-29T12:25:00+00:00",
-      "blackout_end": "2026-10-29T12:45:00+00:00",
-      "forecast": "3.2%",
-      "previous": "1.5%"
-    },
-    {
-      "title": "Core PCE Price Index m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-10-29T12:30:00+00:00",
-      "blackout_start": "2026-10-29T12:25:00+00:00",
-      "blackout_end": "2026-10-29T12:45:00+00:00",
-      "forecast": "0.3%",
-      "previous": "0.2%"
-    },
-    {
-      "title": "Advance GDP Price Index q/q",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-10-29T12:30:00+00:00",
-      "blackout_start": "2026-10-29T12:25:00+00:00",
-      "blackout_end": "2026-10-29T12:45:00+00:00",
-      "forecast": "3.2%",
-      "previous": "6.2%"
-    },
-    {
-      "title": "Unemployment Claims",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-10-29T12:30:00+00:00",
-      "blackout_start": "2026-10-29T12:25:00+00:00",
-      "blackout_end": "2026-10-29T12:45:00+00:00",
-      "forecast": "198K",
-      "previous": "194K"
-    },
-    {
-      "title": "Main Refinancing Rate",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-10-29T13:15:00+00:00",
-      "blackout_start": "2026-10-29T13:10:00+00:00",
-      "blackout_end": "2026-10-29T13:30:00+00:00",
-      "forecast": "2.65%",
-      "previous": "2.65%"
-    },
-    {
-      "title": "Monetary Policy Statement",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-10-29T13:15:00+00:00",
-      "blackout_start": "2026-10-29T13:10:00+00:00",
-      "blackout_end": "2026-10-29T13:30:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "ECB Press Conference",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-10-29T13:45:00+00:00",
-      "blackout_start": "2026-10-29T13:40:00+00:00",
-      "blackout_end": "2026-10-29T14:00:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "AMZN Earnings",
       "kind": "earnings",
