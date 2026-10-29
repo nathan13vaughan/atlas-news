@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-10-29T16:35:07+00:00",
+  "generated_at": "2026-10-29T21:31:08+00:00",
   "next_event": {
-    "title": "AMZN Earnings",
-    "kind": "earnings",
-    "symbol": "AMZN",
-    "impact": "high",
-    "scheduled_at": "2026-10-29T20:00:00+00:00",
-    "blackout_start": null,
-    "blackout_end": null,
-    "forecast": null,
-    "previous": null
+    "title": "German Prelim CPI m/m",
+    "kind": "macro",
+    "symbol": "XAUUSD",
+    "impact": "medium",
+    "scheduled_at": "2026-10-30T07:29:00+00:00",
+    "blackout_start": "2026-10-30T07:24:00+00:00",
+    "blackout_end": "2026-10-30T07:44:00+00:00",
+    "forecast": "0.1%",
+    "previous": "0.6%"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "AMZN Earnings",
-      "kind": "earnings",
-      "symbol": "AMZN",
-      "impact": "high",
-      "scheduled_at": "2026-10-29T20:00:00+00:00",
-      "blackout_start": null,
-      "blackout_end": null,
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "German Prelim CPI m/m",
       "kind": "macro",
@@ -97,6 +86,39 @@
       "symbol": "NFLX",
       "impact": "high",
       "scheduled_at": "2027-01-19T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "TSLA Earnings",
+      "kind": "earnings",
+      "symbol": "TSLA",
+      "impact": "high",
+      "scheduled_at": "2027-01-27T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "MSFT Earnings",
+      "kind": "earnings",
+      "symbol": "MSFT",
+      "impact": "high",
+      "scheduled_at": "2027-01-27T20:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "META Earnings",
+      "kind": "earnings",
+      "symbol": "META",
+      "impact": "high",
+      "scheduled_at": "2027-01-27T20:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
