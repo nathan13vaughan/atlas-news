@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-10-30T08:03:07+00:00",
+  "generated_at": "2026-10-30T15:31:38+00:00",
   "next_event": {
-    "title": "German Prelim GDP q/q",
-    "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-10-30T09:00:00+00:00",
-    "blackout_start": "2026-10-30T08:55:00+00:00",
-    "blackout_end": "2026-10-30T09:15:00+00:00",
-    "forecast": "0.1%",
-    "previous": "0.2%"
+    "title": "AAPL Earnings",
+    "kind": "earnings",
+    "symbol": "AAPL",
+    "impact": "high",
+    "scheduled_at": "2026-11-02T20:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "German Prelim GDP q/q",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-10-30T09:00:00+00:00",
-      "blackout_start": "2026-10-30T08:55:00+00:00",
-      "blackout_end": "2026-10-30T09:15:00+00:00",
-      "forecast": "0.1%",
-      "previous": "0.2%"
-    },
-    {
-      "title": "Employment Cost Index q/q",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-10-30T12:30:00+00:00",
-      "blackout_start": "2026-10-30T12:25:00+00:00",
-      "blackout_end": "2026-10-30T12:45:00+00:00",
-      "forecast": "0.8%",
-      "previous": "0.9%"
-    },
     {
       "title": "AAPL Earnings",
       "kind": "earnings",
