@@ -1,52 +1,19 @@
 {
-  "generated_at": "2026-11-04T08:37:10+00:00",
+  "generated_at": "2026-11-04T16:50:06+00:00",
   "next_event": {
-    "title": "Core CPI Flash Estimate y/y",
+    "title": "BOE Monetary Policy Report",
     "kind": "macro",
     "symbol": "XAUUSD",
-    "impact": "medium",
-    "scheduled_at": "2026-11-04T10:00:00+00:00",
-    "blackout_start": "2026-11-04T09:55:00+00:00",
-    "blackout_end": "2026-11-04T10:15:00+00:00",
-    "forecast": "2.5%",
-    "previous": "2.5%"
+    "impact": "high",
+    "scheduled_at": "2026-11-05T12:00:00+00:00",
+    "blackout_start": "2026-11-05T11:55:00+00:00",
+    "blackout_end": "2026-11-05T12:15:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-11-04T10:00:00+00:00",
-      "blackout_start": "2026-11-04T09:55:00+00:00",
-      "blackout_end": "2026-11-04T10:15:00+00:00",
-      "forecast": "2.5%",
-      "previous": "2.5%"
-    },
-    {
-      "title": "CPI Flash Estimate y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-11-04T10:00:00+00:00",
-      "blackout_start": "2026-11-04T09:55:00+00:00",
-      "blackout_end": "2026-11-04T10:15:00+00:00",
-      "forecast": "4.0%",
-      "previous": "3.8%"
-    },
-    {
-      "title": "ISM Services PMI",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-11-04T15:00:00+00:00",
-      "blackout_start": "2026-11-04T14:55:00+00:00",
-      "blackout_end": "2026-11-04T15:15:00+00:00",
-      "forecast": "54.8",
-      "previous": "54.9"
-    },
     {
       "title": "BOE Monetary Policy Report",
       "kind": "macro",
