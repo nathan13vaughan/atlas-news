@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T15:39:15+00:00",
+  "generated_at": "2026-11-06T21:15:58+00:00",
   "next_event": {
     "title": "NVDA Earnings",
     "kind": "earnings",
@@ -97,6 +97,17 @@
       "symbol": "GOOGL",
       "impact": "high",
       "scheduled_at": "2027-02-03T21:00:00+00:00",
+      "blackout_start": null,
+      "blackout_end": null,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "title": "AMZN Earnings",
+      "kind": "earnings",
+      "symbol": "AMZN",
+      "impact": "high",
+      "scheduled_at": "2027-02-04T21:00:00+00:00",
       "blackout_start": null,
       "blackout_end": null,
       "forecast": null,
