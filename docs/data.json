@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-11-09T09:07:00+00:00",
+  "generated_at": "2026-11-09T20:24:11+00:00",
   "next_event": {
-    "title": "BOE Gov Bailey Speaks",
+    "title": "FOMC Member Waller Speaks",
     "kind": "macro",
-    "symbol": "XAUUSD",
+    "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-11-09T17:25:00+00:00",
-    "blackout_start": "2026-11-09T17:20:00+00:00",
-    "blackout_end": "2026-11-09T17:40:00+00:00",
+    "scheduled_at": "2026-11-10T09:00:00+00:00",
+    "blackout_start": "2026-11-10T08:55:00+00:00",
+    "blackout_end": "2026-11-10T09:15:00+00:00",
     "forecast": null,
     "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "BOE Gov Bailey Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-11-09T17:25:00+00:00",
-      "blackout_start": "2026-11-09T17:20:00+00:00",
-      "blackout_end": "2026-11-09T17:40:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "FOMC Member Waller Speaks",
       "kind": "macro",
@@ -57,6 +46,17 @@
       "blackout_end": "2026-11-10T13:45:00+00:00",
       "forecast": "0.3%",
       "previous": "0.6%"
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "kind": "macro",
+      "symbol": "XAUUSD",
+      "impact": "medium",
+      "scheduled_at": "2026-11-11T09:45:00+00:00",
+      "blackout_start": "2026-11-11T09:40:00+00:00",
+      "blackout_end": "2026-11-11T10:00:00+00:00",
+      "forecast": null,
+      "previous": null
     },
     {
       "title": "GDP m/m",
