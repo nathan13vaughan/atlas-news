@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-11-10T12:05:45+00:00",
+  "generated_at": "2026-11-10T20:12:26+00:00",
   "next_event": {
-    "title": "Core CPI m/m",
+    "title": "ECB President Lagarde Speaks",
     "kind": "macro",
-    "symbol": "SPY",
-    "impact": "high",
-    "scheduled_at": "2026-11-10T13:30:00+00:00",
-    "blackout_start": "2026-11-10T13:25:00+00:00",
-    "blackout_end": "2026-11-10T13:45:00+00:00",
-    "forecast": "0.2%",
-    "previous": "0.3%"
+    "symbol": "XAUUSD",
+    "impact": "medium",
+    "scheduled_at": "2026-11-11T09:45:00+00:00",
+    "blackout_start": "2026-11-11T09:40:00+00:00",
+    "blackout_end": "2026-11-11T10:00:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-11-10T13:30:00+00:00",
-      "blackout_start": "2026-11-10T13:25:00+00:00",
-      "blackout_end": "2026-11-10T13:45:00+00:00",
-      "forecast": "0.2%",
-      "previous": "0.3%"
-    },
-    {
-      "title": "CPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-11-10T13:30:00+00:00",
-      "blackout_start": "2026-11-10T13:25:00+00:00",
-      "blackout_end": "2026-11-10T13:45:00+00:00",
-      "forecast": "0.3%",
-      "previous": "0.6%"
-    },
     {
       "title": "ECB President Lagarde Speaks",
       "kind": "macro",
