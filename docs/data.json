@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-11-12T03:36:12+00:00",
+  "generated_at": "2026-11-12T12:10:50+00:00",
   "next_event": {
-    "title": "GDP m/m",
+    "title": "Unemployment Claims",
     "kind": "macro",
-    "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-11-12T07:00:00+00:00",
-    "blackout_start": "2026-11-12T06:55:00+00:00",
-    "blackout_end": "2026-11-12T07:15:00+00:00",
-    "forecast": "0.0%",
-    "previous": "0.1%"
+    "symbol": "SPY",
+    "impact": "medium",
+    "scheduled_at": "2026-11-12T13:30:00+00:00",
+    "blackout_start": "2026-11-12T13:25:00+00:00",
+    "blackout_end": "2026-11-12T13:45:00+00:00",
+    "forecast": "194K",
+    "previous": "189K"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "GDP m/m",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-11-12T07:00:00+00:00",
-      "blackout_start": "2026-11-12T06:55:00+00:00",
-      "blackout_end": "2026-11-12T07:15:00+00:00",
-      "forecast": "0.0%",
-      "previous": "0.1%"
-    },
-    {
-      "title": "Prelim GDP q/q",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-11-12T07:00:00+00:00",
-      "blackout_start": "2026-11-12T06:55:00+00:00",
-      "blackout_end": "2026-11-12T07:15:00+00:00",
-      "forecast": "0.7%",
-      "previous": "0.5%"
-    },
     {
       "title": "Unemployment Claims",
       "kind": "macro",
