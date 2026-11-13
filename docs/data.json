@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-11-13T09:05:17+00:00",
+  "generated_at": "2026-11-13T17:29:36+00:00",
   "next_event": {
-    "title": "Core PPI m/m",
-    "kind": "macro",
-    "symbol": "SPY",
+    "title": "NVDA Earnings",
+    "kind": "earnings",
+    "symbol": "NVDA",
     "impact": "high",
-    "scheduled_at": "2026-11-13T13:30:00+00:00",
-    "blackout_start": "2026-11-13T13:25:00+00:00",
-    "blackout_end": "2026-11-13T13:45:00+00:00",
-    "forecast": "0.3%",
-    "previous": "0.7%"
+    "scheduled_at": "2026-11-17T21:00:00+00:00",
+    "blackout_start": null,
+    "blackout_end": null,
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Core PPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-11-13T13:30:00+00:00",
-      "blackout_start": "2026-11-13T13:25:00+00:00",
-      "blackout_end": "2026-11-13T13:45:00+00:00",
-      "forecast": "0.3%",
-      "previous": "0.7%"
-    },
-    {
-      "title": "PPI m/m",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "high",
-      "scheduled_at": "2026-11-13T13:30:00+00:00",
-      "blackout_start": "2026-11-13T13:25:00+00:00",
-      "blackout_end": "2026-11-13T13:45:00+00:00",
-      "forecast": "0.4%",
-      "previous": "1.3%"
-    },
     {
       "title": "NVDA Earnings",
       "kind": "earnings",
