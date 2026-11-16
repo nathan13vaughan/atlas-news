@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T21:28:20+00:00",
+  "generated_at": "2026-11-16T01:34:05+00:00",
   "next_event": {
     "title": "Fed Chairman Warsh Speaks",
     "kind": "macro",
@@ -84,7 +84,7 @@
       "title": "BOE Gov Bailey Speaks",
       "kind": "macro",
       "symbol": "XAUUSD",
-      "impact": "high",
+      "impact": "medium",
       "scheduled_at": "2026-11-18T07:30:00+00:00",
       "blackout_start": "2026-11-18T07:25:00+00:00",
       "blackout_end": "2026-11-18T07:45:00+00:00",
@@ -187,17 +187,6 @@
       "scheduled_at": "2026-11-20T08:15:00+00:00",
       "blackout_start": "2026-11-20T08:10:00+00:00",
       "blackout_end": "2026-11-20T08:30:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "FOMC Member Waller Speaks",
-      "kind": "macro",
-      "symbol": "SPY",
-      "impact": "medium",
-      "scheduled_at": "2026-11-20T13:25:00+00:00",
-      "blackout_start": "2026-11-20T13:20:00+00:00",
-      "blackout_end": "2026-11-20T13:40:00+00:00",
       "forecast": null,
       "previous": null
     },
