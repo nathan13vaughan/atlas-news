@@ -1,52 +1,19 @@
 {
-  "generated_at": "2026-11-18T02:43:46+00:00",
+  "generated_at": "2026-11-18T11:08:32+00:00",
   "next_event": {
-    "title": "CPI y/y",
+    "title": "ECB President Lagarde Speaks",
     "kind": "macro",
     "symbol": "XAUUSD",
-    "impact": "high",
-    "scheduled_at": "2026-11-18T07:00:00+00:00",
-    "blackout_start": "2026-11-18T06:55:00+00:00",
-    "blackout_end": "2026-11-18T07:15:00+00:00",
-    "forecast": "3.6%",
-    "previous": "3.5%"
+    "impact": "medium",
+    "scheduled_at": "2026-11-18T14:25:00+00:00",
+    "blackout_start": "2026-11-18T14:20:00+00:00",
+    "blackout_end": "2026-11-18T14:40:00+00:00",
+    "forecast": null,
+    "previous": null
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "CPI y/y",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "high",
-      "scheduled_at": "2026-11-18T07:00:00+00:00",
-      "blackout_start": "2026-11-18T06:55:00+00:00",
-      "blackout_end": "2026-11-18T07:15:00+00:00",
-      "forecast": "3.6%",
-      "previous": "3.5%"
-    },
-    {
-      "title": "BOE Gov Bailey Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-11-18T07:30:00+00:00",
-      "blackout_start": "2026-11-18T07:25:00+00:00",
-      "blackout_end": "2026-11-18T07:45:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
-    {
-      "title": "ECB Financial Stability Review",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-11-18T09:00:00+00:00",
-      "blackout_start": "2026-11-18T08:55:00+00:00",
-      "blackout_end": "2026-11-18T09:15:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "ECB President Lagarde Speaks",
       "kind": "macro",
