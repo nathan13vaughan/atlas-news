@@ -1,41 +1,19 @@
 {
-  "generated_at": "2026-11-20T01:02:15+00:00",
+  "generated_at": "2026-11-20T09:40:42+00:00",
   "next_event": {
-    "title": "Retail Sales m/m",
+    "title": "Revised UoM Consumer Sentiment",
     "kind": "macro",
-    "symbol": "XAUUSD",
+    "symbol": "SPY",
     "impact": "medium",
-    "scheduled_at": "2026-11-20T07:00:00+00:00",
-    "blackout_start": "2026-11-20T06:55:00+00:00",
-    "blackout_end": "2026-11-20T07:15:00+00:00",
-    "forecast": "0.0%",
-    "previous": "-0.4%"
+    "scheduled_at": "2026-11-20T15:00:00+00:00",
+    "blackout_start": "2026-11-20T14:55:00+00:00",
+    "blackout_end": "2026-11-20T15:15:00+00:00",
+    "forecast": "51.7",
+    "previous": "51.0"
   },
   "in_blackout": false,
   "active_blackout": null,
   "upcoming": [
-    {
-      "title": "Retail Sales m/m",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-11-20T07:00:00+00:00",
-      "blackout_start": "2026-11-20T06:55:00+00:00",
-      "blackout_end": "2026-11-20T07:15:00+00:00",
-      "forecast": "0.0%",
-      "previous": "-0.4%"
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "kind": "macro",
-      "symbol": "XAUUSD",
-      "impact": "medium",
-      "scheduled_at": "2026-11-20T08:15:00+00:00",
-      "blackout_start": "2026-11-20T08:10:00+00:00",
-      "blackout_end": "2026-11-20T08:30:00+00:00",
-      "forecast": null,
-      "previous": null
-    },
     {
       "title": "Revised UoM Consumer Sentiment",
       "kind": "macro",
