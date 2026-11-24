@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T19:50:22+00:00",
+  "generated_at": "2026-11-24T04:36:08+00:00",
   "next_event": {
     "title": "CB Consumer Confidence",
     "kind": "macro",
@@ -8,7 +8,7 @@
     "scheduled_at": "2026-11-24T15:00:00+00:00",
     "blackout_start": "2026-11-24T14:55:00+00:00",
     "blackout_end": "2026-11-24T15:15:00+00:00",
-    "forecast": "92.1",
+    "forecast": "92.4",
     "previous": "91.7"
   },
   "in_blackout": false,
@@ -22,7 +22,7 @@
       "scheduled_at": "2026-11-24T15:00:00+00:00",
       "blackout_start": "2026-11-24T14:55:00+00:00",
       "blackout_end": "2026-11-24T15:15:00+00:00",
-      "forecast": "92.1",
+      "forecast": "92.4",
       "previous": "91.7"
     },
     {
